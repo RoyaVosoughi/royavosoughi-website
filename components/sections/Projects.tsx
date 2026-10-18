@@ -2,7 +2,6 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { ButtonLink } from "@/components/ui/Button";
 import { visibleProjects } from "@/content/projects";
 import { site } from "@/lib/site";
 
@@ -27,7 +26,7 @@ export async function Projects() {
         /* Honest empty state. Better than inventing work that does not exist. */
         <Reveal
           delayMs={80}
-          className="mt-12 rounded-3xl border-2 border-dashed border-ink/15 bg-mist/40 p-10 text-center"
+          className="mt-12 rounded-2xl border border-dashed border-ink/20 bg-paper p-10 text-center"
         >
           <p className="mx-auto max-w-md text-lg text-ink/75">
             {t("emptyState")}
@@ -49,7 +48,7 @@ export async function Projects() {
               <li key={project.slug}>
                 <Reveal
                   delayMs={80 + i * 80}
-                  className="flex h-full flex-col rounded-3xl border border-ink/10 bg-canvas p-8 transition-all duration-200 hover:-translate-y-1 hover:border-cobalt/40 hover:shadow-[0_12px_32px_-12px_rgba(30,30,30,0.25)]"
+                  className="flex h-full flex-col rounded-2xl border border-ink/10 bg-paper p-8 transition-colors duration-200 hover:border-ink/30"
                 >
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-sm text-ink/70">
@@ -69,14 +68,14 @@ export async function Projects() {
                     {project.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="rounded-full bg-mist px-3 py-1 font-mono text-xs font-medium text-ink"
+                        className="rounded-full border border-ink/10 px-3 py-1 font-mono text-xs text-ink/75"
                       >
                         {tag}
                       </li>
                     ))}
                   </ul>
 
-                  <p className="mt-6 rounded-2xl bg-mist/50 p-4 text-[0.9375rem] text-ink/80">
+                  <p className="mt-6 rounded-xl bg-mist/60 p-4 text-[0.9375rem] text-ink/80">
                     <span className="font-semibold text-cobalt">
                       {t("learnedLabel")}{" "}
                     </span>
@@ -111,16 +110,6 @@ export async function Projects() {
           })}
         </ul>
       )}
-
-      <Reveal
-        delayMs={items.length * 80 + 80}
-        className="mt-14 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-start"
-      >
-        <p className="text-xl text-ink">{t("ctaTitle")}</p>
-        <ButtonLink href={`/${locale}/contact`} variant="secondary">
-          {t("ctaButton")}
-        </ButtonLink>
-      </Reveal>
     </Section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { Link, usePathname } from "@/i18n/navigation";
@@ -20,6 +20,11 @@ const navItems = [
 
 export function Header() {
   const t = useTranslations("nav");
+  const hero = useTranslations("hero");
+  const headerRef = useRef<HTMLElement>(null);
+  // The announcement strip scrolls away above the sticky header, so the
+  // mobile menu opens from wherever the header's bottom edge is right now.
+  const [menuTop, setMenuTop] = useState(80);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,11 +58,26 @@ export function Header() {
         {t("skipToContent")}
       </a>
 
+      {/* Announcement strip (Superhuman's top banner) — scrolls away */}
+      <div className="surface-ink hidden bg-ink text-canvas sm:block">
+        <p className="container-page flex items-center justify-center gap-x-3 gap-y-1 py-2.5 text-center text-[0.8125rem] flex-wrap">
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-cobalt-light" />
+          <span className="text-canvas/85">{hero("announce")}</span>
+          <Link
+            href="/contact"
+            className="font-medium text-canvas underline decoration-canvas/40 underline-offset-4 hover:decoration-canvas"
+          >
+            {hero("announceLink")} <span className="rtl:hidden">→</span><span className="hidden rtl:inline">←</span>
+          </Link>
+        </p>
+      </div>
+
       <header
+        ref={headerRef}
         className={`sticky top-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-canvas/85 backdrop-blur-md shadow-[0_1px_0_0_color-mix(in_srgb,var(--color-ink)_10%,transparent)]"
-            : "bg-transparent"
+            ? "border-b border-ink/10 bg-canvas/80 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
         }`}
       >
         {/* Three zones: logo | nav pill | CTA + language. The grid's 1fr side
@@ -74,14 +94,14 @@ export function Header() {
           </Link>
 
           <nav
-            className="hidden items-center gap-1 rounded-full border border-ink/15 bg-canvas/60 p-1.5 xl:flex"
+            className="hidden items-center gap-1 xl:flex"
             aria-label={t("primary")}
           >
             {navItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
-                className="rounded-full px-4 py-2 text-[0.9375rem] font-medium whitespace-nowrap text-ink/75 transition-colors hover:bg-ink/5 hover:text-cobalt"
+                className="rounded-full px-3.5 py-2 text-[0.9375rem] whitespace-nowrap text-ink/70 transition-colors hover:text-ink"
               >
                 {t(item.key)}
               </Link>
@@ -103,10 +123,13 @@ export function Header() {
 
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => {
+                setMenuTop(headerRef.current?.getBoundingClientRect().bottom ?? 80);
+                setOpen((v) => !v);
+              }}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="grid h-11 w-11 place-items-center rounded-full border-2 border-ink/20 text-ink xl:hidden"
+              className="grid h-11 w-11 place-items-center rounded-full border border-ink/20 text-ink xl:hidden"
             >
               <span className="sr-only">{open ? t("close") : t("menu")}</span>
               <svg
@@ -132,7 +155,8 @@ export function Header() {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-0 top-20 z-30 bg-canvas xl:hidden"
+          className="fixed inset-x-0 bottom-0 z-30 overflow-y-auto bg-canvas xl:hidden"
+          style={{ top: menuTop }}
         >
           <nav
             className="container-page flex flex-col gap-1 py-8"
@@ -142,7 +166,7 @@ export function Header() {
               <Link
                 key={item.key}
                 href={item.href}
-                className="border-b border-ink/10 py-5 text-2xl font-semibold text-ink"
+                className="border-b border-ink/10 py-5 text-3xl font-light text-ink"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {t(item.key)}

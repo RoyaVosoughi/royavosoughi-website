@@ -55,7 +55,7 @@ export async function Contact() {
           </dl>
         </Reveal>
 
-        <Reveal delayMs={100} className="rounded-3xl bg-mist/40 p-6 md:p-8">
+        <Reveal delayMs={100} className="rounded-2xl border border-ink/10 bg-paper p-6 md:p-8">
           <ContactForm configured={isSupabaseConfigured()} email={site.email} />
         </Reveal>
       </div>

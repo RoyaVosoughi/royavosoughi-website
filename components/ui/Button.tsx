@@ -3,27 +3,24 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
 type Variant = "primary" | "secondary" | "onDark" | "onDarkGhost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold " +
-  "px-7 py-3.5 text-base leading-none transition-all duration-200 " +
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium " +
+  "px-6 py-3.5 text-[0.9375rem] leading-none transition-colors duration-200 " +
   "focus-visible:outline-3 focus-visible:outline-offset-3 " +
   "disabled:opacity-50 disabled:pointer-events-none";
 
+/* Flat pills, no shadows: Cobalt is the one filled action per screen,
+   everything else is a hairline outline. */
 const variants: Record<Variant, string> = {
-  // Cobalt solid — the one primary action per screen. Text on cobalt is
-  // white in light (8:1; ink on cobalt is only 2.2:1) — on-cobalt flips it in
-  // dark. Hover deepens to cobalt-dark and the press-shadow is an Ink line
-  // (black in dark, where Ink is cream).
-  primary:
-    "bg-cobalt text-on-cobalt shadow-[0_2px_0_0_var(--btn-press,var(--color-ink))] " +
-    "hover:bg-cobalt-dark hover:-translate-y-0.5 hover:shadow-[0_4px_0_0_var(--btn-press,var(--color-ink))] active:translate-y-0",
-  // Outlined on light
+  // Cobalt solid. Text on cobalt is white in light (8:1; ink on cobalt is only
+  // 2.2:1) — on-cobalt flips it in dark. Hover deepens to cobalt-dark.
+  primary: "bg-cobalt text-on-cobalt hover:bg-cobalt-dark",
+  // Hairline outline on light
   secondary:
-    "border-2 border-ink text-ink hover:bg-ink hover:text-canvas",
+    "border border-ink/25 text-ink hover:border-ink hover:bg-ink/[0.04]",
   // Cobalt on Ink sections — white text keeps 8:1; hover flips to cream
-  onDark:
-    "bg-cobalt text-on-cobalt hover:bg-canvas hover:text-ink hover:-translate-y-0.5 active:translate-y-0",
+  onDark: "bg-cobalt text-on-cobalt hover:bg-canvas hover:text-ink",
   onDarkGhost:
-    "border-2 border-fog text-canvas hover:bg-canvas hover:text-ink hover:border-canvas",
+    "border border-canvas/30 text-canvas hover:border-canvas hover:bg-canvas/[0.06]",
 };
 
 type LinkProps = { href: string; variant?: Variant; children: ReactNode } & Omit<

@@ -18,11 +18,24 @@
   --color-cobalt: #0047ab; /* Cobalt — buttons (white text, 8:1) and links on light (6.8:1) */
 
   /* Derived tints (not new colours) */
+  --color-paper: #fffaf3; /* lifted cream — cards that sit ON the canvas (no shadow, hairline edge) */
   --color-mist: #ebdfd1; /* deeper cream — cards, quotes, soft sections */
   --color-ink-soft: #2e2e2e; /* hover state on ink surfaces */
   --color-fog: #b8b0a6; /* muted text on ink — 7.8:1 */
   --color-cobalt-dark: #003a8c; /* cobalt hover — white text 10.6:1 */
   --color-cobalt-light: #7fa6e8; /* cobalt for text/accents on ink — raw cobalt is 2.1:1 there, this is 6.8:1 */
+
+  /* Accent panels (2026-10-17 refresh). Lilac and periwinkle come from the
+     reference styles (Superhuman's lilac, Origin's iris/periwinkle tiles) and
+     sit in the cobalt family. Used only as full panel fills — service tiles,
+     glows — never for text or buttons. These do NOT flip in dark mode, so
+     text on them uses the fixed night/cream pair below. */
+  --color-lilac: #d4ccff;
+  --color-periwinkle: #a9c2f2;
+  --color-deep: #0b2e66;
+  --color-royal: #0047ab; /* Cobalt as a fixed panel fill — doesn't lighten in dark */
+  --color-night: #1e1e1e;
+  --color-cream: #f5ebe0;
 
   /* Functional status colours (warnings) — not brand colours */
   --color-amber: #e3a72f;
@@ -32,8 +45,11 @@
      where Cobalt itself lightens. */
   --color-on-cobalt: #ffffff;
 
-  /* Type families. --font-display / --font-body are re-pointed per locale below. */
-  --font-display: var(--font-space-grotesk), "Segoe UI", system-ui, sans-serif;
+  /* Type families — three voices (2026-10-17 editorial refresh):
+     serif display for headlines, sans for UI/body, mono for labels and data.
+     --font-display / --font-body are re-pointed per locale below. The
+     Space Grotesk fallback covers layouts that don't load Fraunces. */
+  --font-display: var(--font-fraunces, var(--font-space-grotesk)), Georgia, serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
@@ -53,6 +69,7 @@
   color-scheme: dark;
   --color-canvas: #151413;
   --color-ink: #f5ebe0;
+  --color-paper: #1d1b19;
   --color-mist: #24221f;
   --color-ink-soft: #e2d6c8;
   --color-fog: #b8b0a6;
@@ -61,7 +78,6 @@
   --color-cobalt-light: #9dbbee;
   --color-on-cobalt: #151413;
   --color-amber-deep: #e3a72f;
-  --btn-press: #000000;
 }
 
 /* Ink surfaces (footer, dark sections, code blocks) stay dark in the dark
@@ -82,7 +98,7 @@
    -------------------------------------------------------------------------- */
 
 .locale-en {
-  --font-display: var(--font-space-grotesk), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-fraunces, var(--font-space-grotesk)), Georgia, serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
 }
 
@@ -113,15 +129,45 @@
     overflow-x: hidden;
   }
 
+  /* Headlines whisper, they don't shout: the serif display at a light
+     weight carries h1/h2; card-level h3/h4 switch to the sans so the serif
+     stays special. */
   h1,
-  h2,
-  h3,
-  h4 {
+  h2 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 350;
+    font-variation-settings: "SOFT" 30;
     color: var(--color-ink);
     letter-spacing: -0.02em;
     text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--color-ink);
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  /* The one italic word in a headline — an editorial accent. Farsi has no
+     italic, so there it stays upright. */
+  h1 em,
+  h2 em {
+    font-style: italic;
+    font-weight: 300;
+    /* italic overhang would otherwise kiss the next word */
+    margin-inline-end: 0.06em;
+  }
+
+  .locale-fa h1,
+  .locale-fa h2 {
+    font-weight: 500;
+  }
+
+  .locale-fa em {
+    font-style: normal;
   }
 
   /* Farsi headings do not want negative tracking — it breaks letter joining */
@@ -190,13 +236,14 @@
      at 360px. */
   .text-display {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(2.125rem, 7vw, 5rem);
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    font-weight: 320;
+    font-size: clamp(2.375rem, 7.4vw, 5.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
   }
 
   .locale-fa .text-display {
+    font-weight: 500;
     font-size: clamp(2rem, 6vw, 4.25rem);
     line-height: 1.45;
     letter-spacing: 0;
@@ -204,8 +251,8 @@
 
   /* Section heading */
   .text-section {
-    font-size: clamp(1.875rem, 4.5vw, 3.25rem);
-    line-height: 1.1;
+    font-size: clamp(2rem, 4.8vw, 3.75rem);
+    line-height: 1.04;
   }
 
   .locale-fa .text-section {
@@ -215,14 +262,16 @@
   /* Small uppercase label above section headings. Never used for Farsi
      (Persian has no uppercase and letter-spacing breaks the script). */
   .label-eyebrow {
-    font-family: var(--font-display);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
   .locale-fa .label-eyebrow {
+    font-family: var(--font-body);
+    font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
     font-size: 0.9375rem;

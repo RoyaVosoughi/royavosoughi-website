@@ -37,7 +37,10 @@ export async function AboutTeaser() {
           <p className="mt-6 text-lg text-ink/80">{t("p1")}</p>
           <p className="mt-4 text-lg text-ink/80">{t("p2")}</p>
 
-          <blockquote className="mt-8 border-s-4 border-cobalt ps-5 text-xl text-ink italic">
+          <blockquote
+            className="mt-8 border-s-2 border-cobalt ps-5 text-2xl leading-snug font-light text-ink italic"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
             {t("quote")}
           </blockquote>
 

@@ -79,6 +79,7 @@ export function ChatWidget({
   showConsultationButton = false,
   welcomeOverride,
   startersOverride,
+  initialInput = "",
 }: {
   configured: boolean;
   locale: Locale;
@@ -88,11 +89,13 @@ export function ChatWidget({
   /** From channel_greetings (channel='web') — /admin/settings. Falls back to the i18n defaults below when unset. */
   welcomeOverride?: string | null;
   startersOverride?: string[];
+  /** Pre-fills the input (e.g. a question typed into the home hero) — never auto-sent. */
+  initialInput?: string;
 }) {
   const t = useTranslations("chat");
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<DisplayMessage[]>([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(initialInput);
   const [status, setStatus] = useState<Status>("idle");
   const listRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);

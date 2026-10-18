@@ -26,10 +26,15 @@ export async function generateMetadata({
 
 export default async function ChatPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ q?: string | string[] }>;
 }) {
   const { locale } = await params;
+  const { q } = await searchParams;
+  // From the home hero's "Ask Nura" field. Capped so a crafted URL can't stuff the box.
+  const initialInput = (typeof q === "string" ? q : "").slice(0, 500);
   setRequestLocale(locale);
   const t = await getTranslations("chatPage");
 
@@ -51,6 +56,7 @@ export default async function ChatPage({
             showConsultationButton
             welcomeOverride={greeting.welcomeMessage}
             startersOverride={greeting.quickReplies}
+            initialInput={initialInput}
           />
         </div>
       </div>

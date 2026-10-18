@@ -46,7 +46,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             <li key={post.id}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex h-full flex-col rounded-3xl border border-ink/10 bg-canvas p-8 transition-all duration-200 hover:-translate-y-1 hover:border-cobalt/40 hover:shadow-[0_12px_32px_-12px_rgba(30,30,30,0.25)]"
+                className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-paper p-8 transition-all duration-200 hover:border-cobalt/40 hover:shadow-[0_12px_32px_-12px_rgba(30,30,30,0.25)]"
               >
                 <p className="text-sm text-ink/60">
                   {formatPostDate(post.publishedAt, locale)} · {t("minutes", { count: readingMinutes(post.bodyMd) })}

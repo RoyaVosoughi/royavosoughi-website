@@ -29,7 +29,18 @@
     "ctaPrimary": "Request a consultation",
     "ctaSecondary": "See my work",
     "credential": "AI Engineer & Software Developer · Python · LLMs · RAG",
-    "codeCardLabel": "Illustrative example: an AI agent answering from a company's own documents, not a guess"
+    "codeCardLabel": "Illustrative example: an AI agent answering from a company's own documents, not a guess",
+    "askLabel": "Ask Nura, my AI assistant, about your project",
+    "askPlaceholder": "Ask Nura about your project…",
+    "askSubmit": "Ask Nura",
+    "glassName": "Nura",
+    "glassQuestion": "Can it answer from our own documents?",
+    "glassAnswer": "Yes — grounded in your files, with sources, and it says \"I don't know\" when they don't cover it.",
+    "glassLabel": "Illustrative example of an assistant answering from a company's own documents",
+    "announce": "Free 30-minute consultation — one focused call, no sales pitch.",
+    "announceLink": "Request one",
+    "stackLabel": "Tools I build with",
+    "ctaChat": "Or ask Nura first"
   },
   "proof": {
     "title": "How I work",

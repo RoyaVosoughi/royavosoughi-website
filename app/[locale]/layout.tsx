@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Inter, JetBrains_Mono, Space_Grotesk, Vazirmatn } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono, Space_Grotesk, Vazirmatn } from "next/font/google";
 import Script from "next/script";
 
 import { routing, getDirection } from "@/i18n/routing";
@@ -17,6 +17,15 @@ import "../globals.css";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+// Display serif for English headlines — set light (300–400), never bold.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
   display: "swap",
 });
 
@@ -99,7 +108,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const dir = getDirection(locale);
-  const fontVars = `${spaceGrotesk.variable} ${inter.variable} ${vazirmatn.variable} ${jetbrainsMono.variable}`;
+  const fontVars = `${spaceGrotesk.variable} ${fraunces.variable} ${inter.variable} ${vazirmatn.variable} ${jetbrainsMono.variable}`;
 
   return (
     <html lang={locale} dir={dir} className={fontVars} suppressHydrationWarning>

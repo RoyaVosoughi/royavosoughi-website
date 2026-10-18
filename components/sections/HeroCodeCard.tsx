@@ -5,8 +5,7 @@
  * in English/code regardless of locale, same reasoning as the OG image:
  * code is not a translatable surface.
  *
- * Framing follows the brand guide's imagery rule for code/screenshots
- * verbatim: Deep Forest frame on a Mint background.
+ * Sits inside the dark hero panel as a frosted-glass floating card.
  */
 export function HeroCodeCard({ label }: { label: string }) {
   return (
@@ -14,7 +13,7 @@ export function HeroCodeCard({ label }: { label: string }) {
       role="img"
       aria-label={label}
       dir="ltr"
-      className="rounded-3xl bg-mist p-3 shadow-[0_24px_60px_-24px_rgba(30,30,30,0.35)]"
+      className="rounded-3xl border border-canvas/15 bg-canvas/[0.08] p-2.5 backdrop-blur-xl"
     >
       <div className="surface-ink overflow-hidden rounded-2xl bg-ink">
         <div className="flex items-center gap-2.5 bg-ink-soft/60 px-4 py-3">
