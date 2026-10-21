@@ -23,7 +23,13 @@ async function main() {
   const response = await fetch(`https://api.telegram.org/bot${token}/setWebhook`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url: webhookUrl, secret_token: secret }),
+    // Same as registerTelegramWebhook in lib/telegram.ts — callback_query is
+    // what quick-reply button taps arrive as.
+    body: JSON.stringify({
+      url: webhookUrl,
+      secret_token: secret,
+      allowed_updates: ["message", "callback_query"],
+    }),
   });
 
   const data = await response.json();

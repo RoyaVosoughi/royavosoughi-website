@@ -126,7 +126,13 @@ export async function registerTelegramWebhook(baseUrl: string): Promise<{ ok: bo
   const response = await fetch(`${TELEGRAM_API_BASE}/bot${botToken}/setWebhook`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url: webhookUrl, secret_token: webhookSecret }),
+    // Always explicit: Telegram keeps the previous allowed_updates when it's
+    // omitted, and without callback_query the quick-reply buttons do nothing.
+    body: JSON.stringify({
+      url: webhookUrl,
+      secret_token: webhookSecret,
+      allowed_updates: ["message", "callback_query"],
+    }),
   });
 
   const data = (await response.json()) as { ok: boolean; description?: string };
