@@ -4,7 +4,6 @@
  * supabase/schema.sql and the `services.items.*` keys in messages/*.json.
  */
 export const serviceKeys = [
-  "training",
   "consulting",
   "automation",
   "agent",

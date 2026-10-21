@@ -127,6 +127,7 @@ const messages: DeepStringify<typeof source> = {
     notConfiguredBody: "برای مشاهدهٔ درخواست‌ها در این‌جا، NEXT_PUBLIC_SUPABASE_URL و SUPABASE_SERVICE_ROLE_KEY را تنظیم کنید.",
     columnReceived: "تاریخ دریافت",
     columnService: "خدمت",
+    retiredService: "{service} (حذف‌شده)",
     columnName: "نام",
     columnBusiness: "کسب‌وکار",
     columnContact: "تلفن / تلگرام",

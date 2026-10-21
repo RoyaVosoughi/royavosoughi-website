@@ -25,7 +25,7 @@ function buildColumns(
       header: t("columnService"),
       cell: (row) => (
         <span className="whitespace-nowrap rounded-full bg-mist px-3 py-1 text-xs font-semibold text-cobalt">
-          {serviceNames[row.service]?.name ?? row.service}
+          {serviceNames[row.service]?.name ?? t("retiredService", { service: row.service })}
         </span>
       ),
     },

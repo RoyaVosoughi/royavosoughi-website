@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { serviceKeys } from "@/lib/service-options";
 
 /**
- * Home-page teaser: the five services as Origin-style colour tiles — large
+ * Home-page teaser: the four services as Origin-style colour tiles — large
  * 30px-radius panels where colour alone separates the categories. The fills
  * are fixed accent panels (they don't flip in dark mode), so the text on
  * each uses the fixed night/cream pair. The full cards and the request form
@@ -16,9 +16,8 @@ import { serviceKeys } from "@/lib/service-options";
 const tiles = [
   { span: "lg:col-span-3", fill: "bg-royal", text: "text-white", muted: "text-white/75" },
   { span: "lg:col-span-3", fill: "bg-lilac", text: "text-night", muted: "text-night/70" },
-  { span: "lg:col-span-2", fill: "bg-periwinkle", text: "text-night", muted: "text-night/70" },
-  { span: "lg:col-span-2", fill: "bg-deep", text: "text-cream", muted: "text-cream/70" },
-  { span: "lg:col-span-2", fill: "bg-night", text: "text-cream", muted: "text-cream/70" },
+  { span: "lg:col-span-3", fill: "bg-periwinkle", text: "text-night", muted: "text-night/70" },
+  { span: "lg:col-span-3", fill: "bg-deep", text: "text-cream", muted: "text-cream/70" },
 ] as const;
 
 export async function Services() {
@@ -43,7 +42,7 @@ export async function Services() {
         {serviceKeys.map((key, i) => {
           const tile = tiles[i % tiles.length];
           return (
-            <li key={key} className={`${tile.span} ${i === 4 ? "sm:col-span-2 lg:col-span-2" : ""}`}>
+            <li key={key} className={tile.span}>
               <Reveal delayMs={60 + i * 60} className="h-full">
                 <Link
                   href="/services"

@@ -1164,13 +1164,21 @@ alter table public.ai_usage_log
 create table if not exists public.service_requests (
   id         uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
-  service    text not null check (service in ('training', 'consulting', 'automation', 'agent', 'multiAgent')),
+  service    text not null check (service in ('consulting', 'automation', 'agent', 'multiAgent')),
   name       text not null check (char_length(name) between 2 and 120),
   business   text not null check (char_length(business) between 1 and 160),
   contact    text not null check (char_length(contact) between 3 and 120),
   email      text not null check (char_length(email) <= 200 and email ~* '^[^@\s]+@[^@\s]+\.[^@\s]+$'),
   message    text not null check (char_length(message) between 5 and 4000)
 );
+
+-- "training" (Training Course) was retired. NOT VALID enforces the new list on
+-- every new row but keeps requests that were already saved for it.
+alter table public.service_requests
+  drop constraint if exists service_requests_service_check;
+alter table public.service_requests
+  add constraint service_requests_service_check
+  check (service in ('consulting', 'automation', 'agent', 'multiAgent')) not valid;
 
 create index if not exists service_requests_created_at_idx
   on public.service_requests (created_at desc);

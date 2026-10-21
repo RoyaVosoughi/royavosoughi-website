@@ -125,6 +125,7 @@ const messages = {
     notConfiguredBody: "Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to see service requests here.",
     columnReceived: "Received",
     columnService: "Service",
+    retiredService: "{service} (retired)",
     columnName: "Name",
     columnBusiness: "Business",
     columnContact: "Phone / Telegram",

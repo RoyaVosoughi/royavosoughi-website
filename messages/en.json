@@ -63,10 +63,10 @@
   },
   "services": {
     "metaTitle": "Services",
-    "metaDescription": "Roya Vosoughi's AI services: group training, consulting sessions, automation, custom agents and multi-agent systems.",
+    "metaDescription": "Roya Vosoughi's AI services: consulting sessions, automation, custom agents and multi-agent systems.",
     "eyebrow": "Services",
-    "title": "From one training session to a team of agents.",
-    "intro": "Five ways to make AI actually work in your business. Pick the one closest to your problem and send a request.",
+    "title": "From one consulting session to a team of agents.",
+    "intro": "Four ways to make AI actually work in your business. Pick the one closest to your problem and send a request.",
     "teaserLink": "See all services",
     "cta": "Register / Request",
     "labels": {
@@ -77,14 +77,6 @@
       "price": "Price"
     },
     "items": {
-      "training": {
-        "name": "Training Course",
-        "for": "Groups of 5–6 people.",
-        "problem": "What people know about AI is scattered and missing the details that matter, so they don't get the results they want.",
-        "deliverable": "A document of engineered prompts and the step-by-step process of a sample project, plus the session recording.",
-        "duration": "A 2–3 hour training session.",
-        "price": "Set after the introductory meeting."
-      },
       "consulting": {
         "name": "Consulting Session",
         "for": "A manager, or an employee, who wants to start using AI.",
