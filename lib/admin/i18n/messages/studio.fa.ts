@@ -1,0 +1,69 @@
+import type messagesEn from "./studio.en";
+import type { DeepStringify } from "../deep-stringify";
+
+/** Persian strings for /admin/blog/studio — see studio.en.ts. */
+const messages: DeepStringify<typeof messagesEn> = {
+  blogStudio: {
+    eyebrow: "محتوا",
+    title: "استودیوی وبلاگ",
+    subtitle:
+      "در هر اجرا، تیمی از ایجنت‌های هوش مصنوعی یک مقاله را پژوهش، نگارش، ویرایش، سئو و ترجمه می‌کنند. خروجی هر اجرا یک جفت پیش‌نویس انگلیسی و فارسی است — تا وقتی خودتان منتشر نکنید، چیزی منتشر نمی‌شود.",
+    topicLabel: "موضوع پیشنهادی (اختیاری)",
+    topicPlaceholder: "مثلا جستجوی اسناد برای دفاتر حقوقی",
+    start: "شروع اجرا",
+    starting: "در حال شروع…",
+    webOn: "پژوهش وب: فعال",
+    webOff: "پژوهش وب: غیرفعال (برای فعال‌سازی TAVILY_API_KEY را تنظیم کنید)",
+    models: "مدل‌ها: {pipeline} · نویسنده {writer}",
+    weekly: "هر دوشنبه ساعت ۰۶:۰۰ UTC هم یک اجرا به‌طور خودکار شروع می‌شود.",
+    tabRuns: "اجراها",
+    tabLessons: "درس‌ها ({count})",
+    noRuns: "هنوز اجرایی نداشته‌اید. از بالا یکی را شروع کنید.",
+    status: { running: "در حال اجرا", done: "انجام شد", error: "ناموفق" },
+    trigger: { manual: "دستی", cron: "هفتگی" },
+    agents: {
+      idea_scout: "ایده‌یاب",
+      strategist: "استراتژیست",
+      researcher: "پژوهشگر",
+      writer: "نویسنده",
+      editor: "ویراستار",
+      seo: "سئو",
+      translator: "مترجم",
+      publisher: "ناشر",
+      critic: "منتقد",
+    },
+    revision: "دور {n}",
+    showOutput: "نمایش خروجی",
+    seconds: "{s} ثانیه",
+    noTopic: "بدون موضوع پیشنهادی",
+    openEn: "باز کردن پیش‌نویس انگلیسی ←",
+    openFa: "باز کردن پیش‌نویس فارسی ←",
+    feedbackTitle: "این مقاله چطور بود؟",
+    feedbackBody: "بازخورد شما هم، مثل نظر منتقد، به درس برای ایجنت‌ها تبدیل می‌شود.",
+    feedbackPlaceholder: "دفعه‌ی بعد چه چیزی باید تغییر کند؟ (برای 👍 اختیاری است)",
+    up: "👍 خوب بود",
+    down: "👎 کار دارد",
+    sendFeedback: "ارسال بازخورد",
+    sending: "در حال ارسال…",
+    feedbackSaved: "ممنون — ذخیره شد.",
+    lessonsLearned: "درس‌های جدید:",
+    lessonsIntro:
+      "چیزهایی که ایجنت‌ها یاد گرفته‌اند. هر درس فعال در هر اجرا به دستورالعمل همان ایجنت اضافه می‌شود (حداکثر ۸ درس برای هر ایجنت؛ قدیمی‌ترها بازنشسته می‌شوند). هر درسی را که اشتباه است بازنشسته کنید.",
+    noLessons: "هنوز درسی ثبت نشده — بعد از اولین اجرا اینجا ظاهر می‌شوند.",
+    retire: "بازنشسته کردن",
+    confirmRetire: "این درس بازنشسته شود؟ از اجرای بعدی، ایجنت دیگر آن را دنبال نمی‌کند.",
+    source: { critic: "منتقد", human: "شما" },
+    errors: {
+      already_running: "یک اجرا در جریان است — صبر کنید تا تمام شود.",
+      ai_not_configured: "OPENROUTER_API_KEY تنظیم نشده است.",
+      ai_no_credits: "اعتبار OpenRouter تمام شده است.",
+      timed_out: "اجرا پیش از پایان متوقف شد (زمان سرور تمام شد). دوباره امتحان کنید.",
+      generic: "مشکلی پیش آمد. دوباره امتحان کنید.",
+    },
+    tableMissingTitle: "اول بلوک SQL نسخه‌ی V7 را اجرا کنید",
+    tableMissingBody: "جدول‌های استودیو هنوز ساخته نشده‌اند. در Supabase بخش SQL Editor را باز کنید، بلوک «V7 — Blog studio» را از فایل supabase/schema.sql کپی و اجرا کنید.",
+    studioLink: "استودیوی وبلاگ ←",
+  },
+};
+
+export default messages;

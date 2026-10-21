@@ -42,6 +42,7 @@ const messages: DeepStringify<typeof shared> = {
     linkCrmReports: "گزارش‌ها",
     linkAssistant: "دستیار",
     linkBlog: "وبلاگ",
+    linkBlogStudio: "استودیوی وبلاگ",
     linkChannels: "کانال‌ها",
     linkBroadcast: "ارسال همگانی",
     linkTeam: "تیم و نقش‌ها",

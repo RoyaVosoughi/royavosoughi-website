@@ -14,6 +14,7 @@ export const metadata = { title: "Blog · Admin" };
 export default async function AdminBlogPage() {
   const t = await getAdminTranslator("blogAdmin");
   const tc = await getAdminTranslator("crmDocs");
+  const ts = await getAdminTranslator("blogStudio");
 
   if (!isSupabaseServiceConfigured()) {
     return <EmptyState title={tc("notConfiguredTitle")} body={tc("notConfiguredBody")} />;
@@ -59,11 +60,16 @@ export default async function AdminBlogPage() {
           <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
           <p className="mt-3 max-w-3xl text-ink/70">{t("subtitle")}</p>
         </div>
-        {canEdit ? (
-          <Link href="/admin/blog/new" className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark">
-            {t("newButton")}
+        <div className="flex flex-wrap items-center gap-4">
+          <Link href="/admin/blog/studio" className="text-sm font-semibold text-cobalt hover:underline">
+            {ts("studioLink")}
           </Link>
-        ) : null}
+          {canEdit ? (
+            <Link href="/admin/blog/new" className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark">
+              {t("newButton")}
+            </Link>
+          ) : null}
+        </div>
       </div>
       <div className="mt-8">
         {posts.length === 0 ? <EmptyState title={t("emptyTitle")} body={t("emptyBody")} /> : <DataTable columns={columns} rows={posts} />}

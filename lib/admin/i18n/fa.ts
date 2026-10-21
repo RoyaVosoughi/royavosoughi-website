@@ -6,6 +6,7 @@ import system from "./messages/system.fa";
 import crm from "./messages/crm.fa";
 import identities from "./messages/identities.fa";
 import docs from "./messages/docs.fa";
+import studio from "./messages/studio.fa";
 
 /** Persian admin strings — see en.ts for the split-file/merge reasoning. Typed against AdminMessages so a missing/extra key anywhere fails the build. */
 const messages: AdminMessages = {
@@ -16,6 +17,7 @@ const messages: AdminMessages = {
   ...crm,
   ...identities,
   ...docs,
+  ...studio,
 };
 
 export default messages;

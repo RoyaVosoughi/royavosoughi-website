@@ -1194,3 +1194,73 @@ create policy "anon can insert service requests"
 
 revoke all on public.service_requests from anon, authenticated;
 grant insert on public.service_requests to anon;
+
+-- =============================================================================
+-- V7 — Blog studio: the multi-agent pipeline behind /admin/blog/studio.
+-- Each run walks idea scout → strategist → researcher → writer ⇄ editor →
+-- SEO → translator → publisher → critic, and saves an EN + FA pair of
+-- DRAFTS into blog_posts. Nothing auto-publishes. Run once after V6. Idempotent.
+-- =============================================================================
+
+-- SEO output lives on the post so the public page can use it. Separate
+-- columns (not folded into excerpt) so a hand-written post simply leaves them null.
+alter table public.blog_posts add column if not exists meta_title       text;
+alter table public.blog_posts add column if not exists meta_description text;
+alter table public.blog_posts add column if not exists faq              jsonb not null default '[]';
+alter table public.blog_posts add column if not exists ai_score         int;
+alter table public.blog_posts add column if not exists run_id           uuid;
+
+-- One row per pipeline run. `steps` is the live log the studio polls:
+-- [{agent, status, startedAt, finishedAt, summary, output}].
+create table if not exists public.blog_pipeline_runs (
+  id          uuid primary key default gen_random_uuid(),
+  status      text not null default 'running' check (status in ('running', 'done', 'error')),
+  trigger     text not null default 'manual' check (trigger in ('manual', 'cron')),
+  topic_hint  text,
+  steps       jsonb not null default '[]',
+  post_en_id  uuid references public.blog_posts(id) on delete set null,
+  post_fa_id  uuid references public.blog_posts(id) on delete set null,
+  error       text,
+  created_at  timestamptz not null default now(),
+  finished_at timestamptz
+);
+
+create index if not exists blog_pipeline_runs_created_idx on public.blog_pipeline_runs (created_at desc);
+
+-- The self-improvement memory: short lessons addressed to one agent, injected
+-- into that agent's system prompt on every later run. Capped at 8 active per
+-- agent in code (lib/ai/blog-agents/lessons.ts); older ones are retired, not deleted.
+create table if not exists public.blog_agent_lessons (
+  id         uuid primary key default gen_random_uuid(),
+  agent      text not null check (agent in ('idea_scout', 'strategist', 'researcher', 'writer', 'editor', 'seo', 'translator')),
+  lesson     text not null check (char_length(lesson) between 5 and 400),
+  source     text not null check (source in ('critic', 'human')),
+  run_id     uuid references public.blog_pipeline_runs(id) on delete set null,
+  active     boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists blog_agent_lessons_active_idx on public.blog_agent_lessons (agent, created_at desc) where active;
+
+-- Roya's 👍/👎 on a run's article. Named apart from public.feedback, which is the chatbot's.
+create table if not exists public.blog_run_feedback (
+  id         uuid primary key default gen_random_uuid(),
+  run_id     uuid not null references public.blog_pipeline_runs(id) on delete cascade,
+  rating     text not null check (rating in ('up', 'down')),
+  comment    text not null default '' check (char_length(comment) <= 2000),
+  created_at timestamptz not null default now()
+);
+
+alter table public.blog_pipeline_runs enable row level security;
+alter table public.blog_agent_lessons enable row level security;
+alter table public.blog_run_feedback  enable row level security;
+-- No policies: service role only, like blog_posts.
+
+-- AI usage log: the blog pipeline's calls.
+alter table public.ai_usage_log
+  drop constraint if exists ai_usage_log_purpose_check;
+alter table public.ai_usage_log
+  add constraint ai_usage_log_purpose_check
+  check (purpose in ('lead_score', 'contact_summary', 'deal_next_action',
+                     'contract_rewrite', 'contract_followup', 'campaign_email', 'crm_assistant',
+                     'content_suggestion', 'blog_pipeline'));

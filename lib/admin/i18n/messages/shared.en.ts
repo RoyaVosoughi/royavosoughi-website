@@ -40,6 +40,7 @@ const messages = {
     linkCrmReports: "Reports",
     linkAssistant: "Assistant",
     linkBlog: "Blog",
+    linkBlogStudio: "Blog studio",
     linkChannels: "Channels",
     linkBroadcast: "Broadcast",
     linkTeam: "Team & roles",

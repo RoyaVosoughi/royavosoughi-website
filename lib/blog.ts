@@ -161,3 +161,26 @@ export function formatPostDate(iso: string | null, locale: string): string {
 export function readingMinutes(md: string): number {
   return Math.max(1, Math.round(md.split(/\s+/).filter(Boolean).length / 200));
 }
+
+export interface PostSeo {
+  metaTitle: string | null;
+  metaDescription: string | null;
+  faq: { question: string; answer: string }[];
+}
+
+/**
+ * The blog studio's SEO output (V7 columns). Fetched apart from COLUMNS on
+ * purpose: if the V7 SQL hasn't been run yet, only this returns null — the
+ * blog itself keeps working.
+ */
+export async function getPostSeo(id: string): Promise<PostSeo | null> {
+  const supabase = getSupabaseAdminClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase.from("blog_posts").select("meta_title, meta_description, faq").eq("id", id).maybeSingle();
+  if (error || !data) return null;
+  return {
+    metaTitle: (data.meta_title as string) ?? null,
+    metaDescription: (data.meta_description as string) ?? null,
+    faq: Array.isArray(data.faq) ? (data.faq as PostSeo["faq"]) : [],
+  };
+}

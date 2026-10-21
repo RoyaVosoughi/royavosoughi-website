@@ -1444,7 +1444,8 @@ export type AiUsagePurpose =
   | "contract_followup"
   | "campaign_email"
   | "crm_assistant"
-  | "content_suggestion";
+  | "content_suggestion"
+  | "blog_pipeline";
 
 export async function logAiUsage(
   purpose: AiUsagePurpose,

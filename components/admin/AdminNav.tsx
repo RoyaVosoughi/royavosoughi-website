@@ -31,6 +31,7 @@ interface NavLink {
     | "linkCrmReports"
     | "linkAssistant"
     | "linkBlog"
+    | "linkBlogStudio"
     | "linkChannels"
     | "linkBroadcast"
     | "linkTeam"
@@ -50,7 +51,10 @@ const GROUPS: NavGroup[] = [
   },
   {
     labelKey: "groupContent",
-    links: [{ href: "/admin/blog", labelKey: "linkBlog" }],
+    links: [
+      { href: "/admin/blog", labelKey: "linkBlog" },
+      { href: "/admin/blog/studio", labelKey: "linkBlogStudio" },
+    ],
   },
   {
     labelKey: "groupKnowledgeAi",
@@ -103,9 +107,16 @@ const GROUPS: NavGroup[] = [
   },
 ];
 
-function isActive(pathname: string, href: string): boolean {
+const ALL_HREFS = GROUPS.flatMap((g) => g.links.map((l) => l.href));
+
+function matches(pathname: string, href: string): boolean {
   if (href === "/admin") return pathname === "/admin";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+/** Most specific link wins: /admin/blog/studio lights up "Blog studio", not "Blog" as well. */
+function isActive(pathname: string, href: string): boolean {
+  return matches(pathname, href) && !ALL_HREFS.some((other) => other.length > href.length && other.startsWith(href) && matches(pathname, other));
 }
 
 function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {

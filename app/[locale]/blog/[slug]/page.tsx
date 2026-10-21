@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Markdown } from "@/components/blog/Markdown";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import { formatPostDate, getPublishedLocalesForSlug, getPublishedPost, readingMinutes, type BlogLocale } from "@/lib/blog";
+import { formatPostDate, getPostSeo, getPublishedLocalesForSlug, getPublishedPost, readingMinutes, type BlogLocale } from "@/lib/blog";
 import { site } from "@/lib/site";
 
 export const revalidate = 300;
@@ -17,15 +17,16 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { locale, slug } = await params;
   const post = await getPublishedPost(locale as BlogLocale, slug);
   if (!post) return {};
-  const locales = await getPublishedLocalesForSlug(slug);
+  const [locales, seo] = await Promise.all([getPublishedLocalesForSlug(slug), getPostSeo(post.id)]);
+  const description = seo?.metaDescription || post.excerpt;
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: seo?.metaTitle || post.title,
+    description,
     alternates: {
       canonical: `/${locale}/blog/${slug}`,
       languages: Object.fromEntries(locales.map((l) => [l, `/${l}/blog/${slug}`])),
     },
-    openGraph: { type: "article", title: post.title, description: post.excerpt, publishedTime: post.publishedAt ?? undefined },
+    openGraph: { type: "article", title: post.title, description, publishedTime: post.publishedAt ?? undefined },
   };
 }
 
@@ -37,9 +38,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   const t = await getTranslations("blog");
   const otherLocale = locale === "fa" ? "en" : "fa";
-  const hasOther = (await getPublishedLocalesForSlug(slug)).includes(otherLocale);
+  const [otherLocales, seo] = await Promise.all([getPublishedLocalesForSlug(slug), getPostSeo(post.id)]);
+  const hasOther = otherLocales.includes(otherLocale);
 
-  const jsonLd = {
+  const article = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
@@ -50,6 +52,15 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     author: { "@type": "Person", name: site.founder, url: site.url },
     mainEntityOfPage: `${site.url}/${locale}/blog/${slug}`,
   };
+  // FAQPage from the SEO agent's questions — only for posts that have them.
+  const faq = seo?.faq.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: seo.faq.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
+      }
+    : null;
+  const jsonLd = faq ? [article, faq] : article;
 
   return (
     <Section tone="light" className="pt-14 md:pt-20">
