@@ -5,6 +5,7 @@ import { runBrainTurn } from "@/lib/ai/brain";
 import { getChannelGreeting } from "@/lib/ai/channel-greetings";
 import { getOrCreateConversation, resetConversationContext, upsertUnifiedUser } from "@/lib/ai/memory";
 import { BrainNotConfiguredError, RateLimitError, type Locale } from "@/lib/ai/types";
+import { site } from "@/lib/site";
 import {
   answerTelegramCallbackQuery,
   isTelegramConfigured,
@@ -12,6 +13,7 @@ import {
   sendTelegramChatAction,
   sendTelegramMessage,
   type InlineButton,
+  type LinkButton,
 } from "@/lib/telegram";
 
 // Not edge — same reasoning as app/api/chat/route.ts: the tool-calling loop
@@ -76,6 +78,23 @@ async function getQuickReplies(locale: Locale): Promise<string[]> {
   return greeting.quickReplies.length ? greeting.quickReplies : DEFAULT_QUICK_REPLIES[locale];
 }
 
+const WEBSITE_LABEL: Record<Locale, string> = {
+  en: "Visit website",
+  fa: "مشاهده‌ی وب‌سایت",
+};
+
+// Vercel's production domain, not site.url: royavosoughi.com isn't connected
+// yet, and a dead link in the chat is worse than the vercel.app address. Once
+// the custom domain is added in Vercel this variable switches to it on its own.
+const WEBSITE_BASE = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : site.url;
+
+/** Opens the site in the visitor's language, under the quick replies on every bot message. */
+function websiteButton(locale: Locale): LinkButton {
+  return { text: WEBSITE_LABEL[locale], url: `${WEBSITE_BASE}/${locale}` };
+}
+
 function toInlineButtons(replies: string[]): InlineButton[] {
   return replies.map((text, i) => ({ text, callbackData: `qr:${i}` }));
 }
@@ -92,7 +111,7 @@ async function handleUserText(chatId: number, locale: Locale, text: string): Pro
       userMessage: text,
     });
     if (!result.paused) {
-      await sendTelegramMessage(chatId, result.reply, toInlineButtons(await getQuickReplies(locale)));
+      await sendTelegramMessage(chatId, result.reply, toInlineButtons(await getQuickReplies(locale)), websiteButton(locale));
     }
   } catch (err) {
     const reply =
@@ -123,12 +142,12 @@ async function handleCommand(command: string, chatId: number, locale: Locale): P
 
   if (command === "/start") {
     const greeting = await getChannelGreeting("telegram", locale);
-    await sendTelegramMessage(chatId, greeting.welcomeMessage || WELCOME[locale], buttons);
+    await sendTelegramMessage(chatId, greeting.welcomeMessage || WELCOME[locale], buttons, websiteButton(locale));
   } else if (command === "/help") {
-    await sendTelegramMessage(chatId, HELP[locale], buttons);
+    await sendTelegramMessage(chatId, HELP[locale], buttons, websiteButton(locale));
   } else {
     await resetConversationContext(conversation.id);
-    await sendTelegramMessage(chatId, RESET_DONE[locale], buttons);
+    await sendTelegramMessage(chatId, RESET_DONE[locale], buttons, websiteButton(locale));
   }
 
   return true;

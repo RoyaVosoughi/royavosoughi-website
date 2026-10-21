@@ -43,20 +43,28 @@ export interface InlineButton {
   callbackData: string;
 }
 
+export interface LinkButton {
+  text: string;
+  url: string;
+}
+
+/** Quick replies share one row; the optional link button opens a URL and gets a row of its own beneath them. */
 export async function sendTelegramMessage(
   chatId: number | string,
   text: string,
   quickReplies?: InlineButton[],
+  link?: LinkButton,
 ): Promise<void> {
   const botToken = await getBotToken();
   if (!botToken) throw new Error("telegram_not_configured");
 
   const body: Record<string, unknown> = { chat_id: chatId, text };
+  const rows: Record<string, string>[][] = [];
   if (quickReplies?.length) {
-    body.reply_markup = {
-      inline_keyboard: [quickReplies.map((b) => ({ text: b.text, callback_data: b.callbackData }))],
-    };
+    rows.push(quickReplies.map((b) => ({ text: b.text, callback_data: b.callbackData })));
   }
+  if (link) rows.push([{ text: link.text, url: link.url }]);
+  if (rows.length) body.reply_markup = { inline_keyboard: rows };
 
   const response = await fetch(`${TELEGRAM_API_BASE}/bot${botToken}/sendMessage`, {
     method: "POST",
