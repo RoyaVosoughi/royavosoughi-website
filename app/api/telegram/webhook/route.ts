@@ -58,8 +58,8 @@ const WELCOME: Record<Locale, string> = {
 };
 
 const HELP: Record<Locale, string> = {
-  en: "Just type your question and I'll answer using what I know about Roya's work. Commands: /start to begin again, /reset to clear our conversation history and start fresh.",
-  fa: "کافیست سوالتان را تایپ کنید تا با اطلاعاتی که از کار رویا دارم پاسخ دهم. دستورها: /start برای شروع دوباره، /reset برای پاک‌کردن تاریخچه گفتگو و شروع تازه.",
+  en: "Just type your question and I'll answer using what I know about Roya's work. Commands: /start to begin again, /reset to clear our conversation history and start fresh, /website to open Roya's website.",
+  fa: "کافیست سوالتان را تایپ کنید تا با اطلاعاتی که از کار رویا دارم پاسخ دهم. دستورها: /start برای شروع دوباره، /reset برای پاک‌کردن تاریخچه گفتگو و شروع تازه، /website برای رفتن به وب‌سایت رویا.",
 };
 
 const RESET_DONE: Record<Locale, string> = {
@@ -78,6 +78,11 @@ async function getQuickReplies(locale: Locale): Promise<string[]> {
   return greeting.quickReplies.length ? greeting.quickReplies : DEFAULT_QUICK_REPLIES[locale];
 }
 
+const WEBSITE: Record<Locale, string> = {
+  en: "Here's Roya's website: her services, projects and how to get in touch.",
+  fa: "این وب‌سایت رویاست: خدمات، پروژه‌ها و راه‌های ارتباط با او.",
+};
+
 const WEBSITE_LABEL: Record<Locale, string> = {
   en: "Visit website",
   fa: "مشاهده‌ی وب‌سایت",
@@ -90,7 +95,7 @@ const WEBSITE_BASE = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : site.url;
 
-/** Opens the site in the visitor's language, under the quick replies on every bot message. */
+/** The /website reply's button — opens the site in the visitor's language. */
 function websiteButton(locale: Locale): LinkButton {
   return { text: WEBSITE_LABEL[locale], url: `${WEBSITE_BASE}/${locale}` };
 }
@@ -111,7 +116,7 @@ async function handleUserText(chatId: number, locale: Locale, text: string): Pro
       userMessage: text,
     });
     if (!result.paused) {
-      await sendTelegramMessage(chatId, result.reply, toInlineButtons(await getQuickReplies(locale)), websiteButton(locale));
+      await sendTelegramMessage(chatId, result.reply, toInlineButtons(await getQuickReplies(locale)));
     }
   } catch (err) {
     const reply =
@@ -131,9 +136,9 @@ async function handleUserText(chatId: number, locale: Locale, text: string): Pro
   }
 }
 
-/** /start, /help, /reset never reach the LLM — cheap, and don't need rate limiting. Still register the chat_id in unified_users/conversations so a visitor's very first interaction (a command) is tracked like any other. */
+/** /start, /help, /reset, /website never reach the LLM — cheap, and don't need rate limiting. Still register the chat_id in unified_users/conversations so a visitor's very first interaction (a command) is tracked like any other. */
 async function handleCommand(command: string, chatId: number, locale: Locale): Promise<boolean> {
-  if (command !== "/start" && command !== "/help" && command !== "/reset") return false;
+  if (!["/start", "/help", "/reset", "/website"].includes(command)) return false;
 
   const conversation = await getOrCreateConversation("telegram", String(chatId), locale);
   await upsertUnifiedUser("telegram", String(chatId));
@@ -142,12 +147,14 @@ async function handleCommand(command: string, chatId: number, locale: Locale): P
 
   if (command === "/start") {
     const greeting = await getChannelGreeting("telegram", locale);
-    await sendTelegramMessage(chatId, greeting.welcomeMessage || WELCOME[locale], buttons, websiteButton(locale));
+    await sendTelegramMessage(chatId, greeting.welcomeMessage || WELCOME[locale], buttons);
   } else if (command === "/help") {
-    await sendTelegramMessage(chatId, HELP[locale], buttons, websiteButton(locale));
-  } else {
+    await sendTelegramMessage(chatId, HELP[locale], buttons);
+  } else if (command === "/reset") {
     await resetConversationContext(conversation.id);
-    await sendTelegramMessage(chatId, RESET_DONE[locale], buttons, websiteButton(locale));
+    await sendTelegramMessage(chatId, RESET_DONE[locale], buttons);
+  } else {
+    await sendTelegramMessage(chatId, WEBSITE[locale], undefined, websiteButton(locale));
   }
 
   return true;
