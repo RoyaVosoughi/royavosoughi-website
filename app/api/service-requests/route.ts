@@ -4,6 +4,8 @@ import { z } from "zod";
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase";
 import { sendServiceRequestNotification } from "@/lib/resend";
 import { serviceKeys } from "@/lib/service-options";
+import { notifyOwnerOnTelegram } from "@/lib/telegram";
+import en from "@/messages/en.json";
 
 const ServiceRequestSchema = z.object({
   service: z.enum(serviceKeys),
@@ -52,7 +54,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "storage_failed" }, { status: 500 });
   }
 
-  await sendServiceRequestNotification(data);
+  await Promise.all([
+    sendServiceRequestNotification(data),
+    notifyOwnerOnTelegram(
+      [
+        `New service request: ${en.services.items[data.service].name}`,
+        "",
+        `Name: ${data.name}`,
+        `Business: ${data.business}`,
+        `Phone / Telegram: ${data.contact}`,
+        `Email: ${data.email}`,
+        "",
+        data.message,
+      ].join("\n"),
+    ),
+  ]);
 
   return NextResponse.json({ ok: true });
 }

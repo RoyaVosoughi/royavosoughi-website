@@ -70,6 +70,21 @@ export async function sendTelegramMessage(
   }
 }
 
+/**
+ * Pings the admin's own Telegram chat — the same admin_chat_id (set in
+ * /admin/channels) that lib/ai/notify-admin.ts uses for handoffs. Best-effort,
+ * like the Resend notifications: whatever triggered it has already been saved.
+ */
+export async function notifyOwnerOnTelegram(text: string): Promise<void> {
+  const chatId = await getChannelSecret("telegram", "admin_chat_id");
+  if (!chatId) return;
+  try {
+    await sendTelegramMessage(chatId, text);
+  } catch (error) {
+    console.error("[telegram] owner notification failed:", error);
+  }
+}
+
 /** Best-effort "typing…" indicator — never let a failure here block the actual reply. */
 export async function sendTelegramChatAction(chatId: number | string): Promise<void> {
   const botToken = await getBotToken();
