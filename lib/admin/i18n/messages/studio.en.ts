@@ -60,6 +60,9 @@ const messages = {
     tableMissingTitle: "Run the V7 SQL block first",
     tableMissingBody: "The studio's tables don't exist yet. Open Supabase → SQL Editor, paste the “V7 — Blog studio” block from supabase/schema.sql and run it.",
     studioLink: "Blog studio →",
+    retry: "Retry from where it stopped",
+    retrying: "Retrying…",
+    retryHint: "Finished steps are kept — only the failed step and the ones after it run again.",
   },
 } as const;
 

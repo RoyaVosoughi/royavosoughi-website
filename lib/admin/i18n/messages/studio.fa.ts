@@ -63,6 +63,9 @@ const messages: DeepStringify<typeof messagesEn> = {
     tableMissingTitle: "اول بلوک SQL نسخه‌ی V7 را اجرا کنید",
     tableMissingBody: "جدول‌های استودیو هنوز ساخته نشده‌اند. در Supabase بخش SQL Editor را باز کنید، بلوک «V7 — Blog studio» را از فایل supabase/schema.sql کپی و اجرا کنید.",
     studioLink: "استودیوی وبلاگ ←",
+    retry: "ادامه از همان‌جا که متوقف شد",
+    retrying: "در حال ادامه…",
+    retryHint: "مراحل انجام‌شده حفظ می‌شوند — فقط مرحله‌ی ناموفق و مراحل بعد از آن دوباره اجرا می‌شوند.",
   },
 };
 

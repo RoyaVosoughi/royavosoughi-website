@@ -130,6 +130,8 @@ export interface PipelineRun {
   error: string | null;
   createdAt: string;
   finishedAt: string | null;
+  /** While a worker holds this run; null or past means nobody is working on it. */
+  leaseUntil: string | null;
 }
 
 export interface AgentLesson {

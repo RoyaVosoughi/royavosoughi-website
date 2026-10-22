@@ -3,11 +3,12 @@ import { z } from "zod";
 
 import { gate, jsonError, parseBody } from "@/lib/admin/api";
 import { writeAuditLog } from "@/lib/admin/queries";
-import { runPipeline, startRun } from "@/lib/ai/blog-agents/orchestrator";
+import { workOn } from "@/lib/ai/blog-agents/continuation";
+import { startRun } from "@/lib/ai/blog-agents/orchestrator";
 import { listRuns } from "@/lib/ai/blog-agents/store";
 import { isOpenRouterConfigured } from "@/lib/ai/providers/openrouter";
 
-/** A full run is ~12 model calls; it keeps going in after() once this response is sent. */
+/** A full run is ~12 model calls; it keeps going in after() once this response is sent, across several invocations if needed. */
 export const maxDuration = 300;
 
 const StartSchema = z.object({ topicHint: z.string().trim().max(300).optional() });
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
     if (!started.ok) return jsonError(started.error, 409);
     await writeAuditLog("blog.pipeline_run", started.runId);
     // Respond with the id right away; the studio polls the run while it works.
-    after(() => runPipeline(started.runId, topicHint));
+    after(() => workOn(started.runId));
     return NextResponse.json({ ok: true, runId: started.runId });
   } catch (err) {
     console.error("[blog-studio] start failed:", err);
