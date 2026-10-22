@@ -222,6 +222,15 @@ export async function getPublicMessageHistory(
   return (data ?? []) as PublicMessage[];
 }
 
+/** Backs Telegram's language picker — the stored locale then wins over the client's language_code on every later message. */
+export async function setConversationLocale(conversationId: string, locale: Locale): Promise<void> {
+  const supabase = getSupabaseAdminClient();
+  if (!supabase) throw new Error("supabase_not_configured");
+
+  const { error } = await supabase.from("conversations").update({ locale }).eq("id", conversationId);
+  if (error) throw error;
+}
+
 /** Backs Telegram's /reset command. Doesn't delete anything — see getAllHistory. */
 export async function resetConversationContext(conversationId: string): Promise<void> {
   const supabase = getSupabaseAdminClient();

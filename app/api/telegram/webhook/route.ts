@@ -3,7 +3,13 @@ import { z } from "zod";
 
 import { runBrainTurn } from "@/lib/ai/brain";
 import { getChannelGreeting } from "@/lib/ai/channel-greetings";
-import { getOrCreateConversation, resetConversationContext, upsertUnifiedUser } from "@/lib/ai/memory";
+import {
+  findConversation,
+  getOrCreateConversation,
+  resetConversationContext,
+  setConversationLocale,
+  upsertUnifiedUser,
+} from "@/lib/ai/memory";
 import { BrainNotConfiguredError, RateLimitError, type Locale } from "@/lib/ai/types";
 import { site } from "@/lib/site";
 import {
@@ -42,6 +48,20 @@ function detectLocale(languageCode: string | undefined): Locale {
   return languageCode?.toLowerCase().startsWith("fa") ? "fa" : "en";
 }
 
+/** The language picked on /start (stored on the conversation) wins; language_code is only a first guess for a chat we haven't seen yet. */
+async function resolveLocale(chatId: number, languageCode: string | undefined): Promise<Locale> {
+  const conversation = await findConversation("telegram", String(chatId)).catch(() => null);
+  return conversation?.locale ?? detectLocale(languageCode);
+}
+
+// Shown before we know the visitor's language, so it's bilingual.
+const CHOOSE_LANGUAGE = "Please choose your language:\nلطفا زبان خود را انتخاب کنید:";
+
+const LANGUAGE_BUTTONS: InlineButton[] = [
+  { text: "English", callbackData: "lang:en" },
+  { text: "فارسی", callbackData: "lang:fa" },
+];
+
 const FALLBACK: Record<Locale, string> = {
   en: "Sorry, something went wrong on my end. Please try again in a moment.",
   fa: "متاسفم، یک مشکلی پیش آمد. لطفا کمی بعد دوباره امتحان کنید.",
@@ -58,8 +78,8 @@ const WELCOME: Record<Locale, string> = {
 };
 
 const HELP: Record<Locale, string> = {
-  en: "Just type your question and I'll answer using what I know about Roya's work. Commands: /start to begin again, /reset to clear our conversation history and start fresh, /website to open Roya's website.",
-  fa: "کافیست سوالتان را تایپ کنید تا با اطلاعاتی که از کار رویا دارم پاسخ دهم. دستورها: /start برای شروع دوباره، /reset برای پاک‌کردن تاریخچه گفتگو و شروع تازه، /website برای رفتن به وب‌سایت رویا.",
+  en: "Just type your question and I'll answer using what I know about Roya's work. Commands: /start to begin again, /language to switch between English and Persian, /reset to clear our conversation history and start fresh, /website to open Roya's website.",
+  fa: "کافیست سوالتان را تایپ کنید تا با اطلاعاتی که از کار رویا دارم پاسخ دهم. دستورها: /start برای شروع دوباره، /language برای تغییر زبان بین فارسی و انگلیسی، /reset برای پاک‌کردن تاریخچه گفتگو و شروع تازه، /website برای رفتن به وب‌سایت رویا.",
 };
 
 const RESET_DONE: Record<Locale, string> = {
@@ -136,18 +156,26 @@ async function handleUserText(chatId: number, locale: Locale, text: string): Pro
   }
 }
 
-/** /start, /help, /reset, /website never reach the LLM — cheap, and don't need rate limiting. Still register the chat_id in unified_users/conversations so a visitor's very first interaction (a command) is tracked like any other. */
+/** Sent once the visitor taps a language button — saves the choice, then greets them in it. */
+async function handleLanguageChoice(chatId: number, locale: Locale): Promise<void> {
+  const conversation = await getOrCreateConversation("telegram", String(chatId), locale);
+  if (conversation.locale !== locale) await setConversationLocale(conversation.id, locale);
+
+  const greeting = await getChannelGreeting("telegram", locale);
+  await sendTelegramMessage(chatId, greeting.welcomeMessage || WELCOME[locale], toInlineButtons(await getQuickReplies(locale)));
+}
+
+/** /start, /language, /help, /reset, /website never reach the LLM — cheap, and don't need rate limiting. Still register the chat_id in unified_users/conversations so a visitor's very first interaction (a command) is tracked like any other. */
 async function handleCommand(command: string, chatId: number, locale: Locale): Promise<boolean> {
-  if (!["/start", "/help", "/reset", "/website"].includes(command)) return false;
+  if (!["/start", "/language", "/help", "/reset", "/website"].includes(command)) return false;
 
   const conversation = await getOrCreateConversation("telegram", String(chatId), locale);
   await upsertUnifiedUser("telegram", String(chatId));
 
   const buttons = toInlineButtons(await getQuickReplies(locale));
 
-  if (command === "/start") {
-    const greeting = await getChannelGreeting("telegram", locale);
-    await sendTelegramMessage(chatId, greeting.welcomeMessage || WELCOME[locale], buttons);
+  if (command === "/start" || command === "/language") {
+    await sendTelegramMessage(chatId, CHOOSE_LANGUAGE, LANGUAGE_BUTTONS);
   } else if (command === "/help") {
     await sendTelegramMessage(chatId, HELP[locale], buttons);
   } else if (command === "/reset") {
@@ -188,10 +216,18 @@ export async function POST(request: Request) {
 
   if (callbackQuery?.message) {
     const chatId = callbackQuery.message.chat.id;
-    const locale = detectLocale(callbackQuery.from?.language_code);
+    const languageMatch = callbackQuery.data?.match(/^lang:(en|fa)$/);
     const match = callbackQuery.data?.match(/^qr:(\d+)$/);
 
     await answerTelegramCallbackQuery(callbackQuery.id);
+    if (languageMatch) {
+      await handleLanguageChoice(chatId, languageMatch[1] as Locale).catch((err) => {
+        console.error("[telegram webhook] language choice failed:", err);
+      });
+      return NextResponse.json({ ok: true });
+    }
+
+    const locale = await resolveLocale(chatId, callbackQuery.from?.language_code);
     if (match) {
       const replies = await getQuickReplies(locale);
       const text = replies[Number(match[1])];
@@ -208,7 +244,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const locale = detectLocale(message?.from?.language_code);
+  const locale = await resolveLocale(chatId, message?.from?.language_code);
   const command = text.split(/\s/)[0].split("@")[0].toLowerCase();
 
   const handled = await handleCommand(command, chatId, locale).catch((err) => {

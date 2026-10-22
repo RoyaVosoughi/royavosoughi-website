@@ -4,6 +4,8 @@
  *
  *   npm run telegram:set-webhook -- https://your-deployed-site.example
  */
+import { setTelegramCommands } from "../lib/telegram-commands";
+
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const secret = process.env.TELEGRAM_WEBHOOK_SECRET;
 const baseUrl = process.argv[2];
@@ -39,6 +41,9 @@ async function main() {
     process.exit(1);
   }
   console.log(`Webhook registered: ${webhookUrl}`);
+
+  const commandsOk = await setTelegramCommands(`https://api.telegram.org/bot${token}`);
+  console.log(commandsOk ? "Command menu updated." : "Command menu update failed.");
 }
 
 main();

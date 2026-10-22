@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getChannelSecret } from "@/lib/ai/channel-secrets";
+import { setTelegramCommands } from "@/lib/telegram-commands";
 
 /**
  * Thin Telegram Bot API client. Channel-specific by design — nothing here
@@ -144,5 +145,11 @@ export async function registerTelegramWebhook(baseUrl: string): Promise<{ ok: bo
   });
 
   const data = (await response.json()) as { ok: boolean; description?: string };
+  // Best-effort: a stale command menu shouldn't fail webhook registration.
+  if (data.ok) {
+    await setTelegramCommands(`${TELEGRAM_API_BASE}/bot${botToken}`).catch((err) => {
+      console.error("[telegram] setMyCommands failed:", err);
+    });
+  }
   return data;
 }
