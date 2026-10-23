@@ -43,6 +43,11 @@ export function BlogStudio({ initialRuns, initialLessons, canEdit, webResearch, 
     [t],
   );
 
+  const refreshRuns = useCallback(async () => {
+    const response = await fetch("/api/admin/blog-studio/runs");
+    if (response.ok) setRuns((await response.json()).runs);
+  }, []);
+
   const refreshLessons = useCallback(async () => {
     const response = await fetch("/api/admin/blog-studio/lessons");
     if (response.ok) setLessons((await response.json()).lessons);
@@ -152,7 +157,7 @@ export function BlogStudio({ initialRuns, initialLessons, canEdit, webResearch, 
                 </li>
               ))}
             </ul>
-            {selected ? <RunDetail key={selected.id} run={selected} canEdit={canEdit} onLessons={refreshLessons} errorText={errorText} /> : null}
+            {selected ? <RunDetail key={selected.id} run={selected} canEdit={canEdit} onLessons={refreshLessons} onRetried={refreshRuns} errorText={errorText} /> : null}
           </div>
         )
       ) : (
@@ -169,7 +174,49 @@ function runTitle(run: PipelineRun): string | null {
   return ideas?.[0]?.title ?? null;
 }
 
-function RunDetail({ run, canEdit, onLessons, errorText }: { run: PipelineRun; canEdit: boolean; onLessons: () => void; errorText: (code?: string) => string }) {
+function RetryButton({ runId, onRetried, errorText }: { runId: string; onRetried: () => void; errorText: (code?: string) => string }) {
+  const t = useTranslations("blogStudio");
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function retry() {
+    setPending(true);
+    setError(null);
+    const response = await fetch(`/api/admin/blog-studio/runs/${runId}/retry`, { method: "POST" });
+    const data = await response.json().catch(() => ({}));
+    setPending(false);
+    if (!response.ok) {
+      setError(errorText(data.error));
+      return;
+    }
+    onRetried();
+  }
+
+  return (
+    <div className="mt-3">
+      <button type="button" onClick={retry} disabled={pending} className={secondaryButton}>
+        {pending ? <Spinner /> : null}
+        {pending ? t("retrying") : t("retry")}
+      </button>
+      <p className="mt-2 text-xs text-ink/60">{t("retryHint")}</p>
+      {error ? <p className="mt-1 text-xs">{error}</p> : null}
+    </div>
+  );
+}
+
+function RunDetail({
+  run,
+  canEdit,
+  onLessons,
+  onRetried,
+  errorText,
+}: {
+  run: PipelineRun;
+  canEdit: boolean;
+  onLessons: () => void;
+  onRetried: () => void;
+  errorText: (code?: string) => string;
+}) {
   const t = useTranslations("blogStudio");
   return (
     <div className="flex min-w-0 flex-col gap-4">
@@ -178,7 +225,12 @@ function RunDetail({ run, canEdit, onLessons, errorText }: { run: PipelineRun; c
           <StepRow key={i} step={step} />
         ))}
       </ol>
-      {run.status === "error" ? <p className="rounded-2xl bg-amber/15 p-4 text-sm text-amber-deep">{run.error === "timed_out" ? errorText("timed_out") : run.error}</p> : null}
+      {run.status === "error" ? (
+        <div className="rounded-2xl bg-amber/15 p-4 text-sm text-amber-deep">
+          <p dir="auto">{run.error === "timed_out" ? errorText("timed_out") : run.error}</p>
+          {canEdit ? <RetryButton runId={run.id} onRetried={onRetried} errorText={errorText} /> : null}
+        </div>
+      ) : null}
       {run.postEnId || run.postFaId ? (
         <div className="flex flex-wrap gap-4">
           {run.postEnId ? (

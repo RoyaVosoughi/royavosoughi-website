@@ -11,7 +11,7 @@ import { reviseDraft, writeDraft } from "./agents/writer";
 import { addLessons, loadLessonsByAgent } from "./lessons";
 import { AgentError } from "./llm";
 import { checkDraft, checkFormat, failed, wordCount } from "./seo-checks";
-import { createRun, failStaleRuns, freeSlug, hasRunningRun, insertDraftPost, listExistingTitles, updateRun } from "./store";
+import { createRun, failStaleRuns, freeSlug, getRun, hasRunningRun, insertDraftPost, listExistingTitles, releaseRun, updateRun } from "./store";
 import type { PipelineStep, Review, RunStep } from "./types";
 
 /**
@@ -26,26 +26,63 @@ import type { PipelineStep, Review, RunStep } from "./types";
  * workflow to a "manager" LLM too: then the flow itself becomes
  * unpredictable, impossible to step through in a debugger and impossible to
  * test. A for-loop with a threshold is all of those things.
+ *
+ * Because the flow is deterministic, it is also resumable: every finished
+ * step's output is in the database, so a later invocation replays the same
+ * code, takes finished steps from the log instead of re-running them, and
+ * carries on. That lets slow (free) models take longer than one serverless
+ * invocation is allowed to run.
  */
 
 /** Editor score at or above which a draft is accepted. */
 export const APPROVE_THRESHOLD = 75;
 /** Rewrites allowed after the first draft. After that, the call is Roya's, not the loop's. */
 export const MAX_REVISION_ROUNDS = 2;
+/** No new step starts after this much of an invocation has passed; the next invocation picks it up. */
+const STEP_START_BUDGET_MS = 150_000;
 
-export async function runPipeline(runId: string, topicHint: string | null): Promise<void> {
-  const steps: RunStep[] = [];
+/** Thrown inside the flow when the invocation's time is up — not a failure. */
+class PauseSignal extends Error {}
+
+export type ContinueResult = "done" | "error" | "paused";
+
+/**
+ * Works on a run until it finishes or this invocation's budget is spent.
+ * The caller must hold the run's lease (startRun / claimRun).
+ */
+export async function continueRun(runId: string): Promise<ContinueResult> {
+  const startedAt = Date.now();
+  const run = await getRun(runId);
+  if (!run || run.status !== "running") return run?.status === "done" ? "done" : "error";
+  const topicHint = run.topicHint;
+
+  // Only finished steps carry over; one cut off mid-call by a timeout is simply run again.
+  const steps: RunStep[] = run.steps.filter((s) => s.status === "done");
+  const finished = new Map(steps.map((s) => [`${s.agent}#${s.round ?? ""}`, s]));
 
   /**
-   * Wraps one agent call: the step is saved as "running" before it starts and
-   * "done"/"error" when it ends, so the studio's poll always sees the truth.
+   * Wraps one agent call: a step already in the log returns its saved output;
+   * otherwise it's saved as "running" before it starts and "done"/"error" when
+   * it ends, so the studio's poll always sees the truth.
    */
   async function step<T>(agent: PipelineStep, fn: () => Promise<T>, describe: (out: T) => { summary: string; output?: unknown }, round?: number): Promise<T> {
+    const done = finished.get(`${agent}#${round ?? ""}`);
+    if (done) return done.output as T;
+    if (Date.now() - startedAt > STEP_START_BUDGET_MS) throw new PauseSignal();
+
     const entry: RunStep = { agent, round, status: "running", startedAt: new Date().toISOString() };
     steps.push(entry);
     await updateRun(runId, { steps });
     try {
-      const out = await fn();
+      let out: T;
+      try {
+        out = await fn();
+      } catch (err) {
+        // One retry for a flaky answer (free models fail often and at random).
+        // Missing keys or credits won't fix themselves, so those fail at once.
+        if (!(err instanceof AgentError) || err.code === "not_configured" || err.code === "no_credits") throw err;
+        out = await fn();
+      }
       Object.assign(entry, { status: "done", finishedAt: new Date().toISOString(), ...describe(out) });
       await updateRun(runId, { steps });
       return out;
@@ -57,9 +94,9 @@ export async function runPipeline(runId: string, topicHint: string | null): Prom
   }
 
   try {
-    // One snapshot of the memory per run, so every agent learns from the same lessons.
+    // Lessons are re-read on each invocation; steps already finished keep the lessons they ran with.
     const lessons = await loadLessonsByAgent();
-    const existingTitles = await listExistingTitles();
+    const existingTitles = finished.has("idea_scout#") ? [] : await listExistingTitles();
 
     const ideas = await step(
       "idea_scout",
@@ -137,11 +174,18 @@ export async function runPipeline(runId: string, topicHint: string | null): Prom
     const published = await step(
       "publisher",
       async () => {
+        // Each saved id is recorded at once, so a publisher cut off half-way never saves a post twice.
+        const current = await getRun(runId);
         const slug = await freeSlug(seo.slug);
         const shared = { slug, aiScore: review.score, runId };
-        const enId = await insertDraftPost({ ...shared, locale: "en", title: seo.title, excerpt: seo.excerpt, bodyMd: draft, tags: seo.tags, metaTitle: seo.metaTitle, metaDescription: seo.metaDescription, faq: seo.faq });
-        const faId = await insertDraftPost({ ...shared, locale: "fa", title: fa.title, excerpt: fa.excerpt, bodyMd: fa.bodyMd, tags: fa.tags, metaTitle: fa.metaTitle, metaDescription: fa.metaDescription, faq: fa.faq });
-        await updateRun(runId, { postEnId: enId, postFaId: faId });
+        const enId =
+          current?.postEnId ??
+          (await insertDraftPost({ ...shared, locale: "en", title: seo.title, excerpt: seo.excerpt, bodyMd: draft, tags: seo.tags, metaTitle: seo.metaTitle, metaDescription: seo.metaDescription, faq: seo.faq }));
+        await updateRun(runId, { postEnId: enId });
+        const faId =
+          current?.postFaId ??
+          (await insertDraftPost({ ...shared, locale: "fa", title: fa.title, excerpt: fa.excerpt, bodyMd: fa.bodyMd, tags: fa.tags, metaTitle: fa.metaTitle, metaDescription: fa.metaDescription, faq: fa.faq }));
+        await updateRun(runId, { postFaId: faId });
         return { slug, enId, faId };
       },
       (out) => ({
@@ -177,21 +221,31 @@ export async function runPipeline(runId: string, topicHint: string | null): Prom
         },
         (out) => ({ summary: out.length ? `${out.length} new lessons: ${out.map((l) => l.agent).join(", ")}` : "No new lessons — nothing to correct", output: out }),
       );
-    } catch {
-      // Already recorded on the critic step; the run itself still succeeded.
+    } catch (err) {
+      if (err instanceof PauseSignal) throw err;
+      // Otherwise already recorded on the critic step; the run itself still succeeded.
     }
 
     await updateRun(runId, { status: "done" });
+    await releaseRun(runId);
+    return "done";
   } catch (err) {
+    if (err instanceof PauseSignal) {
+      await updateRun(runId, { steps });
+      await releaseRun(runId);
+      return "paused";
+    }
     console.error("[blog-agents] run failed:", err);
     const message = err instanceof AgentError ? err.message : err instanceof Error ? err.message : "unknown error";
     await updateRun(runId, { status: "error", error: message, steps }).catch(() => undefined);
+    await releaseRun(runId).catch(() => undefined);
+    return "error";
   }
 }
 
 export type StartResult = { ok: true; runId: string } | { ok: false; error: "already_running" };
 
-/** Creates the run row (so the caller has an id to poll) — the caller then awaits or defers runPipeline. */
+/** Creates the run row, already leased to the caller, which then runs continueRun. */
 export async function startRun(trigger: "manual" | "cron", topicHint: string | null): Promise<StartResult> {
   await failStaleRuns();
   if (await hasRunningRun()) return { ok: false, error: "already_running" };

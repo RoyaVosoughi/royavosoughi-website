@@ -18,7 +18,7 @@ function requireClient() {
   return supabase;
 }
 
-const RUN_COLUMNS = "id, status, trigger, topic_hint, steps, post_en_id, post_fa_id, error, created_at, finished_at";
+const RUN_COLUMNS = "id, status, trigger, topic_hint, steps, post_en_id, post_fa_id, error, created_at, finished_at, lease_until";
 
 function toRun(row: Record<string, unknown>): PipelineRun {
   return {
@@ -32,13 +32,15 @@ function toRun(row: Record<string, unknown>): PipelineRun {
     error: (row.error as string) ?? null,
     createdAt: row.created_at as string,
     finishedAt: (row.finished_at as string) ?? null,
+    leaseUntil: (row.lease_until as string) ?? null,
   };
 }
 
 export async function createRun(trigger: PipelineRun["trigger"], topicHint: string | null): Promise<string> {
   const { data, error } = await requireClient()
     .from("blog_pipeline_runs")
-    .insert({ trigger, topic_hint: topicHint })
+    // The creator holds the first lease: it starts working on the run right away.
+    .insert({ trigger, topic_hint: topicHint, lease_until: leaseExpiry() })
     .select("id")
     .single();
   if (error) throw error;
@@ -81,14 +83,64 @@ export async function listRuns(limit = 20): Promise<PipelineRun[]> {
   return (data ?? []).map(toRun);
 }
 
-/** Runs left "running" by a function that timed out or crashed — shown as failed instead of spinning forever. */
-export async function failStaleRuns(olderThanMinutes = 15): Promise<void> {
-  const cutoff = new Date(Date.now() - olderThanMinutes * 60_000).toISOString();
+/**
+ * Leases make a run resumable across serverless invocations (each capped at a
+ * few minutes): a worker claims the run, works until its time budget is spent,
+ * then releases it for the next invocation. The claim is one conditional
+ * UPDATE, so two invocations can never both win it.
+ */
+const LEASE_SECONDS = 320; // a little over the routes' maxDuration (300s)
+
+function leaseExpiry(): string {
+  return new Date(Date.now() + LEASE_SECONDS * 1000).toISOString();
+}
+
+export async function claimRun(id: string): Promise<boolean> {
+  const { data, error } = await requireClient()
+    .from("blog_pipeline_runs")
+    .update({ lease_until: leaseExpiry() })
+    .eq("id", id)
+    .eq("status", "running")
+    .or(`lease_until.is.null,lease_until.lt.${new Date().toISOString()}`)
+    .select("id");
+  if (error) throw error;
+  return (data ?? []).length > 0;
+}
+
+/** Expires the lease now (rather than clearing it), so the timestamp also records when work last stopped. */
+export async function releaseRun(id: string): Promise<void> {
+  await requireClient().from("blog_pipeline_runs").update({ lease_until: new Date().toISOString() }).eq("id", id);
+}
+
+/** True when a running run has no live worker — it's waiting to be resumed. */
+export function needsWorker(run: PipelineRun): boolean {
+  return run.status === "running" && (!run.leaseUntil || Date.parse(run.leaseUntil) < Date.now());
+}
+
+/** Runs nobody has worked on for half an hour (nothing resumed them) — shown as failed, and retryable, instead of spinning forever. */
+export async function failStaleRuns(idleMinutes = 30): Promise<void> {
+  const cutoff = new Date(Date.now() - idleMinutes * 60_000).toISOString();
   await requireClient()
     .from("blog_pipeline_runs")
     .update({ status: "error", error: "timed_out", finished_at: new Date().toISOString() })
     .eq("status", "running")
-    .lt("created_at", cutoff);
+    .or(`lease_until.lt.${cutoff},and(lease_until.is.null,created_at.lt.${cutoff})`);
+}
+
+/**
+ * Re-opens a failed run so it continues from the step that failed — finished
+ * steps are kept and replayed from the log, so a run that hit a daily model
+ * limit at the translator only redoes the translator. Leased to the caller.
+ */
+export async function reopenRun(id: string): Promise<boolean> {
+  const { data, error } = await requireClient()
+    .from("blog_pipeline_runs")
+    .update({ status: "running", error: null, finished_at: null, lease_until: leaseExpiry() })
+    .eq("id", id)
+    .eq("status", "error")
+    .select("id");
+  if (error) throw error;
+  return (data ?? []).length > 0;
 }
 
 /** English titles of every existing post, draft or published — the idea scout must not pitch them again. */

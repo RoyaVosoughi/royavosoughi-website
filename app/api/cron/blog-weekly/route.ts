@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { runPipeline, startRun } from "@/lib/ai/blog-agents/orchestrator";
+import { workOn } from "@/lib/ai/blog-agents/continuation";
+import { startRun } from "@/lib/ai/blog-agents/orchestrator";
 import { getRun } from "@/lib/ai/blog-agents/store";
 import { isOpenRouterConfigured } from "@/lib/ai/providers/openrouter";
 
@@ -21,8 +22,8 @@ export async function GET(request: Request) {
 
   const started = await startRun("cron", null);
   if (!started.ok) return NextResponse.json({ error: started.error }, { status: 409 });
-  // Awaited rather than after(): nobody waits on a cron response, and this keeps the run inside maxDuration.
-  await runPipeline(started.runId, null);
+  // The first stretch runs here (awaited — nobody waits on a cron response); if the run needs longer, it continues itself in fresh invocations.
+  await workOn(started.runId);
   const run = await getRun(started.runId);
   return NextResponse.json({ ok: run?.status === "done", runId: started.runId, status: run?.status });
 }

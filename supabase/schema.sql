@@ -1264,3 +1264,11 @@ alter table public.ai_usage_log
   check (purpose in ('lead_score', 'contact_summary', 'deal_next_action',
                      'contract_rewrite', 'contract_followup', 'campaign_email', 'crm_assistant',
                      'content_suggestion', 'blog_pipeline'));
+
+-- =============================================================================
+-- V8 — Blog studio: resumable runs. Free models are slow, so a run may span
+-- several serverless invocations; lease_until marks the one currently working
+-- on it (see claimRun in lib/ai/blog-agents/store.ts). Run once after V7.
+-- =============================================================================
+
+alter table public.blog_pipeline_runs add column if not exists lease_until timestamptz;
