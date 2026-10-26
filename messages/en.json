@@ -183,24 +183,6 @@
     "p1": "My work is mostly applications powered by LLMs: retrieval systems that answer questions from a company's own documents, assistants that handle a repetitive task properly, and agents that know the limits of what they should decide alone.",
     "p2": "I graduated from Politecnico di Torino in AI and Software Engineering.",
     "p3": "I have also completed the AI Consulting course at Careerpreneur Academy.",
-    "values": {
-      "punctual": {
-        "name": "Punctuality",
-        "body": "The project arrives when I said it would. Your time is the one thing I cannot give back to you."
-      },
-      "practical": {
-        "name": "Practicality",
-        "body": "A solution that works in the business, not a demo that works in a meeting."
-      },
-      "creative": {
-        "name": "Creativity",
-        "body": "A specific answer to your specific problem, rather than last project's answer with the name changed."
-      },
-      "inspiring": {
-        "name": "Possibility",
-        "body": "I want you to leave knowing what AI could do for you — including, honestly, when the answer is not much."
-      }
-    },
     "ctaTitle": "Have something you want built?",
     "ctaBody": "Tell me what the problem is. If I'm not the right person for it, I'll say so and point you somewhere better.",
     "ctaPrimary": "Get in touch"

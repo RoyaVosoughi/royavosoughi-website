@@ -31,8 +31,6 @@ export default async function AboutPage({
   setRequestLocale(locale);
   const t = await getTranslations("aboutPage");
 
-  const values = ["punctual", "practical", "creative", "inspiring"] as const;
-
   return (
     <>
       <Section tone="light" className="pt-14 md:pt-20">
@@ -42,27 +40,10 @@ export default async function AboutPage({
           <p className="mt-8 text-xl text-ink/80">{t("lead")}</p>
         </div>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
-          <div className="space-y-5 text-lg text-ink/80">
-            <p>{t("p1")}</p>
-            <p>{t("p2")}</p>
-            <p>{t("p3")}</p>
-          </div>
-
-          <aside>
-            <dl className="space-y-6">
-              {values.map((key) => (
-                <div key={key} className="border-s-2 border-cobalt/30 ps-5">
-                  <dt className="font-semibold text-ink">
-                    {t(`values.${key}.name`)}
-                  </dt>
-                  <dd className="mt-1.5 text-ink/75">
-                    {t(`values.${key}.body`)}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
+        <div className="mt-14 max-w-3xl space-y-5 text-lg text-ink/80">
+          <p>{t("p1")}</p>
+          <p>{t("p2")}</p>
+          <p>{t("p3")}</p>
         </div>
       </Section>
 
