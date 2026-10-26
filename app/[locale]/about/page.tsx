@@ -50,8 +50,7 @@ export default async function AboutPage({
           </div>
 
           <aside>
-            <h2 className="label-eyebrow text-cobalt">{t("valuesTitle")}</h2>
-            <dl className="mt-6 space-y-6">
+            <dl className="space-y-6">
               {values.map((key) => (
                 <div key={key} className="border-s-2 border-cobalt/30 ps-5">
                   <dt className="font-semibold text-ink">
