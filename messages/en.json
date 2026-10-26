@@ -181,9 +181,8 @@
     "title": "I turn large language models into tools businesses rely on.",
     "lead": "AI engineer and software developer. I design, build and support LLM-powered applications that do a specific, useful job — and keep doing it after handoff.",
     "p1": "My work is mostly applications powered by LLMs: retrieval systems that answer questions from a company's own documents, assistants that handle a repetitive task properly, and agents that know the limits of what they should decide alone.",
-    "p2": "I have one rule that shapes everything: build in public. Every project is deployed, open source and documented. That is partly discipline — it is much harder to cut a corner when the repository is open — and partly the fastest way to show what I can do without asking anyone to take my word for it.",
-    "p3": "I graduated from Politecnico di Torino in AI and Software Engineering.",
-    "valuesTitle": "What I hold to",
+    "p2": "I graduated from Politecnico di Torino in AI and Software Engineering.",
+    "p3": "I have also completed the AI Consulting course at Careerpreneur Academy.",
     "values": {
       "punctual": {
         "name": "Punctuality",
