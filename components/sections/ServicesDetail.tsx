@@ -57,6 +57,14 @@ export async function ServicesDetail() {
                         </dd>
                       </div>
                     ))}
+                    {t.has(`items.${key}.tech`) && (
+                      <div>
+                        <dt className="label-eyebrow text-cobalt">{t("labels.tech")}</dt>
+                        <dd className="mt-1 text-[0.9375rem] leading-relaxed text-ink/80" dir="auto">
+                          {t(`items.${key}.tech`)}
+                        </dd>
+                      </div>
+                    )}
                   </dl>
 
                   <div className="mt-8">

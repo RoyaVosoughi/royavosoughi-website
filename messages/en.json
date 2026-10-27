@@ -21,11 +21,10 @@
     "theme": "Toggle dark theme"
   },
   "hero": {
-    "eyebrow": "AI consulting for small businesses",
-    "lineA": "Less repetitive work.",
-    "lineB": "Faster answers",
-    "lineC": "for your customers.",
-    "subtitle": "I build AI assistants and agents that fit your business, then document and support them after handoff.",
+    "eyebrow": "Reclaim your time",
+    "lineA": "Built to work,",
+    "lineB": "built to last.",
+    "subtitle": "Less repetitive work and faster answers for your customers. I build AI assistants and agents that fit your business, then document and support them after handoff.",
     "ctaPrimary": "Book a consultation",
     "ctaSecondary": "See my work",
     "credential": "AI Engineer & Software Developer",
@@ -74,7 +73,8 @@
       "problem": "Problem",
       "deliverable": "Deliverable",
       "duration": "Duration",
-      "price": "Price"
+      "price": "Price",
+      "tech": "Built with"
     },
     "items": {
       "consulting": {
@@ -87,6 +87,7 @@
       },
       "automation": {
         "name": "Automation",
+        "tech": "Python · LLMs",
         "for": "Anyone who has to do the same set of repetitive tasks every day.",
         "problem": "A lot of time goes into that repetitive workflow, every single day.",
         "deliverable": "An automated system that does those tasks for you at a set time each day.",
@@ -95,6 +96,7 @@
       },
       "agent": {
         "name": "Agent Creation",
+        "tech": "Python · LLMs · RAG (answers from your own documents)",
         "for": "Anyone for whom one process takes several days to complete.",
         "problem": "Every step of the task has to be checked personally.",
         "deliverable": "An agent that checks every detail of the process in line with your personal brand, and gets your approval.",
@@ -103,6 +105,7 @@
       },
       "multiAgent": {
         "name": "Multi-Agent",
+        "tech": "Python · LLMs · RAG (answers from your own documents)",
         "for": "Clients happy with their automation and agent who want to go further.",
         "problem": "Scattered processes across the company.",
         "deliverable": "Several agents with independent tasks, and a manager agent for final approval.",
@@ -168,19 +171,19 @@
   "about": {
     "eyebrow": "About",
     "title": "I'm Roya.",
-    "p1": "I'm an AI engineer and software developer. I design and build applications powered by large language models — RAG systems, assistants and agents that take on a specific, measurable job inside a business.",
-    "p2": "My focus is the gap between an impressive demo and a dependable product: answers grounded in your own data, sensible limits on what the AI decides alone, clear documentation, and support after handoff. Every project starts with your problem, not the technology.",
+    "p1": "I'm an AI engineer and software developer. I build AI assistants and agents that take repetitive work off your team and help you answer customers faster.",
+    "p2": "My focus is tools that work in daily business, not only in a presentation: answers based on your own documents, clear limits on what the AI decides alone, documentation, and support after handoff. Every project starts with your problem, not the technology.",
     "quote": "Built to be used, not just shown.",
     "readMore": "More about me",
     "photoAlt": "Portrait of Roya Vosoughi"
   },
   "aboutPage": {
     "metaTitle": "About",
-    "metaDescription": "Roya Vosoughi — AI engineer and software developer building reliable LLM-powered applications, assistants and agents for businesses.",
+    "metaDescription": "Roya Vosoughi — AI engineer and software developer building AI assistants and agents that take repetitive work off small businesses.",
     "eyebrow": "About",
-    "title": "I turn large language models into tools businesses rely on.",
-    "lead": "AI engineer and software developer. I design, build and support LLM-powered applications that do a specific, useful job — and keep doing it after handoff.",
-    "p1": "My work is mostly applications powered by LLMs: retrieval systems that answer questions from a company's own documents, assistants that handle a repetitive task properly, and agents that know the limits of what they should decide alone.",
+    "title": "I build AI tools that businesses rely on every day.",
+    "lead": "AI engineer and software developer. I design, build and support AI assistants and agents that take on repetitive work — and keep doing it after handoff.",
+    "p1": "My work is mostly assistants that answer questions from a company's own documents, automations that handle a repetitive task properly, and agents that know the limits of what they should decide alone.",
     "p2": "I graduated from Politecnico di Torino in AI and Software Engineering.",
     "p3": "I have also completed the AI Consulting course at Careerpreneur Academy.",
     "ctaTitle": "Have something you want built?",

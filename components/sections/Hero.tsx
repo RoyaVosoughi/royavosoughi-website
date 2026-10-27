@@ -53,7 +53,7 @@ export async function Hero() {
             style={{ animationDelay: "80ms" }}
           >
             {t("lineA")}{" "}
-            <em className="text-cobalt-light">{t("lineB")}</em> {t("lineC")}
+            <em className="text-cobalt-light">{t("lineB")}</em>
           </h1>
 
           <p
