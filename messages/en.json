@@ -165,8 +165,7 @@
     "emptyState": "The first projects are being built right now, in public. Each one lands here only once it is deployed, open source and documented — never before.",
     "followGithub": "Follow along on GitHub",
     "ctaTitle": "See something like your problem?",
-    "ctaButton": "Let's talk about it",
-    "connectTitle": "Find me online"
+    "ctaButton": "Let's talk about it"
   },
   "about": {
     "eyebrow": "About",
