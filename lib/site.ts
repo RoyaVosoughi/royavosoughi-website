@@ -20,6 +20,13 @@ export const site = {
   },
 } as const;
 
+/**
+ * Opens a Gmail compose window to the site's address. A plain mailto: does
+ * nothing on computers without a mail app set up, so the footer and contact
+ * page use this web link instead.
+ */
+export const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(site.email)}`;
+
 /** Brand palette, mirrored from app/globals.css for use in TS (OG image, charts, email). */
 export const brandColors = {
   canvas: "#F5EBE0",

@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Wordmark } from "@/components/ui/Logo";
 import { SocialIcon, type SocialIconName } from "@/components/ui/SocialIcon";
-import { site } from "@/lib/site";
+import { gmailComposeUrl, site } from "@/lib/site";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -14,7 +14,7 @@ export async function Footer() {
     { label: "Instagram", href: site.social.instagram, icon: "instagram", external: true },
     { label: "GitHub", href: site.social.github, icon: "github", external: true },
     { label: "LinkedIn", href: site.social.linkedin, icon: "linkedin", external: true },
-    { label: "Gmail", href: `mailto:${site.email}`, icon: "email", external: false },
+    { label: "Gmail", href: gmailComposeUrl, icon: "email", external: true },
   ];
   const links = profiles.filter((link) => link.href);
 

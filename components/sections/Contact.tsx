@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { isSupabaseConfigured } from "@/lib/supabase";
-import { site } from "@/lib/site";
+import { gmailComposeUrl, site } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 
 /** The consultation form. Rendered as its own page at /[locale]/contact. */
@@ -26,7 +26,9 @@ export async function Contact() {
               <dt className="label-eyebrow text-cobalt">{t("emailLabel")}</dt>
               <dd className="mt-2">
                 <a
-                  href={`mailto:${site.email}`}
+                  href={gmailComposeUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
                   dir="ltr"
                   className="text-lg text-ink underline underline-offset-4 hover:text-cobalt"
                 >
