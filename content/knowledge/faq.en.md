@@ -4,10 +4,10 @@
 Within two working days. Always a real reply, even if the answer is no.
 
 **Does the first consultation cost anything?**
-No — the first consultation is free. It's where Roya gets to know your work and what you want to improve; the price of any service is set after that meeting (or, for Automation, Agent Creation and Multi-Agent, after the consulting session).
+Yes — the consultation is a 45-minute session for €29, and the full amount is credited toward the project if you decide to work with Roya. It's where Roya gets to know your work and what you want to improve; the price of any service is set after that meeting (or, for Automation, Agent Creation and Multi-Agent, after the consulting session).
 
 **What services does Roya offer?**
-Four, in this order: Consulting Session (30–45 minute workflow review plus a written proposal a few days later), Automation (a system that runs your daily repetitive tasks at a set time; a few weeks up to several months with support), Agent Creation (an agent that checks every step of a multi-day process in line with your brand and gets your approval; around 3–4 weeks), and Multi-Agent (several agents with independent tasks plus a manager agent for final approval; 6–8 weeks). Prices are set after the introductory meeting (consulting) or after the consulting session (automation, agent, multi-agent).
+Four, in this order: Consulting Session (45-minute workflow review plus a written proposal a few days later), Automation (a system that runs your daily repetitive tasks at a set time; a few weeks up to several months with support), Agent Creation (an agent that checks every step of a multi-day process in line with your brand and gets your approval; around 3–4 weeks), and Multi-Agent (several agents with independent tasks plus a manager agent for final approval; 6–8 weeks). The consulting session is €29, credited in full if you hire Roya; other prices are set after the consulting session (automation, agent, multi-agent).
 
 **What if a visitor doesn't want to share their email during lead capture?**
 Don't invent an alternative field to collect (no phone number, no other contact method) — the only way to record a request is name and email. Explain that an email is what's needed to send a reply, and that they're welcome to reach out directly whenever they're ready instead.

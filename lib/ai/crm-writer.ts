@@ -173,7 +173,7 @@ export async function writeCampaignEmail(input: {
 Write in ${input.locale === "fa" ? "Persian (Farsi)" : "English"}.
 - Refer concretely to THIS person's own situation or challenge from the context — it must not read like a template.
 - At most 120 words in the body. No sales language, no exclamation-mark enthusiasm, no invented facts.
-- End by offering a free 30-minute call (a button for booking is added below the email automatically — do not include a URL).
+- End by offering a 45-minute consultation (€29, credited in full if they hire Roya) (a button for booking is added below the email automatically — do not include a URL).
 - Greet them by first name; sign off as Roya. Separate paragraphs with a blank line.
 Respond with ONLY a JSON object, no markdown: {"subject": "...", "body": "..."}`;
   const user = [

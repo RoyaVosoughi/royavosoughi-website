@@ -36,7 +36,7 @@
     "glassQuestion": "Can it answer from our own documents?",
     "glassAnswer": "Yes — grounded in your files, with sources, and it says \"I don't know\" when they don't cover it.",
     "glassLabel": "Illustrative example of an assistant answering from a company's own documents",
-    "announce": "Free 30-minute consultation — one focused call, no sales pitch.",
+    "announce": "45-minute consultation — €29, credited in full if we work together. One focused call, no sales pitch.",
     "announceLink": "Request one",
     "ctaChat": "Or ask Nura first"
   },
@@ -80,7 +80,7 @@
         "name": "Consulting Session",
         "for": "A manager, or an employee, who wants to start using AI.",
         "problem": "They don't know what improvements AI could bring to their work.",
-        "deliverable": "A 30–45 minute session reviewing your workflow, then a written proposal of opportunities and solutions a few days later.",
+        "deliverable": "A 45-minute session reviewing your workflow, then a written proposal of opportunities and solutions a few days later.",
         "duration": "One session plus a few working days.",
         "price": "Set after the introductory meeting or once the proposal is ready."
       },
@@ -146,7 +146,7 @@
         "body": "I read every message myself and reply within two working days — even if the honest answer is that I'm not the right fit."
       },
       "call": {
-        "name": "Free 30-minute consultation",
+        "name": "45-minute consultation — €29",
         "body": "One focused call about your business and where AI genuinely fits — and, just as often, where it doesn't."
       },
       "roadmap": {
@@ -374,7 +374,7 @@
     "backToBlog": "← All articles",
     "otherLanguage": "Read in Persian",
     "ctaTitle": "Have a problem like this in your business?",
-    "ctaBody": "Bring it to a free 30-minute consultation — we'll find out together whether AI is the right answer.",
+    "ctaBody": "Bring it to a 45-minute consultation (€29, credited in full if we work together) — we'll find out together whether AI is the right answer.",
     "ctaButton": "Request a consultation"
   }
 }

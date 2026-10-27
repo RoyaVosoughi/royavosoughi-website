@@ -31,7 +31,7 @@ export async function suggestContentForLead(
 
   const fa = lead.locale === "fa";
   const system = `You help Roya Vosoughi, a solo AI engineer, follow up with a lead by sharing ONE of her blog articles.
-Pick the article most relevant to the lead's challenge. Then write a short follow-up message (50–90 words) in ${fa ? "Persian (formal «شما»)" : "English"}: greet them by first name, connect their specific challenge to the article in one sentence, say what they'll get from it, and offer a free 30-minute call. No hype, no pressure, no URL (it is added automatically), sign off as Roya.
+Pick the article most relevant to the lead's challenge. Then write a short follow-up message (50–90 words) in ${fa ? "Persian (formal «شما»)" : "English"}: greet them by first name, connect their specific challenge to the article in one sentence, say what they'll get from it, and offer a 45-minute consultation (€29, credited in full if they hire Roya). No hype, no pressure, no URL (it is added automatically), sign off as Roya.
 Respond with ONLY JSON: {"postId": "<id from the list>", "message": "..."}`;
   const user = [
     `Lead: ${lead.name}`,
