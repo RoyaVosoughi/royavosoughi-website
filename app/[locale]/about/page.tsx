@@ -57,14 +57,16 @@ export default async function AboutPage({
             <ButtonLink href={`/${locale}/contact`} variant="onDark">
               {t("ctaPrimary")}
             </ButtonLink>
-            <ButtonLink
-              href={site.social.linkedin}
-              variant="onDarkGhost"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              LinkedIn
-            </ButtonLink>
+            {site.social.linkedin && (
+              <ButtonLink
+                href={site.social.linkedin}
+                variant="onDarkGhost"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                LinkedIn
+              </ButtonLink>
+            )}
           </div>
         </div>
       </Section>

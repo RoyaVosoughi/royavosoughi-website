@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
 import { Wordmark } from "@/components/ui/Logo";
+import { SocialIcon, type SocialIconName } from "@/components/ui/SocialIcon";
 import { site } from "@/lib/site";
 
 export async function Footer() {
@@ -9,11 +10,13 @@ export async function Footer() {
   const nav = await getTranslations("nav");
   const year = new Date().getFullYear();
 
-  const links = [
-    { label: "LinkedIn", href: site.social.linkedin },
-    { label: "GitHub", href: site.social.github },
-    { label: "Instagram", href: site.social.instagram },
+  const profiles: { label: string; href: string; icon: SocialIconName; external: boolean }[] = [
+    { label: "Instagram", href: site.social.instagram, icon: "instagram", external: true },
+    { label: "GitHub", href: site.social.github, icon: "github", external: true },
+    { label: "LinkedIn", href: site.social.linkedin, icon: "linkedin", external: true },
+    { label: "Gmail", href: `mailto:${site.email}`, icon: "email", external: false },
   ];
+  const links = profiles.filter((link) => link.href);
 
   return (
     <footer className="surface-ink bg-ink text-canvas">
@@ -22,12 +25,6 @@ export async function Footer() {
           <div className="max-w-sm">
             <Wordmark className="text-canvas" onDark />
             <p className="mt-5 text-lg text-mist">{t("tagline")}</p>
-            <a
-              href={`mailto:${site.email}`}
-              className="mt-6 inline-block text-fog underline underline-offset-4 transition-colors hover:text-cobalt-light"
-            >
-              {site.email}
-            </a>
           </div>
 
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-16">
@@ -56,10 +53,10 @@ export async function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="text-mist transition-colors hover:text-cobalt-light"
+                      {...(link.external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
+                      className="inline-flex items-center gap-3 text-mist transition-colors hover:text-cobalt-light"
                     >
+                      <SocialIcon name={link.icon} />
                       {link.label}
                     </a>
                   </li>

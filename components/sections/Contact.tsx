@@ -35,19 +35,35 @@ export async function Contact() {
               </dd>
             </div>
             <div>
-              <dt className="label-eyebrow text-cobalt">LinkedIn</dt>
+              <dt className="label-eyebrow text-cobalt">Instagram</dt>
               <dd className="mt-2">
                 <a
-                  href={site.social.linkedin}
+                  href={site.social.instagram}
                   target="_blank"
                   rel="noreferrer noopener"
                   dir="ltr"
                   className="text-lg text-ink underline underline-offset-4 hover:text-cobalt"
                 >
-                  /in/royavosoughi
+                  @Roya.vosoughii
                 </a>
               </dd>
             </div>
+            {site.social.linkedin && (
+              <div>
+                <dt className="label-eyebrow text-cobalt">LinkedIn</dt>
+                <dd className="mt-2">
+                  <a
+                    href={site.social.linkedin}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    dir="ltr"
+                    className="text-lg text-ink underline underline-offset-4 hover:text-cobalt"
+                  >
+                    LinkedIn
+                  </a>
+                </dd>
+              </div>
+            )}
             <div>
               <dt className="label-eyebrow text-cobalt">{t("responseLabel")}</dt>
               <dd className="mt-2 text-lg text-ink/75">{t("responseValue")}</dd>
