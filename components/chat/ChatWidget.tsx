@@ -50,8 +50,6 @@ function parseSseChunk(buffer: string, raw: string): { events: Array<{ event: st
 
 const SESSION_STORAGE_KEY = "rv_chat_session_id";
 const SESSION_SEEN_KEY = "rv_chat_session_seen_at";
-/** A conversation idle longer than this starts over, so a returning visitor isn't dropped back into a weeks-old thread. */
-const SESSION_MAX_IDLE_MS = 24 * 60 * 60 * 1000;
 
 function touchSession() {
   window.localStorage.setItem(SESSION_SEEN_KEY, String(Date.now()));
@@ -63,13 +61,6 @@ function rotateSessionId(): string {
   window.localStorage.setItem(SESSION_STORAGE_KEY, id);
   touchSession();
   return id;
-}
-
-function getOrCreateSessionId(): string {
-  const existing = window.localStorage.getItem(SESSION_STORAGE_KEY);
-  const seenAt = Number(window.localStorage.getItem(SESSION_SEEN_KEY) ?? 0);
-  if (existing && Date.now() - seenAt < SESSION_MAX_IDLE_MS) return existing;
-  return rotateSessionId();
 }
 
 export function ChatWidget({
@@ -107,25 +98,9 @@ export function ChatWidget({
   const starters = startersOverride?.length ? startersOverride : (t.raw("starters") as string[]);
 
   useEffect(() => {
-    const id = getOrCreateSessionId();
-    setSessionId(id);
-
-    fetch(`/api/chat/history?channelSessionId=${id}`)
-      .then((res) => (res.ok ? res.json() : { messages: [] }))
-      .then((data: { messages: Array<{ id: string; role: "user" | "assistant"; content: string }> }) => {
-        if (data.messages.length === 0) return;
-        setMessages(
-          data.messages.map((m) => ({
-            role: m.role,
-            content: m.content,
-            id: m.role === "assistant" ? m.id : undefined,
-            feedback: m.role === "assistant" ? null : undefined,
-          })),
-        );
-      })
-      .catch(() => {
-        // No history is a normal, silent outcome — never block the widget on this.
-      });
+    // Every visit to the chat page starts a brand-new conversation — the old
+    // thread stays stored server-side but is no longer restored into the UI.
+    setSessionId(rotateSessionId());
   }, []);
 
   useEffect(() => {
