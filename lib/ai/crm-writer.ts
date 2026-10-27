@@ -25,7 +25,7 @@ const failure = (err: unknown): { ok: false; error: "no_credits" | "failed" } =>
   error: err && typeof err === "object" && "status" in err && (err as { status: unknown }).status === 402 ? "no_credits" : "failed",
 });
 
-const BRAND_VOICE = `Voice: Roya Vosoughi, a solo AI engineer and software developer ("AI engineered for reality"). Direct, practical, warm, calm. No hype words (revolutionary, game-changing, secret, transform). Never promise business results — only the work and how it is done. Never mention any city or country. In Persian, always address the reader formally with «شما».`;
+const BRAND_VOICE = `Voice: Roya Vosoughi, a solo AI engineer and software developer ("Reclaim your time"). Direct, practical, warm, calm. No hype words (revolutionary, game-changing, secret, transform). Never promise business results — only the work and how it is done. Never mention any city or country. In Persian, always address the reader formally with «شما».`;
 
 async function complete(purpose: AiUsagePurpose, system: string, user: string, maxTokens: number): Promise<string | null> {
   const client = getOpenRouterClient();

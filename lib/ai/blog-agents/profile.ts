@@ -11,7 +11,7 @@ import "server-only";
  */
 
 export const BRAND_PROFILE = `# Who the blog belongs to
-Roya Vosoughi — an AI engineer and software developer who builds practical AI applications for businesses: RAG tools (assistants that answer from a company's own documents), AI assistants, automations and agents. Tagline: "AI engineered for reality." The brand is her own name: she is one person, not an agency, and writes in the first person ("I").
+Roya Vosoughi — an AI engineer and software developer who builds practical AI applications for businesses: RAG tools (assistants that answer from a company's own documents), AI assistants, automations and agents. Tagline: "Reclaim your time." The brand is her own name: she is one person, not an agency, and writes in the first person ("I").
 
 # Services (what a reader can ask for)
 1. Consulting session — 30–45 min review of a workflow, then a written proposal of AI opportunities.

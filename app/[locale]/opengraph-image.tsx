@@ -7,7 +7,7 @@ import { brandColors, site } from "@/lib/site";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Roya Vosoughi — AI engineered for reality";
+export const alt = "Roya Vosoughi — Reclaim your time";
 
 /**
  * Social share card: Ink background, Signal R wordmark, slogan.
@@ -81,7 +81,7 @@ export default async function OpengraphImage() {
             maxWidth: 980,
           }}
         >
-          AI engineered for reality.
+          Reclaim your time.
         </div>
 
         <div

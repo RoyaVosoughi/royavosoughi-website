@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Roya Vosoughi — AI engineered for reality",
+    "title": "Roya Vosoughi — Reclaim your time",
     "description": "I build reliable, AI-powered applications for businesses that need them to actually work. Delivered on time, documented, and supported after handoff."
   },
   "nav": {
@@ -14,21 +14,21 @@
     "about": "About",
     "chat": "Chat",
     "contact": "Contact",
-    "cta": "Request a consultation",
+    "cta": "Book a consultation",
     "menu": "Open menu",
     "close": "Close menu",
     "skipToContent": "Skip to content",
     "theme": "Toggle dark theme"
   },
   "hero": {
-    "eyebrow": "AI engineered for reality",
-    "lineA": "Practical AI for",
-    "lineB": "real",
-    "lineC": "business problems.",
-    "subtitle": "RAG tools, assistants and agents that do a specific job for your business — deployed, documented, and supported after handoff. Never a demo pretending to be a product.",
-    "ctaPrimary": "Request a consultation",
+    "eyebrow": "AI consulting for small businesses",
+    "lineA": "Less repetitive work.",
+    "lineB": "Faster answers",
+    "lineC": "for your customers.",
+    "subtitle": "I build AI assistants and agents that fit your business, then document and support them after handoff.",
+    "ctaPrimary": "Book a consultation",
     "ctaSecondary": "See my work",
-    "credential": "AI Engineer & Software Developer · Python · LLMs · RAG",
+    "credential": "AI Engineer & Software Developer",
     "codeCardLabel": "Illustrative example: an AI agent answering from a company's own documents, not a guess",
     "askLabel": "Ask Nura, my AI assistant, about your project",
     "askPlaceholder": "Ask Nura about your project…",
@@ -350,7 +350,7 @@
     "selectError": "Please choose an option."
   },
   "footer": {
-    "tagline": "AI engineered for reality.",
+    "tagline": "Reclaim your time.",
     "siteLinks": "Site",
     "elsewhere": "Elsewhere",
     "rights": "All rights reserved."

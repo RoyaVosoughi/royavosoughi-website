@@ -8,7 +8,7 @@ import type { DocLocale } from "./format";
 export const DOC_LABELS = {
   en: {
     brandName: "Roya Vosoughi",
-    slogan: "AI engineered for reality",
+    slogan: "Reclaim your time",
     proposal: "Proposal",
     contract: "Contract",
     page: (n: string, total: string) => `Page ${n} of ${total}`,
@@ -50,7 +50,7 @@ export const DOC_LABELS = {
   },
   fa: {
     brandName: "Roya Vosoughi",
-    slogan: "هوش مصنوعی، مهندسی‌شده برای واقعیت",
+    slogan: "زمانتان را پس بگیرید",
     proposal: "پروپوزال",
     contract: "قرارداد",
     page: (n: string, total: string) => `صفحه‌ی ${n} از ${total}`,

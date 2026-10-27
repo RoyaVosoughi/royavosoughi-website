@@ -1,6 +1,6 @@
 # Logo & brand assets — source of truth
 
-**Roya Vosoughi** — *AI engineered for reality.* (v4, cream / ink / cobalt,
+**Roya Vosoughi** — *Reclaim your time.* (v4, cream / ink / cobalt,
 applied 2026-10-10). Every file here uses the same Signal R mark and the same
 wordmark; only the background and text colour change per file.
 Regenerate from `components/ui/Logo.tsx` proportions rather than

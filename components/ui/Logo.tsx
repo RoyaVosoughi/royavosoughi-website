@@ -1,5 +1,5 @@
 /**
- * Roya Vosoughi lockup — "AI engineered for reality".
+ * Roya Vosoughi lockup — "Reclaim your time".
  *
  * The mark is a "Signal R": a rounded single-stroke R whose leg is the one
  * Cobalt stroke — the step from idea to working system. In the wordmark the

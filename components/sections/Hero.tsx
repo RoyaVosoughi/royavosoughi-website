@@ -49,7 +49,7 @@ export async function Hero() {
           </p>
 
           <h1
-            className="rise-in-solid text-display mx-auto mt-8 max-w-[16ch] text-canvas"
+            className="rise-in-solid text-display mx-auto mt-8 max-w-[20ch] text-canvas"
             style={{ animationDelay: "80ms" }}
           >
             {t("lineA")}{" "}

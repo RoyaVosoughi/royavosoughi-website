@@ -4,7 +4,7 @@
  */
 export const site = {
   name: "Roya Vosoughi",
-  slogan: "AI engineered for reality",
+  slogan: "Reclaim your time",
   /** The person — the brand is her own name. Used for authorship / JSON-LD Person. */
   founder: "Roya Vosoughi",
   domain: "royavosoughi.com",

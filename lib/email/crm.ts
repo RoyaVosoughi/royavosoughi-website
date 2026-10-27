@@ -81,7 +81,7 @@ export function renderEmail(content: EmailContent): string {
 ${paragraphs}${cta}${note}
 </td></tr>
 <tr><td style="padding:16px 28px;font-size:12px;color:#6b655e;text-align:${align}">
-<span dir="ltr">${escapeHtml(site.domain)}</span> · ${escapeHtml(rtl ? "هوش مصنوعی، مهندسی‌شده برای واقعیت" : site.slogan)}
+<span dir="ltr">${escapeHtml(site.domain)}</span> · ${escapeHtml(rtl ? "زمانتان را پس بگیرید" : site.slogan)}
 </td></tr>
 </table>
 </td></tr>
