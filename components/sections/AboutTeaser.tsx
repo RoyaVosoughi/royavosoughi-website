@@ -2,56 +2,49 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
-import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Guide's imagery rules: natural window light, real scene, green accent —
- * never stock photography. object-position is biased upward since the
- * source photo is a full-body shot; the 4:5 frame favours her face and
- * upper body over foot-level crop.
+ * Personal intro in the style of a founder's "I'm …" section: an oversized
+ * display name, a short note and one pill button on the left, with the photo
+ * running edge to edge on the far side (start/end are logical, so it flips
+ * in Persian). On phones the photo stacks on top as a full-width band.
+ * Imagery rules: natural light, a real scene — never stock photography.
+ * object-position is biased upward since the source is a full-body shot.
  */
 export async function AboutTeaser() {
   const t = await getTranslations("about");
 
   return (
-    <Section id="about" tone="mint">
-      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
-        <Reveal className="mx-auto w-full max-w-sm lg:mx-0">
-          <div className="relative aspect-4/5 overflow-hidden rounded-3xl surface-ink bg-ink">
-            <Image
-              src="/photos/roya-about.jpg"
-              alt={t("photoAlt")}
-              fill
-              sizes="(min-width: 1024px) 24rem, 90vw"
-              className="object-cover"
-              style={{ objectPosition: "50% 30%" }}
-              priority
-            />
-          </div>
-        </Reveal>
+    <section id="about" className="relative overflow-hidden bg-mist text-ink">
+      {/* Photo: full-bleed band on phones, edge-to-edge column from lg up */}
+      <div className="relative h-[26rem] w-full sm:h-[32rem] lg:absolute lg:inset-y-0 lg:end-0 lg:h-auto lg:w-[44%]">
+        <Image
+          src="/photos/roya-about.jpg"
+          alt={t("photoAlt")}
+          fill
+          sizes="(min-width: 1024px) 44vw, 100vw"
+          className="object-cover"
+          style={{ objectPosition: "50% 30%" }}
+          priority
+        />
+      </div>
 
-        <Reveal delayMs={100}>
+      <div className="container-page relative">
+        <Reveal className="py-14 md:py-20 lg:w-[52%] lg:py-28">
           <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
-          <h2 className="text-section mt-4 text-ink">{t("title")}</h2>
-          <p className="mt-6 text-lg text-ink/80">{t("p1")}</p>
-          <p className="mt-4 text-lg text-ink/80">{t("p2")}</p>
-
-          <blockquote
-            className="mt-8 border-s-2 border-cobalt ps-5 text-2xl leading-snug font-light text-ink italic"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            {t("quote")}
-          </blockquote>
+          <h2 className="about-title mt-5 text-ink">{t("title")}</h2>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/80">{t("p1")}</p>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink/80">{t("p2")}</p>
 
           <Link
             href="/about"
-            className="mt-8 inline-block font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
+            className="mt-10 inline-flex items-center justify-center rounded-full bg-ink px-8 py-4 text-base font-medium text-canvas transition-colors duration-200 hover:bg-cobalt hover:text-on-cobalt"
           >
-            {t("readMore")} →
+            {t("readMore")}
           </Link>
         </Reveal>
       </div>
-    </Section>
+    </section>
   );
 }
