@@ -6,32 +6,31 @@ import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Personal intro in the style of a founder's "I'm …" section: an oversized
- * display name, a short note and one pill button on the left, with the photo
- * running edge to edge on the far side (start/end are logical, so it flips
- * in Persian). On phones the photo stacks on top as a full-width band.
+ * display name, a short note and one pill button on one side, with the photo
+ * as a contained rounded card on the other (grid order is logical, so it
+ * flips in Persian). On phones the card stacks on top of the text.
  * Imagery rules: natural light, a real scene — never stock photography.
- * object-position is biased upward since the source is a full-body shot.
  */
 export async function AboutTeaser() {
   const t = await getTranslations("about");
 
   return (
-    <section id="about" className="relative overflow-hidden bg-mist text-ink">
-      {/* Photo: full-bleed band on phones, edge-to-edge column from lg up */}
-      <div className="relative h-[26rem] w-full sm:h-[32rem] lg:absolute lg:inset-y-0 lg:end-0 lg:h-auto lg:w-[44%]">
-        <Image
-          src="/photos/roya-about.jpg"
-          alt={t("photoAlt")}
-          fill
-          sizes="(min-width: 1024px) 44vw, 100vw"
-          className="object-cover"
-          style={{ objectPosition: "50% 30%" }}
-          priority
-        />
-      </div>
+    <section id="about" className="bg-mist text-ink">
+      <div className="container-page grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2 lg:gap-16 lg:py-28">
+        {/* Photo card: first on phones, second (end side) from lg up */}
+        <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] lg:order-2 lg:max-w-none">
+          <Image
+            src="/photos/roya-about-gate.jpg"
+            alt={t("photoAlt")}
+            fill
+            sizes="(min-width: 1024px) 45vw, (min-width: 448px) 448px, 100vw"
+            className="object-cover"
+            style={{ objectPosition: "62% 35%" }}
+            priority
+          />
+        </div>
 
-      <div className="container-page relative">
-        <Reveal className="py-14 md:py-20 lg:w-[52%] lg:py-28">
+        <Reveal className="lg:order-1">
           <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h2 className="about-title mt-5 text-ink">{t("title")}</h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/80">{t("p1")}</p>
