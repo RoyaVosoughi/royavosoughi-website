@@ -40,7 +40,8 @@
     "announceLink": "Request one",
     "ctaChat": "Or ask Nura first",
     "glassBadge": "Illustrative: 12 hours back this week",
-    "closingTitle": "Ready to reclaim your time?"
+    "closingTitle": "Ready to reclaim your time?",
+    "checklistLink": "Not ready to book? Find where you're losing hours →"
   },
   "proof": {
     "title": "How I work",
@@ -396,6 +397,104 @@
       "label": "Life after",
       "title": "Work that runs while you focus.",
       "body": "An assistant your team actually uses, customers who get answers faster, and evenings that belong to you again."
+    }
+  },
+  "checklist": {
+    "metaTitle": "Time Leak Checklist",
+    "metaDescription": "A free 2-minute check: find out where your week is leaking hours and which tasks an AI agent or automation could take over.",
+    "eyebrow": "Free · 2 minutes",
+    "title": "Where is your team losing hours?",
+    "intro": "Eight yes/no questions. You get your result on this page straight away, no email needed.",
+    "yes": "Yes",
+    "no": "No",
+    "progress": "{done} of {total} answered",
+    "submit": "Show my result",
+    "answerAll": "Please answer every question to see your result.",
+    "resultEyebrow": "Your result",
+    "youSaid": "You said yes to {count} of {total}.",
+    "level0": {
+      "title": "Your week looks fairly tight.",
+      "body": "No clear leaks right now. If you still feel short on time, a consultation can find what the checklist can't see."
+    },
+    "level1": {
+      "title": "A few leaks worth fixing.",
+      "body": "Small today, but they repeat every week. These are the best places to start."
+    },
+    "level2": {
+      "title": "Real hours are leaking out.",
+      "body": "Several tasks that a machine could carry are sitting on your team. Start with these."
+    },
+    "leaksTitle": "Your biggest leaks",
+    "moreLeaks": "+{count} more you ticked",
+    "bestFit": "Best fit",
+    "restart": "Start over",
+    "planTitle": "Want the full plan?",
+    "planBody": "Tell me where to send it. I'll turn this result into a short written plan for your business, with what to build first, and reply personally.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "nameError": "Please enter your name.",
+    "emailError": "Enter a valid email address.",
+    "send": "Request the full plan",
+    "sending": "Sending…",
+    "sentTitle": "Request received",
+    "sentBody": "Thank you. I'll reply personally within two working days.",
+    "errorBody": "That didn't go through. Please try again, or email me directly at",
+    "bookLine": "Prefer to talk it through? Book the 45-minute consultation, credited in full if we work together.",
+    "bookCta": "Book a consultation",
+    "teaserEyebrow": "Free · 2 minutes",
+    "teaserTitle": "Where is your team losing hours?",
+    "teaserBody": "Eight quick questions show where repetitive work is eating your week, and which of it an AI agent or automation could take over. Your result appears instantly.",
+    "teaserCta": "Take the checklist",
+    "teaserNote": "No email needed to see your result.",
+    "questions": {
+      "q1": {
+        "q": "Do you or your team answer the same customer questions again and again?",
+        "leak": "Repeated customer questions",
+        "fix": "An assistant that answers from your own documents, with sources, and hands the tricky ones to you.",
+        "service": "agent"
+      },
+      "q2": {
+        "q": "Do you copy data by hand between two or more tools?",
+        "leak": "Copying data between tools",
+        "fix": "An automation that moves the data on a schedule, so nobody retypes anything.",
+        "service": "automation"
+      },
+      "q3": {
+        "q": "Do you chase people by message for approvals or replies?",
+        "leak": "Chasing approvals",
+        "fix": "Automatic reminders and routing, so approvals reach you ready to sign off.",
+        "service": "automation"
+      },
+      "q4": {
+        "q": "Do you build the same report or summary every week?",
+        "leak": "The weekly report by hand",
+        "fix": "An automation that gathers the numbers and writes the summary at a set time.",
+        "service": "automation"
+      },
+      "q5": {
+        "q": "Does your team lose time searching old files, chats or emails for answers?",
+        "leak": "Searching for answers",
+        "fix": "An agent that finds the answer in your own files and shows where it came from.",
+        "service": "agent"
+      },
+      "q6": {
+        "q": "Does one process take days because every step needs your personal check?",
+        "leak": "Every step needs you",
+        "fix": "An agent that checks each detail against your standards and brings you only what needs a decision.",
+        "service": "agent"
+      },
+      "q7": {
+        "q": "Do new enquiries wait hours, or days, for a first reply?",
+        "leak": "Slow first replies",
+        "fix": "An agent that replies at once and asks the right questions before the enquiry reaches you.",
+        "service": "agent"
+      },
+      "q8": {
+        "q": "Do you write similar emails, quotes or posts from scratch every time?",
+        "leak": "Writing from scratch",
+        "fix": "Drafts generated in your voice and ready for a quick edit.",
+        "service": "automation"
+      }
     }
   }
 }

@@ -75,6 +75,15 @@ export async function Hero() {
             </ButtonLink>
           </div>
 
+          <p className="rise-in mt-6 text-sm" style={{ animationDelay: "370ms" }}>
+            <a
+              href={`/${locale}/checklist`}
+              className="text-canvas/80 underline decoration-canvas/30 underline-offset-4 transition-colors hover:text-canvas hover:decoration-canvas"
+            >
+              {t("checklistLink")}
+            </a>
+          </p>
+
           <p
             className="rise-in label-eyebrow mt-10 text-fog/80"
             style={{ animationDelay: "400ms" }}

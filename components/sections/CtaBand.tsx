@@ -11,6 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export async function CtaBand() {
   const t = await getTranslations("projects");
   const hero = await getTranslations("hero");
+  const checklist = await getTranslations("checklist");
   const locale = await getLocale();
 
   return (
@@ -21,8 +22,8 @@ export async function CtaBand() {
           <ButtonLink href={`/${locale}/contact`} variant="primary">
             {t("ctaButton")}
           </ButtonLink>
-          <ButtonLink href={`/${locale}/chat`} variant="secondary">
-            {hero("ctaChat")}
+          <ButtonLink href={`/${locale}/checklist`} variant="secondary">
+            {checklist("teaserCta")}
           </ButtonLink>
         </div>
       </Reveal>
