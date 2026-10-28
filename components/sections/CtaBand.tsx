@@ -16,7 +16,7 @@ export async function CtaBand() {
   return (
     <section className="bg-canvas">
       <Reveal className="container-page flex flex-col gap-10 py-16 md:py-24 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
-        <h2 className="text-section max-w-[14ch] text-ink">{t("ctaTitle")}</h2>
+        <h2 className="text-section max-w-[14ch] text-ink">{hero("closingTitle")}</h2>
         <div className="flex flex-col gap-3 sm:flex-row">
           <ButtonLink href={`/${locale}/contact`} variant="primary">
             {t("ctaButton")}

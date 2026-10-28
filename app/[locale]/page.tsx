@@ -6,6 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Projects } from "@/components/sections/Projects";
 import { Proof } from "@/components/sections/Proof";
+import { Story } from "@/components/sections/Story";
 import { Services } from "@/components/sections/Services";
 
 export default async function HomePage({
@@ -19,6 +20,7 @@ export default async function HomePage({
   return (
     <>
       <Hero />
+      <Story />
       <Proof />
       <Services />
       <Process />

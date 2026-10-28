@@ -8,8 +8,8 @@ import { HeroCodeCard } from "./HeroCodeCard";
  * - a framed dark panel with an atmospheric cobalt/lilac glow (Mercury's
  *   night canvas + Superhuman's gradient band, standing in for a photo),
  * - a centred whisper-weight serif headline with one italic word (Origin),
- * - an "Ask Nura" prompt field that hands the question to /chat (Origin's AI
- *   prompt input — here it's real, the site has an assistant),
+ * - one primary action (book) plus a quiet "ask Nura first" link to /chat —
+ *   StoryBrand: a single clear call to action above the fold,
  * - frosted-glass product cards floating at the bottom (Superhuman).
  * The panel is surface-ink, so it stays dark in both themes.
  */
@@ -63,54 +63,15 @@ export async function Hero() {
             {t("subtitle")}
           </p>
 
-          {/* Ask Nura — a plain GET form, works without JS */}
-          <form
-            action={`/${locale}/chat`}
-            method="get"
-            className="rise-in mx-auto mt-10 flex max-w-xl items-center gap-2 rounded-full border border-canvas/15 bg-night/60 p-1.5 ps-5 backdrop-blur-md focus-within:border-canvas/40"
-            style={{ animationDelay: "280ms" }}
-          >
-            <label htmlFor="hero-ask" className="sr-only">
-              {t("askLabel")}
-            </label>
-            <input
-              id="hero-ask"
-              name="q"
-              type="text"
-              maxLength={500}
-              placeholder={t("askPlaceholder")}
-              className="min-w-0 flex-1 bg-transparent py-2.5 text-[0.9375rem] text-canvas placeholder:text-fog/80 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="flex shrink-0 items-center gap-2 rounded-full bg-canvas px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-lilac"
-            >
-              <span className="hidden sm:inline">{t("askSubmit")}</span>
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4 w-4 rtl:-scale-x-100"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-              <span className="sr-only sm:hidden">{t("askSubmit")}</span>
-            </button>
-          </form>
-
           <div
-            className="rise-in mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            className="rise-in mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
             style={{ animationDelay: "340ms" }}
           >
             <ButtonLink href={`/${locale}/contact`} variant="onDark">
               {t("ctaPrimary")}
             </ButtonLink>
-            <ButtonLink href="#projects" variant="onDarkGhost">
-              {t("ctaSecondary")}
+            <ButtonLink href={`/${locale}/chat`} variant="onDarkGhost">
+              {t("ctaChat")}
             </ButtonLink>
           </div>
 
@@ -152,6 +113,10 @@ export async function Hero() {
                   </p>
                 </div>
               </div>
+              <p className="label-eyebrow mt-5 inline-flex items-center gap-2 rounded-full bg-canvas/10 px-3 py-1.5 text-canvas/80">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-lilac" />
+                {t("glassBadge")}
+              </p>
             </div>
           </div>
         </div>

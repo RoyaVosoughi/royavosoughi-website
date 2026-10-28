@@ -21,10 +21,10 @@
     "theme": "Toggle dark theme"
   },
   "hero": {
-    "eyebrow": "Reclaim your time",
-    "lineA": "Built to work,",
-    "lineB": "built to last.",
-    "subtitle": "Less repetitive work and faster answers for your customers. I build AI assistants and agents that fit your business, then document and support them after handoff.",
+    "eyebrow": "AI agents & automation for your business",
+    "lineA": "Reclaim",
+    "lineB": "your time.",
+    "subtitle": "I build AI agents and automations that take the repetitive work off your plate, so you launch faster. Documented, and supported after handoff.",
     "ctaPrimary": "Book a consultation",
     "ctaSecondary": "See my work",
     "credential": "AI Engineer & Software Developer",
@@ -38,7 +38,9 @@
     "glassLabel": "Illustrative example of an assistant answering from a company's own documents",
     "announce": "45-minute consultation — €29, credited in full if we work together. One focused call, no sales pitch.",
     "announceLink": "Request one",
-    "ctaChat": "Or ask Nura first"
+    "ctaChat": "Or ask Nura first",
+    "glassBadge": "Illustrative: 12 hours back this week",
+    "closingTitle": "Ready to reclaim your time?"
   },
   "proof": {
     "title": "How I work",
@@ -170,7 +172,7 @@
   "about": {
     "eyebrow": "About",
     "title": "I'm Roya.",
-    "p1": "I'm an AI engineer and software developer. I build AI assistants and agents that take repetitive work off your team and help you answer customers faster.",
+    "p1": "I know how it feels to lose hours to work a machine could do. I'm an AI engineer and software developer. I build AI assistants and agents that take repetitive work off your team and help you answer customers faster.",
     "p2": "My focus is tools that work in daily business, not only in a presentation: answers based on your own documents, clear limits on what the AI decides alone, documentation, and support after handoff. Every project starts with your problem, not the technology.",
     "quote": "Built to be used, not just shown.",
     "readMore": "More about me",
@@ -376,5 +378,24 @@
     "ctaTitle": "Have a problem like this in your business?",
     "ctaBody": "Bring it to a 45-minute consultation (€29, credited in full if we work together) — we'll find out together whether AI is the right answer.",
     "ctaButton": "Request a consultation"
+  },
+  "story": {
+    "eyebrow": "Sound familiar?",
+    "title": "AI should give you time back, not give you something new to manage.",
+    "problem": {
+      "label": "The problem",
+      "title": "Your best hours go to the same tasks.",
+      "body": "Answering the same questions, copying data between tools, chasing approvals. It isn't hard work. It just never ends."
+    },
+    "stakes": {
+      "label": "The cost of waiting",
+      "title": "Every week it stays manual, it costs more.",
+      "body": "Hours you can't bill, customers waiting for replies, and a team too busy to build what comes next."
+    },
+    "success": {
+      "label": "Life after",
+      "title": "Work that runs while you focus.",
+      "body": "An assistant your team actually uses, customers who get answers faster, and evenings that belong to you again."
+    }
   }
 }
