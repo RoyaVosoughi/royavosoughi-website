@@ -5,10 +5,10 @@
 **AI Engineer & Software Developer | مهندس هوش مصنوعی و توسعه‌دهنده‌ی نرم‌افزار**
 royavosoughi.com
 
-نسخه ۶ | ۲۰۲۶ — برند **Roya Vosoughi** با پالت کرم، جوهری و آبی کبالت (۲۰۲۶/۱۰/۱۰)
+نسخه ۷ | ۲۰۲۶ — برند **Roya Vosoughi**، پالت کرم، جوهری و آبی کبالت، طراحی ادیتوریال، شعار «Reclaim your time» (به‌روزرسانی ۲۰۲۶/۱۰/۳۰)
 
-> **Roya Vosoughi — AI engineered for reality.**
-> «رویا وثوقی — هوش مصنوعی، مهندسی‌شده برای واقعیت»
+> **Roya Vosoughi — Reclaim your time.**
+> «رویا وثوقی — زمانتان را پس بگیرید»
 
 **نام برند خودِ نام رویاست.** مدیری که مشاور هوش مصنوعی استخدام می‌کند، قبل از هر چیز به یک *آدم* اعتماد می‌کند؛ پس برند و شخص یکی هستند — در لوگو، وب‌سایت، امضا و رزومه.
 
@@ -66,7 +66,7 @@ royavosoughi.com
 > من Roya Vosoughi هستم، مهندس هوش مصنوعی و توسعه‌دهنده‌ی نرم‌افزار. اپلیکیشن‌هایی می‌سازم که با مدل‌های زبانی (LLM) کار می‌کنند — ابزارهایی مثل RAG و ایجنت‌های هوشمند. یک قانون برای خودم دارم: همه‌چیز را در معرض دید عموم می‌سازم. هر پروژه‌ی من دیپلوی‌شده، متن‌باز و مستند است — پورتفولیویی که می‌توانی اجرایش کنی، نه فقط ادعایی که باید باورش کنی.
 
 **English version:**
-> I'm Roya Vosoughi, an AI engineer and software developer — AI engineered for reality. I build applications powered by LLMs — RAG tools, AI assistants, and agents. My rule: build everything in public. Every project is deployed, open source, and documented — a portfolio you can run, not claims you have to trust.
+> I'm Roya Vosoughi, an AI engineer and software developer. I help you reclaim your time. I build applications powered by LLMs — RAG tools, AI assistants, and agents. My rule: build everything in public. Every project is deployed, open source, and documented — a portfolio you can run, not claims you have to trust.
 
 ## Key Messages — پیام‌های کلیدی
 
@@ -117,7 +117,12 @@ royavosoughi.com
 | **Cobalt Light** | `#7FA6E8` | آبی برای متن و اکسنت روی زمینه‌ی جوهری (۶٫۸ : ۱) |
 | **Ink Soft** | `#2E2E2E` | حالت hover روی سطح‌های جوهری |
 | **Fog** | `#B8B0A6` | متن کم‌رنگ‌تر روی جوهری (۷٫۸ : ۱) |
+| **Paper** | `#FFFAF3` | کرم روشن‌تر — کارت‌هایی که روی Canvas می‌نشینند (لبه‌ی باریک، بدون سایه) |
 | **Amber** | `#E3A72F` / `#876012` | فقط رنگ وضعیت (هشدار در پنل ادمین) — رنگ برند نیست |
+
+**رنگ‌های پنل (از ۲۰۲۶/۱۰/۱۷):** برای کاشی‌های خدمات و درخشش‌های پس‌زمینه، از خانواده‌ی کبالت: **Lilac** `#D4CCFF`، **Periwinkle** `#A9C2F2`، **Deep** `#0B2E66`، **Royal** `#0047AB` (کبالت ثابت که در حالت تیره روشن نمی‌شود). فقط به‌عنوان پر کردن کامل پنل — **هرگز برای متن یا دکمه**؛ متن روی آن‌ها Night `#1E1E1E` یا Cream `#F5EBE0` است. این بخش سه‌رنگ‌بودنِ سخت‌گیرانه‌ی نسخه‌ی ۶ را نرم کرد.
+
+**حالت تیره:** سایت کلید تغییر تم روشن/تیره دارد؛ Canvas و Ink جایشان را عوض می‌کنند و کبالت روشن‌تر می‌شود (متن روی دکمه‌ی کبالت در حالت تیره تیره می‌شود).
 
 **چرا این پالت:** کرم گرم و انسانی است و برند را از سفیدِ سرد و اداری جدا می‌کند؛ جوهری خوانایی بالا و جدیت می‌دهد؛ آبی کبالت رنگ اعتماد و تکنولوژی است و دکمه‌ها را بی‌درنگ قابل‌دیدن می‌کند. (پالت‌های قبلی — سبز، Indigo/Violet/Cyan، و سرمه‌ای/مرجانی Nura — بایگانی شده‌اند.)
 
@@ -131,10 +136,12 @@ royavosoughi.com
 | کاربرد | فونت (Google Fonts، رایگان) |
 |---|---|
 | فارسی (همه‌ی کاربردها) | **Vazirmatn** — Bold برای تیتر، Regular برای متن |
-| تیتر انگلیسی | **Space Grotesk** Bold |
+| تیتر انگلیسی (h1 و h2) | **Fraunces** Light (سریف) — از ۲۰۲۶/۱۰/۱۷؛ جایگزین: Space Grotesk |
+| زیرتیترهای انگلیسی (h3 و h4) | **Inter** SemiBold |
 | متن انگلیسی | **Inter** Regular |
+| برچسب‌ها (eyebrow) | **JetBrains Mono** حروف بزرگ |
 | وردمارک لوگو («Roya Vosoughi») | **Space Grotesk** Bold، ۴٪- فاصله‌ی حروف |
-| کد | **JetBrains Mono** |
+| کد و داده | **JetBrains Mono** |
 
 ## Imagery Style — سبک تصاویر
 
@@ -163,12 +170,14 @@ royavosoughi.com
 
 ## Tagline — شعار برند
 
-**EN: "AI engineered for reality."**
-**FA: «هوش مصنوعی، مهندسی‌شده برای واقعیت»**
+**EN: "Reclaim your time."**
+**FA: «زمانتان را پس بگیرید»** (رسمی؛ «زمان» به‌جای «وقت»)
 
-(«واقعیت» یعنی همان ارزش اصلی برند: راه‌حل کاربردی که در کسب‌وکار واقعی کار می‌کند، نه دموی نمایشی. «رویا» یعنی خواب و آرزو — و شعار همان قول برند است: رویا را به واقعیت تبدیل می‌کنم.)
+(شعار نتیجه‌ی کار مشتری را می‌گوید، نه فناوری را: کارِ تکراری کمتر، پاسخ سریع‌تر به مشتری‌ها، و شب‌هایی که دوباره مال خودتان است. از آزمون «Grunt Test» و چارچوب StoryBrand آمده: مشتری باید در چند ثانیه ببیند چه چیزی ارائه می‌شود، چه سودی دارد و قدم بعدی چیست.)
 
-*شعارهای قبلی «Building a dream, line by line» (۲۰۲۶/۰۸ تا ۲۰۲۶/۰۹) و «Nura: AI engineered for reality» (۲۰۲۶/۰۹ تا ۲۰۲۶/۱۰) بایگانی شده‌اند.*
+**سرتیتر Hero:** «Built to work, built to last.» — فارسی: «ساخته‌شده برای کار، ساخته‌شده برای ماندن.» (شعار در جایگاه برچسب بالای تیتر می‌آید.)
+
+*شعارهای قبلی بایگانی شده‌اند: «Building a dream, line by line» (۲۰۲۶/۰۸ تا ۲۰۲۶/۰۹)، «Nura: AI engineered for reality» (۲۰۲۶/۰۹ تا ۲۰۲۶/۱۰) و «AI engineered for reality» (۲۰۲۶/۱۰/۱۰ تا ۲۰۲۶/۱۰/۲۷). دلیل تغییر آخر: «مهندسی‌شده برای واقعیت» درباره‌ی ساختنِ من بود، نه سودِ مشتری.*
 
 ## Brand Voice — صدای برند
 
@@ -209,7 +218,7 @@ royavosoughi.com
 **Headline:**
 > AI Engineer & Software Developer | Building AI-powered applications in public | Python · LLMs · RAG
 
-**بنر:** پس‌زمینه‌ی جوهری + لوگوی کرم (`roya-logo-white`) + شعار «AI engineered for reality» با خط زیر آبی.
+**بنر:** پس‌زمینه‌ی جوهری + لوگوی کرم (`roya-logo-white`) + شعار «Reclaim your time» با خط زیر آبی.
 **آواتار:** عکس شخصی (اولویت) یا `roya-icon.png`.
 **ریتم انتشار:** ۱–۲ پست در هفته به انگلیسی — «این را ساختم، این را یاد گرفتم.»
 
@@ -217,7 +226,7 @@ royavosoughi.com
 
 **بیو (زیر ۱۵۰ کاراکتر):**
 > Roya Vosoughi · AI Engineer
-> هوش مصنوعی، مهندسی‌شده برای واقعیت
+> زمانتان را پس بگیرید
 > اپلیکیشن‌های AI می‌سازم و مسیرش رو قدم‌به‌قدم باهات به اشتراک می‌ذارم
 
 **ستون‌های محتوا:**
@@ -231,19 +240,32 @@ royavosoughi.com
 
 ## Website — وب‌سایت (royavosoughi.com)
 
-طراحی روشن با پالت کرم، جوهری و آبی کبالت (زنده، ۲۰۲۶/۱۰/۱۰):
+طراحی ادیتوریال روشن با پالت کرم، جوهری و آبی کبالت، با الهام از Superhuman، Origin و Mercury (۲۰۲۶/۱۰/۱۷). تیترهای سریف Fraunces، برچسب‌های مونو، دکمه‌های قرصی تخت، کارت‌های Paper با لبه‌ی باریک و بدون سایه. صفحه‌ی اصلی بر ساختار **StoryBrand** بنا شده (۲۰۲۶/۱۰/۲۸):
 
-1. **Hero:** برچسب «AI engineered for reality» بالای تیتر «Practical AI for real business problems.» (فارسی: «هوش مصنوعی کاربردی برای مسائل واقعی کسب‌وکار.») + زیرتیتر. دکمه‌ها: **[Request a consultation]** (آبی، اصلی) + [See my work] (ثانویه). *(تیتر قبلی «Automate the system, Live the life.» در ۲۰۲۶/۱۰/۱۰ کنار گذاشته شد: «Live the life» لحن تبلیغات سبک‌زندگی دارد و نمی‌گوید چه چیزی ارائه می‌شود.)*
-2. **Services / Process / Projects:** خدمات، روند چهارمرحله‌ای، و پروژه‌ها با دموی زنده و GitHub.
-3. **About:** معرفی رویا + عکس با نور طبیعی.
-4. **Contact:** فرم تماس + ایمیل + LinkedIn. دستیار چت و تماس صوتی در گوشه‌ی صفحه.
+1. **Hero:** برچسب = شعار «Reclaim your time»؛ تیتر «Built to work, built to last.»؛ زیرتیتر = نتیجه (کار تکراری کمتر، پاسخ سریع‌تر به مشتری) + آنچه می‌سازم. **یک CTA اصلی:** [Book a consultation] (آبی) + لینک ثانویه [See my work]. زیر آن لینک چک‌لیست: «Not ready to book? Find where you're losing your time →». کادر پرسش «Ask Nura» پیام را به `/chat?q=` می‌فرستد (هرگز خودکار ارسال نمی‌شود).
+2. **Story (مشکل ← هزینه‌ی صبر ← زندگی بعد):** «Your best hours go to the same tasks» ← «Every week it stays manual, it costs more» ← «Work that runs while you focus».
+3. **Services:** کاشی‌های رنگی با خدمات؛ واژه‌های فنی (Python · LLMs · RAG) فقط در خط «Built with» روی کارت‌ها می‌آیند، نه در Hero.
+4. **Process / Projects:** روند چهارمرحله‌ای و پروژه‌ها با دموی زنده و GitHub.
+5. **About:** «I'm Roya.» — معرفی بزرگ با زبان ساده، عکس در کارت گرد، اشاره به دوره‌ی AI Consulting در Careerpreneur Academy.
+6. **Time Leak Checklist (`/checklist`):** پیشنهاد گذار رایگان ۲ دقیقه‌ای؛ هشت سوال بله/خیر، نتیجه همان‌جا روی صفحه، و بعد درخواست برنامه‌ی کامل با ایمیل.
+7. **CTA پایانی:** بدون جعبه، مستقیم روی زمینه‌ی کرم. **Contact:** فرم تماس و ایمیل؛ لینک‌های Gmail به‌جای mailto صفحه‌ی نوشتن Gmail را باز می‌کنند. فوتر با آیکون‌های شبکه‌های اجتماعی (چیدمان در فارسی آینه نمی‌شود).
+
+**نامِ دستیار چت: Nura.** «Nura» دیگر نام برند نیست، اما نام دستیار هوش مصنوعی روی سایت، تلگرام و تماس صوتی است. هر بار ورود به صفحه‌ی چت، گفت‌وگوی تازه شروع می‌شود.
+
+*(تیترهای قبلی «Automate the system, Live the life.» و «Practical AI for real business problems.» کنار گذاشته شدند.)*
+
+## Offer — پیشنهاد و قیمت
+
+- **مشاوره‌ی ۴۵ دقیقه‌ای: €29** (از ۲۰۲۶/۱۰/۲۸؛ قبلا رایگان بود و رایگان بودنش بی‌ارزش به نظر می‌رسید). اگر مشتری رویا را استخدام کند، مبلغ **کامل** به حساب پروژه برمی‌گردد. قیمت قرار است بعد از حدود ۵ جلسه و گرفتن توصیه‌نامه به €39 و بعد €49 برسد.
+- **چک‌لیست رایگان زمان:** تنها چیز رایگان، به‌عنوان پله‌ی ورودی.
+- متن نباید بگوید چطور پرداخت می‌شود (هنوز لینک پرداخت نیست).
 
 ## Email Signature — امضای ایمیل
 
 > **Roya Vosoughi**
 > AI Engineer & Software Developer | مهندس هوش مصنوعی و توسعه‌دهنده‌ی نرم‌افزار
 > royavosoughi.com · LinkedIn
-> *AI engineered for reality.*
+> *Reclaim your time.*
 > (لوگو: `roya-logo.png` با ارتفاع ۲۸ پیکسل، یا `roya-icon.png` با ارتفاع ۴۰ پیکسل)
 
 ---
@@ -253,6 +275,10 @@ royavosoughi.com
 - [x] انتخاب لوگوی نهایی ← ساخت فایل‌های نهایی (SVG + PNG + فاوآیکون) — ✅ انجام شد (۲۰۲۶/۰۸/۰۴): مونوگرام R بازطراحی‌شده + وردمارک Montserrat
 - [x] بازطراحی برند به **Nura** (پالت Canvas / Navy / Coral، لوگوی N، شعار جدید) — ✅ انجام شد (۲۰۲۶/۰۹/۲۴) و روی وب‌سایت اعمال شد
 - [x] بازگشت به نام **Roya Vosoughi** بعد از جستجوی علائم تجاری؛ پالت کرم / جوهری / کبالت و لوگوی Signal R — ✅ انجام شد (۲۰۲۶/۱۰/۱۰) و روی وب‌سایت اعمال شد
+- [x] طراحی ادیتوریال (Fraunces، کاشی‌های رنگی، تم تیره) — ✅ انجام شد (۲۰۲۶/۱۰/۱۷)
+- [x] شعار جدید «Reclaim your time» + Hero تازه — ✅ انجام شد (۲۰۲۶/۱۰/۲۷)
+- [x] مشاوره‌ی پولی €29 — ✅ انجام شد (۲۰۲۶/۱۰/۲۸)
+- [x] صفحه‌ی اصلی با StoryBrand و چک‌لیست رایگان زمان — ✅ انجام شد (۲۰۲۶/۱۰/۲۸ تا ۲۹)
 - [ ] به‌روزرسانی بنر LinkedIn، آواتار اینستاگرام و امضای ایمیل با لوگوی جدید
 - [ ] ثبت دامنه‌ی `royavosoughi.com` (در بررسی DNS ۲۰۲۶/۱۰/۱۰ آزاد به نظر می‌رسید) + ساخت هندل‌های هماهنگ (LinkedIn، اینستاگرام، GitHub)
 - [ ] (اختیاری) ثبت علامت تجاری اتحادیه‌ی اروپا در کلاس‌های ۴۲ و ۳۵ (و ۴۱ برای وبینار و دوره) — بعد از مشورت با وکیل علائم تجاری
@@ -264,4 +290,4 @@ royavosoughi.com
 
 ---
 
-*Roya Vosoughi | برند گاید شخصی — نسخه ۶ | AI engineered for reality.*
+*Roya Vosoughi | برند گاید شخصی — نسخه ۷ | Reclaim your time.*
