@@ -2,7 +2,8 @@
 
 ## برند گاید شخصی Roya Vosoughi — هویت بصری و کلامی برند
 
-**AI Engineer & Software Developer | مهندس هوش مصنوعی و توسعه‌دهنده‌ی نرم‌افزار**
+**AI Engineering and Software Developer**
+*Analyzing, designing, and managing the implementation of any business process that can be automated.*
 royavosoughi.com
 
 نسخه ۷ | ۲۰۲۶ — برند **Roya Vosoughi**، پالت کرم، جوهری و آبی کبالت، طراحی ادیتوریال، شعار «Reclaim your time» (به‌روزرسانی ۲۰۲۶/۱۰/۳۰)
@@ -263,7 +264,8 @@ royavosoughi.com
 ## Email Signature — امضای ایمیل
 
 > **Roya Vosoughi**
-> AI Engineer & Software Developer | مهندس هوش مصنوعی و توسعه‌دهنده‌ی نرم‌افزار
+> AI Engineering and Software Developer
+> Analyzing, designing, and managing the implementation of any business process that can be automated.
 > royavosoughi.com · LinkedIn
 > *Reclaim your time.*
 > (لوگو: `roya-logo.png` با ارتفاع ۲۸ پیکسل، یا `roya-icon.png` با ارتفاع ۴۰ پیکسل)
