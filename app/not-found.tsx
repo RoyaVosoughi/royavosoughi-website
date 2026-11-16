@@ -27,7 +27,7 @@ export default function RootNotFound() {
               margin: 0,
               fontSize: "3.5rem",
               fontWeight: 700,
-              color: "#0047AB",
+              color: "#0E5E6F",
             }}
           >
             404
@@ -45,7 +45,7 @@ export default function RootNotFound() {
               marginTop: "1.5rem",
               padding: "0.875rem 1.75rem",
               borderRadius: "999px",
-              backgroundColor: "#0047AB",
+              backgroundColor: "#0E5E6F",
               color: "#FFFFFF",
               fontWeight: 600,
               textDecoration: "none",
