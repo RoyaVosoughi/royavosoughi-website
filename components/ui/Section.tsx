@@ -49,7 +49,7 @@ export function SectionHeading({
   return (
     <header className="max-w-3xl">
       <p
-        className={`label-eyebrow ${onForest ? "text-petrol-light" : "text-petrol"}`}
+        className={`label-eyebrow ${onForest ? "text-petrol-on-ink" : "text-petrol"}`}
       >
         {eyebrow}
       </p>

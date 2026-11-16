@@ -172,7 +172,7 @@ export function AdminNav() {
       <header className="flex items-center justify-between gap-4 bg-ink px-5 py-4 lg:hidden">
         <p className="font-display text-lg font-bold text-canvas">
           {t("brand")}
-          <span className="text-petrol-light">.</span>
+          <span className="text-petrol-on-ink">.</span>
           {t("brandSuffix")}
         </p>
         <div className="flex items-center gap-2">
@@ -207,7 +207,7 @@ export function AdminNav() {
         <div className="flex items-center justify-between gap-2 px-3">
           <p className="font-display text-lg font-bold text-canvas">
             {t("brand")}
-            <span className="text-petrol-light">.</span>
+            <span className="text-petrol-on-ink">.</span>
             {t("brandSuffix")}
           </p>
           <AdminLocaleSwitcher className="rounded-full border-2 border-fog px-2.5 py-1 text-xs font-medium text-canvas transition-colors hover:border-canvas" />

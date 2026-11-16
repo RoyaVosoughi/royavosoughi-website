@@ -2,7 +2,7 @@
 
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-const COLORS = ["#1e1e1e", "#0e5e6f", "#6b6b6b", "#e3a72f", "#5fb3bf", "#b8b0a6"];
+const COLORS = ["#1e1e1e", "#0c4c59", "#6b6b6b", "#e3a72f", "#2a93a3", "#b8b0a6"];
 
 export function ChannelBreakdownChart({ sessionsByChannel }: { sessionsByChannel: Record<string, number> }) {
   const data = Object.entries(sessionsByChannel).map(([channel, count]) => ({ channel, count }));

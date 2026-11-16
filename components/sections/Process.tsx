@@ -39,7 +39,7 @@ export async function Process() {
               >
                 <span
                   aria-hidden="true"
-                  className="grid h-11 w-11 place-items-center rounded-full border border-canvas/15 font-mono text-sm text-petrol-light"
+                  className="grid h-11 w-11 place-items-center rounded-full border border-canvas/15 font-mono text-sm text-petrol-on-ink"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>

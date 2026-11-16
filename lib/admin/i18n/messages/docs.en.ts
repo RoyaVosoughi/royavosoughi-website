@@ -213,7 +213,7 @@ const messages = {
     namePlaceholder: "e.g. October check-in",
     segment: "Audience",
     goal: "Goal (given to the AI)",
-    goalPlaceholder: "e.g. Re-open the conversation and offer the 45-minute consultation (€29, credited if they hire Roya) to revisit their AI idea.",
+    goalPlaceholder: "e.g. Re-open the conversation and offer the 45-minute consultation (€29) to revisit their AI idea.",
     create: "Create campaign",
     creating: "Creating…",
     emptySegment: "Nobody in this audience has an email address right now.",

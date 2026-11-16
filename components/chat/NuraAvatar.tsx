@@ -6,7 +6,7 @@
 export function NuraAvatar({ className = "h-10 w-10" }: { className?: string }) {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true" className={`shrink-0 ${className}`}>
-      <circle cx="20" cy="20" r="20" fill="#0e5e6f" />
+      <circle cx="20" cy="20" r="20" fill="#0c4c59" />
       <path
         d="M20 8.5C21 15.5 24.5 19 31.5 20C24.5 21 21 24.5 20 31.5C19 24.5 15.5 21 8.5 20C15.5 19 19 15.5 20 8.5Z"
         fill="#f5ebe0"

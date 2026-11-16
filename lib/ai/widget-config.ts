@@ -17,7 +17,7 @@ export interface WidgetConfig {
 }
 
 export const DEFAULT_WIDGET_CONFIG: WidgetConfig = {
-  primaryColor: "#0e5e6f",
+  primaryColor: "#0c4c59",
   position: "bottom-end",
   welcomeMessageEn: null,
   welcomeMessageFa: null,

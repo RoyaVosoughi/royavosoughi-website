@@ -48,7 +48,7 @@ const C = {
   ink: "#1E1E1E",
   inkMuted: "#5C5853",
   inkFaint: "#8A847D",
-  petrol: "#0e5e6f",
+  petrol: "#0c4c59",
   petrolTint: "#EDF2FA",
   cream: "#F5EBE0",
   creamDeep: "#EBDFD1",

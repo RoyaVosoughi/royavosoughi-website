@@ -26,7 +26,7 @@ export async function Hero() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 55% at 50% 108%, color-mix(in srgb, var(--color-petrol) 70%, transparent) 0%, transparent 70%), radial-gradient(38% 40% at 88% 92%, color-mix(in srgb, var(--color-seamist) 38%, transparent) 0%, transparent 70%), radial-gradient(34% 36% at 10% 96%, color-mix(in srgb, var(--color-lagoon) 30%, transparent) 0%, transparent 70%), radial-gradient(50% 40% at 50% -10%, color-mix(in srgb, var(--color-petrol-light) 14%, transparent) 0%, transparent 70%)",
+              "radial-gradient(60% 55% at 50% 108%, color-mix(in srgb, var(--color-petrol) 70%, transparent) 0%, transparent 70%), radial-gradient(38% 40% at 88% 92%, color-mix(in srgb, var(--color-seamist) 38%, transparent) 0%, transparent 70%), radial-gradient(34% 36% at 10% 96%, color-mix(in srgb, var(--color-lagoon) 30%, transparent) 0%, transparent 70%), radial-gradient(50% 40% at 50% -10%, color-mix(in srgb, var(--color-petrol-on-ink) 14%, transparent) 0%, transparent 70%)",
           }}
         />
         {/* Fine grid that fades out toward the bottom */}
@@ -44,7 +44,7 @@ export async function Hero() {
 
         <div className="relative px-5 pt-16 pb-12 text-center sm:px-10 md:pt-24 lg:pb-0">
           <p className="rise-in label-eyebrow inline-flex items-center gap-2.5 rounded-full border border-canvas/15 bg-canvas/[0.08] px-4 py-2 text-canvas/85 backdrop-blur">
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-petrol-light" />
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-petrol-on-ink" />
             {t("eyebrow")}
           </p>
 
@@ -53,7 +53,7 @@ export async function Hero() {
             style={{ animationDelay: "80ms" }}
           >
             {t("lineA")}{" "}
-            <em className="text-petrol-light">{t("lineB")}</em>
+            <em className="text-petrol-on-ink">{t("lineB")}</em>
           </h1>
 
           <p

@@ -33,7 +33,7 @@ export async function Story() {
               >
                 <p
                   className={`label-eyebrow ${
-                    key === "success" ? "text-petrol-light" : "text-petrol"
+                    key === "success" ? "text-petrol-on-ink" : "text-petrol"
                   }`}
                 >
                   {t(`${key}.label`)}

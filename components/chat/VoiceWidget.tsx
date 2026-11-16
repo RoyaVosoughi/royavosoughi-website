@@ -193,7 +193,7 @@ export function VoiceWidget() {
           type="button"
           onClick={startCall}
           aria-label={t("start")}
-          className="grid h-[60px] w-[60px] place-items-center rounded-full bg-petrol text-on-petrol shadow-[0_8px_24px_rgba(14,94,111,0.35)] transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-petrol-dark"
+          className="grid h-[60px] w-[60px] place-items-center rounded-full bg-petrol text-on-petrol shadow-[0_8px_24px_rgba(12,76,89,0.35)] transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-petrol-dark"
         >
           <PhoneIcon className="h-[18px] w-[18px]" />
         </button>

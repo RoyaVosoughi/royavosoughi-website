@@ -61,7 +61,7 @@ export function Header() {
       {/* Announcement strip (Superhuman's top banner) — scrolls away */}
       <div className="surface-ink hidden bg-ink text-canvas sm:block">
         <p className="container-page flex items-center justify-center gap-x-3 gap-y-1 py-2.5 text-center text-[0.8125rem] flex-wrap">
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-petrol-light" />
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-petrol-on-ink" />
           <span className="text-canvas/85">{hero("announce")}</span>
           <Link
             href="/contact"

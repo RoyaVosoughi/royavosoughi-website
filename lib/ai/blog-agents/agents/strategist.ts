@@ -20,7 +20,7 @@ Turn the chosen idea into a brief a writer can follow without guessing.
 - primaryKeyword: 2–5 words — the short phrase a manager would actually type into Google (e.g. "company document chatbot"), not a full sentence. It must fit naturally into a heading. secondaryKeywords: related phrases.
 - outline: 4–6 sections. Each heading is a plain, specific statement or question (no clever wordplay). Points are what that section must cover. The first section opens with the reader's concrete problem; the last section gives the next step.
 - targetWords: 900–1400 for most topics.
-- cta: the closing next step — usually booking Roya's 45-minute consultation (€29, credited in full if they hire her); never call it free, framed around this article's problem.${lessonsBlock(input.lessons)}`;
+- cta: the closing next step — usually booking Roya's 45-minute consultation (€29); never call it free, framed around this article's problem.${lessonsBlock(input.lessons)}`;
 
   const user = `Chosen idea:\n${JSON.stringify(input.idea, null, 2)}\n\nReturn the brief: {"workingTitle", "audience", "readerProblem", "primaryKeyword", "secondaryKeywords", "outline": [{"heading", "points"}], "targetWords", "cta"}.`;
 

@@ -54,7 +54,7 @@ if (!(window as unknown as { __royaChatWidgetLoaded?: boolean }).__royaChatWidge
   // so they keep the normal 20px.
   const BOTTOM_OFFSET = Number(currentScript?.dataset.bottomOffset) || 20;
 
-  const DEFAULT_ACCENT = "#0e5e6f"; // brand Petrol
+  const DEFAULT_ACCENT = "#0c4c59"; // brand Petrol
 
   // Brand cream, ink & petrol palette. `accent` is overwritten below once
   // /api/widget/config resolves; `onAccent` is then recomputed so text on the
@@ -86,7 +86,7 @@ if (!(window as unknown as { __royaChatWidgetLoaded?: boolean }).__royaChatWidge
   /** Nura's avatar — "nur" means light, so a cream four-point spark on petrol. Fixed brand colours (not the admin accent) so the assistant looks the same everywhere. */
   const AVATAR_SVG =
     '<svg class="rv-avatar" viewBox="0 0 40 40" aria-hidden="true">' +
-    '<circle cx="20" cy="20" r="20" fill="#0e5e6f"/>' +
+    '<circle cx="20" cy="20" r="20" fill="#0c4c59"/>' +
     '<path d="M20 8.5C21 15.5 24.5 19 31.5 20C24.5 21 21 24.5 20 31.5C19 24.5 15.5 21 8.5 20C15.5 19 19 15.5 20 8.5Z" fill="#f5ebe0"/>' +
     '<circle cx="29" cy="11" r="2.2" fill="#f5ebe0"/>' +
     "</svg>";
@@ -350,7 +350,7 @@ if (!(window as unknown as { __royaChatWidgetLoaded?: boolean }).__royaChatWidge
       cursor: pointer;
       font-family: inherit;
     }
-    .rv-reason-chip[aria-pressed="true"] { border-color: ${COLORS.accent}; background: rgba(14, 94, 111, 0.08); }
+    .rv-reason-chip[aria-pressed="true"] { border-color: ${COLORS.accent}; background: rgba(12, 76, 89, 0.08); }
     .rv-reason-text {
       border: 1px solid rgba(30, 30, 30, 0.18);
       border-radius: 10px;
