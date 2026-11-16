@@ -75,7 +75,7 @@ export function DocumentUploadForm() {
             type="button"
             onClick={() => setKind(k)}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
-              kind === k ? "bg-cobalt text-white" : "bg-ink/5 text-ink/60 hover:bg-ink/10"
+              kind === k ? "bg-petrol text-white" : "bg-ink/5 text-ink/60 hover:bg-ink/10"
             }`}
           >
             {KIND_LABELS[k]}
@@ -91,7 +91,7 @@ export function DocumentUploadForm() {
             value={sourceKey}
             onChange={(e) => setSourceKey(e.target.value)}
             placeholder={t("upload.sourceKeyPlaceholder")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -99,7 +99,7 @@ export function DocumentUploadForm() {
           <select
             value={locale}
             onChange={(e) => setLocale(e.target.value as "en" | "fa")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           >
             <option value="en">{t("localeEnglish")}</option>
             <option value="fa">{t("localeFa")}</option>
@@ -112,7 +112,7 @@ export function DocumentUploadForm() {
             value={tags}
             onChange={(e) => setTags(e.target.value)}
             placeholder={t("upload.tagsPlaceholder")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
       </div>
@@ -124,7 +124,7 @@ export function DocumentUploadForm() {
             onChange={(e) => setText(e.target.value)}
             rows={6}
             placeholder={t("upload.textPlaceholder")}
-            className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         ) : null}
         {kind === "url" ? (
@@ -133,7 +133,7 @@ export function DocumentUploadForm() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder={t("upload.urlPlaceholder")}
-            className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         ) : null}
         {kind === "pdf" || kind === "docx" ? (
@@ -151,7 +151,7 @@ export function DocumentUploadForm() {
       <button
         type="submit"
         disabled={status === "submitting" || !canSubmit}
-        className="mt-4 rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+        className="mt-4 rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
       >
         {status === "submitting" ? t("upload.submitting") : t("upload.submit")}
       </button>

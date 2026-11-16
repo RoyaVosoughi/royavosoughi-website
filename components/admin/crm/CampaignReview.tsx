@@ -146,7 +146,7 @@ export function CampaignReview({
 
       {progress ? (
         <div className="h-2 overflow-hidden rounded-full bg-ink/10">
-          <div className="h-full bg-cobalt transition-all" style={{ width: `${(progress.done / progress.total) * 100}%` }} />
+          <div className="h-full bg-petrol transition-all" style={{ width: `${(progress.done / progress.total) * 100}%` }} />
         </div>
       ) : null}
 
@@ -254,7 +254,7 @@ function EmailCard({
 
       {canEdit && !sent ? (
         <div className="mt-4 flex flex-wrap items-center gap-2">
-          {busy ? <Spinner className="text-cobalt" /> : null}
+          {busy ? <Spinner className="text-petrol" /> : null}
           {edited ? (
             <button type="button" onClick={() => onSave({ subject, bodyText: body, status: "ready" })} disabled={busy || disabled || !subject.trim() || !body.trim()} className={secondaryButton}>
               {tc("save")}

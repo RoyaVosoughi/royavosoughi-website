@@ -7,7 +7,7 @@
 /* ==========================================================================
    Roya Vosoughi — brand tokens
    "Reclaim your time"
-   Cream, ink & cobalt palette (2026-10-09). Three brand colours; everything
+   Cream, ink & petrol palette (petrol since 2026-11-16, was cobalt). Three brand colours; everything
    else is a tint derived from them or a functional status colour — no new hues.
    ========================================================================== */
 
@@ -15,25 +15,24 @@
   /* Core palette */
   --color-canvas: #f5ebe0; /* Cream — main background */
   --color-ink: #1e1e1e; /* Ink — text, headings, dark sections (14.2:1 on canvas) */
-  --color-cobalt: #0e5e6f; /* Petrol (2026-11-16 preview) — buttons (white text 7.4:1) and links on light (6.3:1) */
+  --color-petrol: #0e5e6f; /* Petrol — buttons (white text 7.4:1) and links on light (6.3:1) */
 
   /* Derived tints (not new colours) */
   --color-paper: #fffaf3; /* lifted cream — cards that sit ON the canvas (no shadow, hairline edge) */
   --color-mist: #ebdfd1; /* deeper cream — cards, quotes, soft sections */
   --color-ink-soft: #2e2e2e; /* hover state on ink surfaces */
   --color-fog: #b8b0a6; /* muted text on ink — 7.8:1 */
-  --color-cobalt-dark: #0a4652; /* petrol hover — white text 10.4:1 */
-  --color-cobalt-light: #5fb3bf; /* petrol for text/accents on ink — 6.9:1 */
+  --color-petrol-dark: #0a4652; /* petrol hover — white text 10.4:1 */
+  --color-petrol-light: #5fb3bf; /* petrol for text/accents on ink — 6.9:1 */
 
-  /* Accent panels (2026-10-17 refresh). Lilac and periwinkle come from the
-     reference styles (Superhuman's lilac, Origin's iris/periwinkle tiles) and
-     sit in the cobalt family. Used only as full panel fills — service tiles,
+  /* Accent panels (2026-10-17 refresh, re-toned to petrol 2026-11-16).
+     Sea mist and lagoon sit in the petrol family. Used only as full panel fills — service tiles,
      glows — never for text or buttons. These do NOT flip in dark mode, so
      text on them uses the fixed night/cream pair below. */
-  --color-lilac: #cfe6e3; /* sea mist — ink text 12.8:1 */
-  --color-periwinkle: #9fd0d4; /* lagoon — ink text 9.9:1 */
+  --color-seamist: #cfe6e3; /* sea mist — ink text 12.8:1 */
+  --color-lagoon: #9fd0d4; /* lagoon — ink text 9.9:1 */
   --color-deep: #0b3b45; /* deep petrol — cream text 10.3:1 */
-  --color-royal: #0e5e6f; /* Petrol as a fixed panel fill — doesn't lighten in dark */
+  --color-petrol-solid: #0e5e6f; /* Petrol as a fixed panel fill — doesn't lighten in dark */
   --color-night: #1e1e1e;
   --color-cream: #f5ebe0;
 
@@ -41,9 +40,9 @@
   --color-amber: #e3a72f;
   --color-amber-deep: #876012; /* amber for text on light — 5.2:1 */
 
-  /* Text on a solid Cobalt fill. White in light; flips to near-black in dark,
-     where Cobalt itself lightens. */
-  --color-on-cobalt: #ffffff;
+  /* Text on a solid Petrol fill. White in light; flips to near-black in dark,
+     where Petrol itself lightens. */
+  --color-on-petrol: #ffffff;
 
   /* Type families — three voices (2026-10-17 editorial refresh):
      serif display for headlines, sans for UI/body, mono for labels and data.
@@ -59,9 +58,9 @@
 
 /* --------------------------------------------------------------------------
    Dark theme — set by ThemeToggle as data-theme="dark" on <html>.
-   The same tokens, re-valued: canvas and ink trade places, Cobalt lightens so
-   links stay readable (7fa6e8 on the dark canvas is 7.3:1), and solid Cobalt
-   buttons carry dark text instead of white (also 7.3:1). Light stays the
+   The same tokens, re-valued: canvas and ink trade places, Petrol lightens so
+   links stay readable (6fc0cb on the dark canvas is 8.8:1), and solid Petrol
+   buttons carry dark text instead of white (also 8.8:1). Light stays the
    default; nothing here applies until the visitor opts in.
    -------------------------------------------------------------------------- */
 
@@ -73,10 +72,10 @@
   --color-mist: #24221f;
   --color-ink-soft: #e2d6c8;
   --color-fog: #b8b0a6;
-  --color-cobalt: #6fc0cb;
-  --color-cobalt-dark: #9ad3da;
-  --color-cobalt-light: #86cad3;
-  --color-on-cobalt: #151413;
+  --color-petrol: #6fc0cb;
+  --color-petrol-dark: #9ad3da;
+  --color-petrol-light: #86cad3;
+  --color-on-petrol: #151413;
   --color-amber-deep: #e3a72f;
 }
 
@@ -195,7 +194,7 @@
 
   /* Visible, on-brand focus ring everywhere */
   :focus-visible {
-    outline: 3px solid var(--color-cobalt);
+    outline: 3px solid var(--color-petrol);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -211,8 +210,8 @@
   }
 
   ::selection {
-    background-color: var(--color-cobalt);
-    color: var(--color-on-cobalt);
+    background-color: var(--color-petrol);
+    color: var(--color-on-petrol);
   }
 }
 
@@ -301,7 +300,7 @@
    Motion — every animation here must no-op under prefers-reduced-motion
    -------------------------------------------------------------------------- */
 
-/* The Cobalt underline that draws itself under "real" in the Hero headline.
+/* The Petrol underline that draws itself under "real" in the Hero headline.
    A literal reading of the tagline: the line is built, left to right. */
 @keyframes draw-underline {
   from {

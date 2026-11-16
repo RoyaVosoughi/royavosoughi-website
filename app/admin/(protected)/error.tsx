@@ -24,13 +24,13 @@ export default function AdminError({ error, reset }: { error: Error & { digest?:
         <button
           type="button"
           onClick={() => reset()}
-          className="rounded-full bg-cobalt px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark"
+          className="rounded-full bg-petrol px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark"
         >
           {t("retry")}
         </button>
         <a
           href="/admin"
-          className="rounded-full border-2 border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-cobalt hover:text-cobalt"
+          className="rounded-full border-2 border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-petrol hover:text-petrol"
         >
           {t("backToDashboard")}
         </a>

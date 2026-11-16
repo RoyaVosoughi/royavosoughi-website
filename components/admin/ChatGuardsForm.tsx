@@ -20,7 +20,7 @@ const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0] as const;
 const DAY_KEYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"] as const;
 
 const inputClass =
-  "mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none disabled:opacity-50";
+  "mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none disabled:opacity-50";
 
 export function ChatGuardsForm({ initial }: { initial: ChatGuardsValues }) {
   const t = useTranslations("security.guards");
@@ -122,7 +122,7 @@ export function ChatGuardsForm({ initial }: { initial: ChatGuardsValues }) {
                   onClick={() => toggleDay(day)}
                   aria-pressed={active}
                   className={`rounded-full border-2 px-3 py-1 text-xs font-semibold transition-colors disabled:opacity-50 ${
-                    active ? "border-cobalt bg-cobalt/10 text-cobalt" : "border-ink/15 text-ink/60 hover:border-ink/30"
+                    active ? "border-petrol bg-petrol/10 text-petrol" : "border-ink/15 text-ink/60 hover:border-ink/30"
                   }`}
                 >
                   {t(`day.${DAY_KEYS[day]}`)}
@@ -138,11 +138,11 @@ export function ChatGuardsForm({ initial }: { initial: ChatGuardsValues }) {
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "saving" ? t("saving") : t("save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("saveError")}</span> : null}
       </div>
     </section>

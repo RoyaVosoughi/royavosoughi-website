@@ -24,7 +24,7 @@ function buildColumns(
     {
       header: t("columnService"),
       cell: (row) => (
-        <span className="whitespace-nowrap rounded-full bg-mist px-3 py-1 text-xs font-semibold text-cobalt">
+        <span className="whitespace-nowrap rounded-full bg-mist px-3 py-1 text-xs font-semibold text-petrol">
           {serviceNames[row.service]?.name ?? t("retiredService", { service: row.service })}
         </span>
       ),
@@ -35,7 +35,7 @@ function buildColumns(
     {
       header: t("columnEmail"),
       cell: (row) => (
-        <a className="text-cobalt hover:underline" href={`mailto:${row.email}`} dir="ltr">
+        <a className="text-petrol hover:underline" href={`mailto:${row.email}`} dir="ltr">
           {row.email}
         </a>
       ),
@@ -60,7 +60,7 @@ export default async function AdminServiceRequestsPage() {
 
   return (
     <div>
-      <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
+      <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
       <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
       <p className="mt-3 text-ink/70">{t("subtitle")}</p>
 

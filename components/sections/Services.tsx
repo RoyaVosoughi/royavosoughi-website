@@ -14,9 +14,9 @@ import { serviceKeys } from "@/lib/service-options";
  * live on /services (ServicesDetail).
  */
 const tiles = [
-  { span: "lg:col-span-3", fill: "bg-royal", text: "text-white", muted: "text-white/75" },
-  { span: "lg:col-span-3", fill: "bg-lilac", text: "text-night", muted: "text-night/70" },
-  { span: "lg:col-span-3", fill: "bg-periwinkle", text: "text-night", muted: "text-night/70" },
+  { span: "lg:col-span-3", fill: "bg-petrol-solid", text: "text-white", muted: "text-white/75" },
+  { span: "lg:col-span-3", fill: "bg-seamist", text: "text-night", muted: "text-night/70" },
+  { span: "lg:col-span-3", fill: "bg-lagoon", text: "text-night", muted: "text-night/70" },
   { span: "lg:col-span-3", fill: "bg-deep", text: "text-cream", muted: "text-cream/70" },
 ] as const;
 

@@ -8,7 +8,7 @@ export default async function LocaleNotFound() {
 
   return (
     <div className="container-page flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
-      <p className="font-mono text-6xl font-bold text-cobalt">404</p>
+      <p className="font-mono text-6xl font-bold text-petrol">404</p>
       <h1 className="text-section mt-6 text-ink">{t("title")}</h1>
       <p className="mt-4 max-w-md text-lg text-ink/70">{t("body")}</p>
       <Link href="/" className={`${buttonStyles("primary")} mt-9`}>

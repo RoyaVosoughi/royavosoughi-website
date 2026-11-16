@@ -120,7 +120,7 @@ export function BlogEditor({ post, canEdit }: { post: BlogPost | null; canEdit: 
               </>
             )}
             {published && saved ? (
-              <a href={`/${saved.locale}/blog/${saved.slug}`} target="_blank" rel="noreferrer" className="text-sm font-semibold text-cobalt hover:underline">
+              <a href={`/${saved.locale}/blog/${saved.slug}`} target="_blank" rel="noreferrer" className="text-sm font-semibold text-petrol hover:underline">
                 {t("viewLive")}
               </a>
             ) : null}

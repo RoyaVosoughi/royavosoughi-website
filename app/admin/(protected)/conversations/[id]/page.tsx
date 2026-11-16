@@ -38,7 +38,7 @@ export default async function AdminConversationDetailPage({
 
   return (
     <div>
-      <Link href="/admin/conversations" className="text-sm font-medium text-cobalt hover:underline">
+      <Link href="/admin/conversations" className="text-sm font-medium text-petrol hover:underline">
         {t("detail.backLink")}
       </Link>
 

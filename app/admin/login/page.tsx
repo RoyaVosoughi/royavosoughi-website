@@ -21,8 +21,8 @@ export default async function AdminLoginPage() {
     <main className="flex min-h-dvh items-center justify-center p-6">
       <div className="w-full max-w-sm">
         <div className="flex items-center justify-between gap-3">
-          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
-          <AdminLocaleSwitcher className="rounded-full border-2 border-ink/15 px-3 py-1 text-xs font-medium text-ink transition-colors hover:border-cobalt hover:text-cobalt" />
+          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <AdminLocaleSwitcher className="rounded-full border-2 border-ink/15 px-3 py-1 text-xs font-medium text-ink transition-colors hover:border-petrol hover:text-petrol" />
         </div>
         <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
         <p className="mt-3 text-ink/70">{t("subtitle")}</p>

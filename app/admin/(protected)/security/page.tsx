@@ -57,7 +57,7 @@ export default async function AdminSecurityPage() {
 
   return (
     <div>
-      <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
+      <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
       <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
       <p className="mt-3 text-ink/70">{t("subtitle")}</p>
 
@@ -73,7 +73,7 @@ export default async function AdminSecurityPage() {
                 </div>
                 <span
                   className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                    k.configured ? "bg-cobalt/15 text-cobalt" : "bg-amber/20 text-amber-deep"
+                    k.configured ? "bg-petrol/15 text-petrol" : "bg-amber/20 text-amber-deep"
                   }`}
                 >
                   {k.configured ? t("keyConfigured") : t("keyMissing")}

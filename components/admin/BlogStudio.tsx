@@ -143,7 +143,7 @@ export function BlogStudio({ initialRuns, initialLessons, canEdit, webResearch, 
                     type="button"
                     onClick={() => setSelectedId(run.id)}
                     aria-current={run.id === selectedId}
-                    className={`w-full rounded-2xl border-2 p-3 text-start transition-colors ${run.id === selectedId ? "border-cobalt bg-cobalt/5" : "border-ink/10 hover:bg-mist/40"}`}
+                    className={`w-full rounded-2xl border-2 p-3 text-start transition-colors ${run.id === selectedId ? "border-petrol bg-petrol/5" : "border-ink/10 hover:bg-mist/40"}`}
                   >
                     <div className="flex items-center justify-between gap-2">
                       <StatusChip status={RUN_CHIP[run.status]} label={t(`status.${run.status}`)} />
@@ -234,12 +234,12 @@ function RunDetail({
       {run.postEnId || run.postFaId ? (
         <div className="flex flex-wrap gap-4">
           {run.postEnId ? (
-            <Link href={`/admin/blog/${run.postEnId}`} className="text-sm font-semibold text-cobalt hover:underline">
+            <Link href={`/admin/blog/${run.postEnId}`} className="text-sm font-semibold text-petrol hover:underline">
               {t("openEn")}
             </Link>
           ) : null}
           {run.postFaId ? (
-            <Link href={`/admin/blog/${run.postFaId}`} className="text-sm font-semibold text-cobalt hover:underline">
+            <Link href={`/admin/blog/${run.postFaId}`} className="text-sm font-semibold text-petrol hover:underline">
               {t("openFa")}
             </Link>
           ) : null}
@@ -257,7 +257,7 @@ function StepRow({ step }: { step: RunStep }) {
   return (
     <li className={`rounded-2xl border-2 p-4 ${step.status === "error" ? "border-amber-deep/30" : "border-ink/10"}`}>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-        {step.status === "running" ? <Spinner className="text-cobalt" /> : <span aria-hidden="true">{step.status === "done" ? "✓" : "✕"}</span>}
+        {step.status === "running" ? <Spinner className="text-petrol" /> : <span aria-hidden="true">{step.status === "done" ? "✓" : "✕"}</span>}
         <span className="font-semibold text-ink">{t(`agents.${step.agent}`)}</span>
         {step.round ? <span className="text-xs text-ink/50">{t("revision", { n: step.round })}</span> : null}
         {seconds !== null ? <span className="ms-auto text-xs text-ink/45">{t("seconds", { s: seconds })}</span> : null}
@@ -269,7 +269,7 @@ function StepRow({ step }: { step: RunStep }) {
       ) : null}
       {output ? (
         <details className="mt-2">
-          <summary className="cursor-pointer text-xs font-semibold text-cobalt">{t("showOutput")}</summary>
+          <summary className="cursor-pointer text-xs font-semibold text-petrol">{t("showOutput")}</summary>
           <pre className="mt-2 max-h-96 overflow-auto whitespace-pre-wrap rounded-xl bg-mist/50 p-3 text-xs leading-relaxed text-ink/85" dir="auto">
             {output}
           </pre>
@@ -332,7 +332,7 @@ function FeedbackBox({ runId, onLessons, errorText }: { runId: string; onLessons
       <p className="mt-1 text-sm text-ink/60">{t("feedbackBody")}</p>
       <div className="mt-4 flex gap-2">
         {(["up", "down"] as const).map((r) => (
-          <button key={r} type="button" aria-pressed={rating === r} onClick={() => setRating(r)} className={`${secondaryButton} ${rating === r ? "border-cobalt bg-cobalt/10" : ""}`}>
+          <button key={r} type="button" aria-pressed={rating === r} onClick={() => setRating(r)} className={`${secondaryButton} ${rating === r ? "border-petrol bg-petrol/10" : ""}`}>
             {t(r)}
           </button>
         ))}

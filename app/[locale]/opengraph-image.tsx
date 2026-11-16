@@ -41,7 +41,7 @@ export default async function OpengraphImage() {
           justifyContent: "center",
           padding: "90px",
           backgroundColor: brandColors.ink,
-          backgroundImage: `radial-gradient(circle at 18% 20%, ${brandColors.cobaltLight}33 0%, transparent 45%), radial-gradient(circle at 88% 85%, ${brandColors.inkSoft} 0%, transparent 45%)`,
+          backgroundImage: `radial-gradient(circle at 18% 20%, ${brandColors.petrolLight}33 0%, transparent 45%), radial-gradient(circle at 88% 85%, ${brandColors.inkSoft} 0%, transparent 45%)`,
           fontFamily: "Space Grotesk",
         }}
       >
@@ -55,7 +55,7 @@ export default async function OpengraphImage() {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <line x1="26" y1="54" x2="64" y2="90" stroke={brandColors.cobaltLight} strokeWidth="20" strokeLinecap="round" />
+            <line x1="26" y1="54" x2="64" y2="90" stroke={brandColors.petrolLight} strokeWidth="20" strokeLinecap="round" />
           </svg>
           <span
             style={{
@@ -88,7 +88,7 @@ export default async function OpengraphImage() {
           style={{
             display: "flex",
             fontSize: 32,
-            color: brandColors.cobaltLight,
+            color: brandColors.petrolLight,
             marginTop: 36,
           }}
         >

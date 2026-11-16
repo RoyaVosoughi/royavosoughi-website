@@ -67,12 +67,12 @@ export function PlaygroundConsole({ defaultModel }: { defaultModel: string }) {
               onChange={(e) => setMessage(e.target.value)}
               rows={3}
               placeholder={t("messagePlaceholder")}
-              className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+              className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
             />
           </label>
           <label className="text-xs font-medium text-ink/70">
             {t("localeLabel")}
-            <select value={locale} onChange={(e) => setLocale(e.target.value as "en" | "fa")} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none">
+            <select value={locale} onChange={(e) => setLocale(e.target.value as "en" | "fa")} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none">
               <option value="en">{t("localeEnglish")}</option>
               <option value="fa">{t("localeFa")}</option>
             </select>
@@ -83,7 +83,7 @@ export function PlaygroundConsole({ defaultModel }: { defaultModel: string }) {
           </label>
           <label className="text-xs font-medium text-ink/70">
             {compare ? t("modelALabel") : t("modelLabel")}
-            <select value={modelA} onChange={(e) => setModelA(e.target.value)} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none">
+            <select value={modelA} onChange={(e) => setModelA(e.target.value)} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none">
               {groupedModelCatalog().map((g) => (
                 <optgroup key={g.group} label={g.label}>
                   {g.models.map((m) => (
@@ -96,7 +96,7 @@ export function PlaygroundConsole({ defaultModel }: { defaultModel: string }) {
           {compare ? (
             <label className="text-xs font-medium text-ink/70">
               {t("modelBLabel")}
-              <select value={modelB} onChange={(e) => setModelB(e.target.value)} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none">
+              <select value={modelB} onChange={(e) => setModelB(e.target.value)} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none">
                 {groupedModelCatalog().map((g) => (
                   <optgroup key={g.group} label={g.label}>
                     {g.models.map((m) => (
@@ -109,15 +109,15 @@ export function PlaygroundConsole({ defaultModel }: { defaultModel: string }) {
           ) : null}
           <label className="text-xs font-medium text-ink/70">
             {t("temperatureLabel")}
-            <input type="number" min={0} max={2} step={0.1} value={temperature} onChange={(e) => setTemperature(Number(e.target.value))} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none" />
+            <input type="number" min={0} max={2} step={0.1} value={temperature} onChange={(e) => setTemperature(Number(e.target.value))} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none" />
           </label>
           <label className="text-xs font-medium text-ink/70">
             {t("topPLabel")}
-            <input type="number" min={0} max={1} step={0.05} value={topP} onChange={(e) => setTopP(Number(e.target.value))} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none" />
+            <input type="number" min={0} max={1} step={0.05} value={topP} onChange={(e) => setTopP(Number(e.target.value))} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none" />
           </label>
           <label className="text-xs font-medium text-ink/70">
             {t("maxTokensLabel")}
-            <input type="number" min={64} max={8192} value={maxTokens} onChange={(e) => setMaxTokens(Number(e.target.value))} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none" />
+            <input type="number" min={64} max={8192} value={maxTokens} onChange={(e) => setMaxTokens(Number(e.target.value))} className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none" />
           </label>
           <label className="text-xs font-medium text-ink/70 sm:col-span-2">
             {t("personaOverrideLabel")}
@@ -126,7 +126,7 @@ export function PlaygroundConsole({ defaultModel }: { defaultModel: string }) {
               onChange={(e) => setPromptOverride(e.target.value)}
               rows={3}
               placeholder={t("personaOverridePlaceholder")}
-              className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+              className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
             />
           </label>
         </div>
@@ -135,7 +135,7 @@ export function PlaygroundConsole({ defaultModel }: { defaultModel: string }) {
           type="button"
           onClick={run}
           disabled={status === "running" || !message.trim()}
-          className="mt-4 rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="mt-4 rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "running" ? t("running") : t("run")}
         </button>

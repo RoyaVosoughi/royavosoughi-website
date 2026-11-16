@@ -24,7 +24,7 @@ export async function Proof() {
               >
                 <span
                   aria-hidden="true"
-                  className="label-eyebrow block text-cobalt"
+                  className="label-eyebrow block text-petrol"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>

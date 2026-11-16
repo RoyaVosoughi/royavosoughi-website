@@ -34,7 +34,7 @@ export default async function AdminProposalsPage({ searchParams }: { searchParam
     {
       header: t("columnNo"),
       cell: (row) => (
-        <Link href={`/admin/proposals/${row.id}`} dir="ltr" className="font-mono text-xs font-semibold text-cobalt hover:underline">
+        <Link href={`/admin/proposals/${row.id}`} dir="ltr" className="font-mono text-xs font-semibold text-petrol hover:underline">
           {row.proposalNo}
         </Link>
       ),
@@ -58,18 +58,18 @@ export default async function AdminProposalsPage({ searchParams }: { searchParam
   ];
 
   const tab = (active: boolean) =>
-    `rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${active ? "bg-cobalt text-white" : "text-ink/60 hover:bg-ink/10"}`;
+    `rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${active ? "bg-petrol text-white" : "text-ink/60 hover:bg-ink/10"}`;
 
   return (
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
           <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
           <p className="mt-3 text-ink/70">{t("subtitle")}</p>
         </div>
         {canEdit ? (
-          <Link href="/admin/proposals/new" className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark">
+          <Link href="/admin/proposals/new" className="rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark">
             {t("newButton")}
           </Link>
         ) : null}

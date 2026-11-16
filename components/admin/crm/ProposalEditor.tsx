@@ -515,7 +515,7 @@ export function ProposalEditor({
               <button
                 type="button"
                 onClick={() => updateContent("phases", [...form.content.phases, { title: "", detail: "", duration: "" }])}
-                className="self-start text-sm font-semibold text-cobalt hover:underline"
+                className="self-start text-sm font-semibold text-petrol hover:underline"
               >
                 {t("addPhase")}
               </button>
@@ -529,7 +529,7 @@ export function ProposalEditor({
           <div className="flex flex-col gap-3">
             <span className="text-xs font-semibold text-ink/60">{t("sections.options")}</span>
             {form.content.options.map((option, i) => (
-              <div key={option.id} className={`rounded-2xl border-2 p-4 ${option.recommended ? "border-cobalt/50 bg-cobalt/5" : "border-ink/10 bg-mist/20"}`}>
+              <div key={option.id} className={`rounded-2xl border-2 p-4 ${option.recommended ? "border-petrol/50 bg-petrol/5" : "border-ink/10 bg-mist/20"}`}>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <Field label={t("optionName")}>
                     <input value={option.name} onChange={(e) => setOption(i, { name: e.target.value })} disabled={!editable} className={inputClass} dir="auto" />
@@ -573,7 +573,7 @@ export function ProposalEditor({
                       checked={option.recommended}
                       onChange={(e) => setOption(i, { recommended: e.target.checked })}
                       disabled={!editable}
-                      className="h-4 w-4 accent-cobalt"
+                      className="h-4 w-4 accent-petrol"
                     />
                     {t("optionRecommended")}
                   </label>
@@ -607,7 +607,7 @@ export function ProposalEditor({
                     },
                   ])
                 }
-                className="self-start text-sm font-semibold text-cobalt hover:underline"
+                className="self-start text-sm font-semibold text-petrol hover:underline"
               >
                 {t("addOption")}
               </button>

@@ -109,7 +109,7 @@ export function TeamManager({ initial, currentAdminId }: { initial: AdminUserRow
                 <tr key={u.id} className="border-b border-ink/5 last:border-0">
                   <td className="px-4 py-3 text-ink/85">
                     {u.email}
-                    {u.id === currentAdminId ? <span className="ms-2 text-xs text-cobalt">{t("youSuffix")}</span> : null}
+                    {u.id === currentAdminId ? <span className="ms-2 text-xs text-petrol">{t("youSuffix")}</span> : null}
                   </td>
                   <td className="px-4 py-3">
                     <select
@@ -127,7 +127,7 @@ export function TeamManager({ initial, currentAdminId }: { initial: AdminUserRow
                   <td className="px-4 py-3 text-ink/70">{u.hasPassword ? t("passwordSet") : t("passwordBootstrap")}</td>
                   <td className="px-4 py-3">
                     <div className="flex gap-3">
-                      <button type="button" onClick={() => resetPassword(u.id)} className="text-sm font-medium text-cobalt hover:underline">
+                      <button type="button" onClick={() => resetPassword(u.id)} className="text-sm font-medium text-petrol hover:underline">
                         {t("resetPassword")}
                       </button>
                       <button type="button" onClick={() => removeUser(u.id)} className="text-sm font-medium text-amber-deep hover:underline">
@@ -151,19 +151,19 @@ export function TeamManager({ initial, currentAdminId }: { initial: AdminUserRow
             placeholder={t("emailPlaceholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
+            className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
           />
           <input
             type="text"
             placeholder={t("passwordPlaceholder")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
+            className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
           />
           <select
             value={role}
             onChange={(e) => setRole(e.target.value as AdminRole)}
-            className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
+            className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
           >
             {ROLES.map((r) => (
               <option key={r} value={r}>
@@ -177,7 +177,7 @@ export function TeamManager({ initial, currentAdminId }: { initial: AdminUserRow
           type="button"
           onClick={createUser}
           disabled={status === "submitting" || !email || password.length < 8}
-          className="mt-4 rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="mt-4 rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "submitting" ? t("adding") : t("addAdminButton")}
         </button>

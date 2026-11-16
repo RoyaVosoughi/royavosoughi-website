@@ -74,7 +74,7 @@ export function TelegramChannelForm({
             value={botToken}
             onChange={(e) => setBotToken(e.target.value)}
             placeholder={maskedBotToken ? t("placeholderKeepCurrent") : t("botTokenPlaceholder")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -85,7 +85,7 @@ export function TelegramChannelForm({
             value={webhookSecret}
             onChange={(e) => setWebhookSecret(e.target.value)}
             placeholder={maskedWebhookSecret ? t("placeholderKeepCurrent") : t("webhookSecretPlaceholder")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70 sm:col-span-2">
@@ -95,7 +95,7 @@ export function TelegramChannelForm({
             value={adminChatId}
             onChange={(e) => setAdminChatId(e.target.value)}
             placeholder={t("adminChatIdPlaceholder")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-petrol focus:outline-none"
           />
           <span className="mt-1 block font-normal text-ink/50">{t("adminChatIdSubtitle")}</span>
         </label>
@@ -109,11 +109,11 @@ export function TelegramChannelForm({
             saveStatus === "saving" ||
             (!botToken.trim() && !webhookSecret.trim() && adminChatId.trim() === (currentAdminChatId ?? ""))
           }
-          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {saveStatus === "saving" ? t("saving") : t("save")}
         </button>
-        {saveStatus === "saved" ? <span className="text-sm font-medium text-cobalt">{t("saved")}</span> : null}
+        {saveStatus === "saved" ? <span className="text-sm font-medium text-petrol">{t("saved")}</span> : null}
         {saveStatus === "error" ? <span className="text-sm font-medium text-amber-deep">{t("saveError")}</span> : null}
 
         <button
@@ -126,7 +126,7 @@ export function TelegramChannelForm({
         </button>
       </div>
       {registerMessage ? (
-        <p className={`mt-2 text-sm font-medium ${registerStatus === "error" ? "text-amber-deep" : "text-cobalt"}`}>{registerMessage}</p>
+        <p className={`mt-2 text-sm font-medium ${registerStatus === "error" ? "text-amber-deep" : "text-petrol"}`}>{registerMessage}</p>
       ) : null}
     </section>
   );

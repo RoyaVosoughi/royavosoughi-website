@@ -25,7 +25,7 @@ export default async function AdminProposalPage({ params }: { params: Promise<{ 
 
   return (
     <div>
-      <Link href="/admin/proposals" className="text-sm font-medium text-cobalt hover:underline">
+      <Link href="/admin/proposals" className="text-sm font-medium text-petrol hover:underline">
         {t("backLink")}
       </Link>
       <h1 className="text-section mt-4 mb-6 text-ink" dir="auto">

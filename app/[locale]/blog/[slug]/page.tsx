@@ -67,11 +67,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <article className="mx-auto max-w-3xl">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <Link href="/blog" className="text-sm font-medium text-cobalt hover:underline">
+          <Link href="/blog" className="text-sm font-medium text-petrol hover:underline">
             {t("backToBlog")}
           </Link>
           {hasOther ? (
-            <Link href={`/blog/${slug}`} locale={otherLocale} className="text-sm font-medium text-ink/60 hover:text-cobalt">
+            <Link href={`/blog/${slug}`} locale={otherLocale} className="text-sm font-medium text-ink/60 hover:text-petrol">
               {t("otherLanguage")}
             </Link>
           ) : null}

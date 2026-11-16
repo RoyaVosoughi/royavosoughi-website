@@ -132,8 +132,8 @@ export function ContractClientView({ token, contract }: { token: string; contrac
 
         <aside className="flex flex-col gap-4 lg:sticky lg:top-4 lg:self-start">
           {acceptance ? (
-            <div className="rounded-3xl border-2 border-cobalt/30 bg-white p-5">
-              <h2 className="font-display text-lg font-bold text-cobalt">✓ {P.contract.accepted}</h2>
+            <div className="rounded-3xl border-2 border-petrol/30 bg-white p-5">
+              <h2 className="font-display text-lg font-bold text-petrol">✓ {P.contract.accepted}</h2>
               <p className="mt-2 text-sm text-ink/80">
                 {(emailed ? P.contract.acceptedBody : P.contract.acceptedNoEmail)(acceptance.name, formatDateTimeUtc(acceptance.at, locale))}
               </p>
@@ -142,7 +142,7 @@ export function ContractClientView({ token, contract }: { token: string; contrac
                 type="button"
                 onClick={download}
                 disabled={phase !== null}
-                className="mt-4 w-full rounded-full bg-cobalt px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+                className="mt-4 w-full rounded-full bg-petrol px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
               >
                 {phase === "pdf" ? P.preparing : P.download}
               </button>
@@ -156,13 +156,13 @@ export function ContractClientView({ token, contract }: { token: string; contrac
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-2xl border-2 border-ink/15 bg-white px-4 py-2.5 text-sm text-ink focus:border-cobalt focus:outline-none"
+                  className="w-full rounded-2xl border-2 border-ink/15 bg-white px-4 py-2.5 text-sm text-ink focus:border-petrol focus:outline-none"
                   dir="auto"
                   autoComplete="name"
                 />
               </label>
               <label className="mt-4 flex items-start gap-3 text-sm text-ink">
-                <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="mt-1 h-4 w-4 accent-cobalt" />
+                <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="mt-1 h-4 w-4 accent-petrol" />
                 <span>{P.contract.agree}</span>
               </label>
               {error ? <p className="mt-3 text-sm font-medium text-amber-deep">{error}</p> : null}
@@ -170,7 +170,7 @@ export function ContractClientView({ token, contract }: { token: string; contrac
                 type="button"
                 onClick={accept}
                 disabled={phase !== null || !agreed || name.trim().length < 2}
-                className="mt-4 w-full rounded-full bg-cobalt px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+                className="mt-4 w-full rounded-full bg-petrol px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
               >
                 {phase === "accepting" ? P.contract.accepting : P.contract.accept}
               </button>

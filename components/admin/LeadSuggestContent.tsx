@@ -57,9 +57,9 @@ export function LeadSuggestContent({ id }: { id: string }) {
       </button>
       {error ? <span className="max-w-56 text-xs text-amber-deep">{error}</span> : null}
       {result ? (
-        <div className="w-72 rounded-2xl border-2 border-cobalt/20 bg-cobalt/5 p-3 text-xs">
+        <div className="w-72 rounded-2xl border-2 border-petrol/20 bg-petrol/5 p-3 text-xs">
           <p className="font-semibold text-ink/60">{t("title")}</p>
-          <a href={result.post.url} target="_blank" rel="noreferrer" className="mt-1 block font-semibold text-cobalt hover:underline" dir="auto">
+          <a href={result.post.url} target="_blank" rel="noreferrer" className="mt-1 block font-semibold text-petrol hover:underline" dir="auto">
             {result.post.title}
           </a>
           <p className="mt-2 whitespace-pre-wrap text-ink/85" dir="auto">
@@ -67,7 +67,7 @@ export function LeadSuggestContent({ id }: { id: string }) {
           </p>
           {result.logged ? <p className="mt-2 text-ink/50">{t("logged")}</p> : null}
           <div className="mt-2 flex gap-3">
-            <button type="button" onClick={copy} className="font-semibold text-cobalt hover:underline">
+            <button type="button" onClick={copy} className="font-semibold text-petrol hover:underline">
               {copied ? t("copied") : t("copy")}
             </button>
             <button type="button" onClick={() => setResult(null)} className="text-ink/50 hover:text-ink">

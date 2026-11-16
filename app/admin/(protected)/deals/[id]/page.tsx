@@ -31,7 +31,7 @@ export default async function AdminDealDetailPage({ params }: { params: Promise<
 
   return (
     <div>
-      <Link href="/admin/deals" className="text-sm font-medium text-cobalt hover:underline">
+      <Link href="/admin/deals" className="text-sm font-medium text-petrol hover:underline">
         {t("detail.backLink")}
       </Link>
 
@@ -39,7 +39,7 @@ export default async function AdminDealDetailPage({ params }: { params: Promise<
       {contact ? (
         <p className="mt-1 text-ink/70">
           {t("detail.fieldContact")}:{" "}
-          <Link href={`/admin/contacts/${contact.id}`} className="text-cobalt hover:underline">
+          <Link href={`/admin/contacts/${contact.id}`} className="text-petrol hover:underline">
             {contact.name}
           </Link>
         </p>

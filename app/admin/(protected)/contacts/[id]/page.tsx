@@ -31,7 +31,7 @@ export default async function AdminContactDetailPage({ params }: { params: Promi
 
   return (
     <div>
-      <Link href="/admin/contacts" className="text-sm font-medium text-cobalt hover:underline">
+      <Link href="/admin/contacts" className="text-sm font-medium text-petrol hover:underline">
         {t("detail.backLink")}
       </Link>
 
@@ -41,7 +41,7 @@ export default async function AdminContactDetailPage({ params }: { params: Promi
           <p className="mt-1 text-ink/70">{contact.email}</p>
           <p className="mt-1 text-sm text-ink/50">
             {contact.companyId ? (
-              <Link href={`/admin/companies/${contact.companyId}`} className="text-cobalt hover:underline">
+              <Link href={`/admin/companies/${contact.companyId}`} className="text-petrol hover:underline">
                 {contact.companyName}
               </Link>
             ) : (
@@ -101,7 +101,7 @@ export default async function AdminContactDetailPage({ params }: { params: Promi
                         </p>
                         <p className="mt-1 text-xs text-ink/40">{new Date(item.lastActiveAt).toLocaleString()}</p>
                       </div>
-                      <Link href={`/admin/conversations/${item.id}`} className="text-sm font-medium text-cobalt hover:underline">
+                      <Link href={`/admin/conversations/${item.id}`} className="text-sm font-medium text-petrol hover:underline">
                         {t("detail.viewConversation")}
                       </Link>
                     </li>

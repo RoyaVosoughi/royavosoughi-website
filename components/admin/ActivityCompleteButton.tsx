@@ -21,7 +21,7 @@ export function ActivityCompleteButton({ id, completed }: { id: string; complete
   }
 
   if (completed) {
-    return <span className="rounded-full bg-cobalt/15 px-2.5 py-1 text-xs font-semibold text-cobalt">{t("doneBadge")}</span>;
+    return <span className="rounded-full bg-petrol/15 px-2.5 py-1 text-xs font-semibold text-petrol">{t("doneBadge")}</span>;
   }
 
   return (

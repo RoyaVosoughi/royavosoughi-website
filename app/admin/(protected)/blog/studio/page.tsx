@@ -37,10 +37,10 @@ export default async function BlogStudioPage() {
 
   return (
     <div>
-      <Link href="/admin/blog" className="text-sm font-medium text-cobalt hover:underline">
+      <Link href="/admin/blog" className="text-sm font-medium text-petrol hover:underline">
         {tb("backLink")}
       </Link>
-      <p className="label-eyebrow mt-6 text-cobalt">{t("eyebrow")}</p>
+      <p className="label-eyebrow mt-6 text-petrol">{t("eyebrow")}</p>
       <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
       <p className="mt-3 max-w-3xl text-ink/70">{t("subtitle")}</p>
       <div className="mt-8">

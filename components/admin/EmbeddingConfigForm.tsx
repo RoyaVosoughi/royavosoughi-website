@@ -98,7 +98,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
               const [provider, model] = e.target.value.split("::");
               requestModelChange(provider, model);
             }}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           >
             {groupedEmbeddingCatalog().map((group) => (
               <optgroup key={group.provider} label={PROVIDER_LABELS[group.provider]}>
@@ -120,7 +120,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
             value={values.dimensions}
             disabled={!getEmbeddingCatalogEntry(values.provider, values.model)?.customDimensions}
             onChange={(e) => setValues({ ...values, dimensions: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none disabled:opacity-50"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none disabled:opacity-50"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -131,7 +131,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
             max={6000}
             value={values.chunkSize}
             onChange={(e) => setValues({ ...values, chunkSize: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -142,7 +142,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
             max={1000}
             value={values.chunkOverlap}
             onChange={(e) => setValues({ ...values, chunkOverlap: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -150,7 +150,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
           <select
             value={values.chunkingStrategy}
             onChange={(e) => setValues({ ...values, chunkingStrategy: e.target.value as "paragraph" | "fixed" })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           >
             <option value="paragraph">{t("embedding.strategyParagraph")}</option>
             <option value="fixed">{t("embedding.strategyFixed")}</option>
@@ -164,7 +164,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
             max={20}
             value={values.topK}
             onChange={(e) => setValues({ ...values, topK: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -176,7 +176,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
             step={0.05}
             value={values.similarityThreshold}
             onChange={(e) => setValues({ ...values, similarityThreshold: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="flex items-center gap-2 text-xs font-medium text-ink/70">
@@ -223,11 +223,11 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
           type="button"
           onClick={save}
           disabled={status === "saving" || Boolean(pendingModelChange)}
-          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "saving" ? t("embedding.saving") : t("embedding.save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("embedding.saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("embedding.saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("embedding.error")}</span> : null}
 
         <button
@@ -239,7 +239,7 @@ export function EmbeddingConfigForm({ initial }: { initial: EmbeddingConfigValue
           {rebuildStatus === "running" ? t("embedding.rebuilding") : t("embedding.rebuild")}
         </button>
         {rebuildResult ? (
-          <span className={`text-sm font-medium ${rebuildStatus === "error" ? "text-amber-deep" : "text-cobalt"}`}>
+          <span className={`text-sm font-medium ${rebuildStatus === "error" ? "text-amber-deep" : "text-petrol"}`}>
             {rebuildResult}
           </span>
         ) : null}

@@ -73,7 +73,7 @@ export default async function AdminActivitiesPage({
 
   return (
     <div>
-      <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
+      <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
       <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
       <p className="mt-3 text-ink/70">{t("subtitle")}</p>
 
@@ -81,7 +81,7 @@ export default async function AdminActivitiesPage({
         <div className="flex gap-1 rounded-full bg-ink/5 p-1">
           <Link
             href={filterLink({ type: "" })}
-            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${!typeFilter ? "bg-cobalt text-white" : "text-ink/60 hover:bg-ink/10"}`}
+            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${!typeFilter ? "bg-petrol text-white" : "text-ink/60 hover:bg-ink/10"}`}
           >
             {t("filterAllTypes")}
           </Link>
@@ -89,7 +89,7 @@ export default async function AdminActivitiesPage({
             <Link
               key={ty}
               href={filterLink({ type: ty })}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${typeFilter === ty ? "bg-cobalt text-white" : "text-ink/60 hover:bg-ink/10"}`}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${typeFilter === ty ? "bg-petrol text-white" : "text-ink/60 hover:bg-ink/10"}`}
             >
               {TYPE_LABELS[ty]}
             </Link>

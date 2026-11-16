@@ -35,7 +35,7 @@ export async function Projects() {
             href={site.social.github}
             target="_blank"
             rel="noreferrer noopener"
-            className="mt-5 inline-block font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
+            className="mt-5 inline-block font-semibold text-petrol underline underline-offset-4 hover:text-ink"
           >
             {t("followGithub")}
           </a>
@@ -76,7 +76,7 @@ export async function Projects() {
                   </ul>
 
                   <p className="mt-6 rounded-xl bg-mist/60 p-4 text-[0.9375rem] text-ink/80">
-                    <span className="font-semibold text-cobalt">
+                    <span className="font-semibold text-petrol">
                       {t("learnedLabel")}{" "}
                     </span>
                     {copy.learned}
@@ -88,7 +88,7 @@ export async function Projects() {
                         href={project.links.demo}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
+                        className="font-semibold text-petrol underline underline-offset-4 hover:text-ink"
                       >
                         {t("liveDemo")} →
                       </a>
@@ -98,7 +98,7 @@ export async function Projects() {
                         href={project.links.github}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
+                        className="font-semibold text-petrol underline underline-offset-4 hover:text-ink"
                       >
                         {t("sourceCode")} →
                       </a>

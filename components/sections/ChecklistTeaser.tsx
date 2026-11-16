@@ -17,7 +17,7 @@ export async function ChecklistTeaser() {
       <div className="container-page">
         <Reveal className="rounded-[2rem] bg-mist p-8 md:p-12 lg:flex lg:items-center lg:justify-between lg:gap-16">
           <div className="max-w-2xl">
-            <p className="label-eyebrow text-cobalt">{t("teaserEyebrow")}</p>
+            <p className="label-eyebrow text-petrol">{t("teaserEyebrow")}</p>
             <h2 className="text-section mt-5 text-ink">{t("teaserTitle")}</h2>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">{t("teaserBody")}</p>
           </div>

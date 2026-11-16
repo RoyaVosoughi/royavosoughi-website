@@ -19,7 +19,7 @@ export function HeroCodeCard({ label }: { label: string }) {
         <div className="flex items-center gap-2.5 bg-ink-soft/60 px-4 py-3">
           <span
             aria-hidden="true"
-            className="h-2 w-2 rounded-full bg-cobalt-light ring-4 ring-cobalt-light/20"
+            className="h-2 w-2 rounded-full bg-petrol-light ring-4 ring-petrol-light/20"
           />
           <span className="rounded-md bg-ink px-2.5 py-1 font-mono text-xs text-fog">
             agent.py
@@ -28,11 +28,11 @@ export function HeroCodeCard({ label }: { label: string }) {
 
         <pre className="overflow-x-auto px-5 py-6 font-mono text-[0.8125rem] leading-relaxed text-fog">
           <code>
-            <span className="text-cobalt-light">from</span> rag{" "}
-            <span className="text-cobalt-light">import</span> KnowledgeBase
+            <span className="text-petrol-light">from</span> rag{" "}
+            <span className="text-petrol-light">import</span> KnowledgeBase
             {"\n"}
-            <span className="text-cobalt-light">from</span> agents{" "}
-            <span className="text-cobalt-light">import</span> Agent
+            <span className="text-petrol-light">from</span> agents{" "}
+            <span className="text-petrol-light">import</span> Agent
             {"\n\n"}
             kb = KnowledgeBase.from_docs(<span className="text-canvas">
               &quot;./company_docs&quot;
@@ -52,7 +52,7 @@ export function HeroCodeCard({ label }: { label: string }) {
             </span>
             <span
               aria-hidden="true"
-              className="cursor-blink ms-0.5 inline-block h-[1em] w-[0.5ch] -translate-y-0.5 bg-cobalt-light align-middle"
+              className="cursor-blink ms-0.5 inline-block h-[1em] w-[0.5ch] -translate-y-0.5 bg-petrol-light align-middle"
             />
           </code>
         </pre>

@@ -375,7 +375,7 @@ export function ContractEditor({
                 {saved.contractNo}
               </span>
               {proposalLink ? (
-                <Link href={`/admin/proposals/${proposalLink.id}`} className="text-xs font-semibold text-cobalt hover:underline">
+                <Link href={`/admin/proposals/${proposalLink.id}`} className="text-xs font-semibold text-petrol hover:underline">
                   {t("panel.fromProposal")} <span dir="ltr">{proposalLink.no}</span>
                 </Link>
               ) : null}
@@ -385,7 +385,7 @@ export function ContractEditor({
               {saved.sentAt ? <li>{saved.viewedAt ? t("panel.viewedAt", { when: formatWhen(saved.viewedAt, adminLocale) }) : t("panel.notViewed")}</li> : null}
               {saved.status === "accepted" && saved.acceptedByName ? (
                 <>
-                  <li className="font-semibold text-cobalt">
+                  <li className="font-semibold text-petrol">
                     {t("panel.acceptedBy", { name: saved.acceptedByName })} {t("panel.acceptedAt", { when: formatWhen(saved.acceptedAt, adminLocale) })}
                     {saved.acceptedIp ? (
                       <span className="ms-2 text-xs font-normal text-ink/50" dir="ltr">
@@ -427,7 +427,7 @@ export function ContractEditor({
               ) : null}
             </div>
             {followUp ? (
-              <div className="mt-4 rounded-2xl border-2 border-cobalt/20 bg-cobalt/5 p-4">
+              <div className="mt-4 rounded-2xl border-2 border-petrol/20 bg-petrol/5 p-4">
                 <p className="text-xs font-semibold text-ink/60">{t("panel.followUpHint", { days: daysSince(saved.sentAt) })}</p>
                 <p className="mt-2 whitespace-pre-wrap text-sm text-ink" dir="auto">
                   {followUp}
@@ -539,7 +539,7 @@ export function ContractEditor({
                     update("bodyMd", undoBody);
                     setUndoBody(null);
                   }}
-                  className="font-semibold text-cobalt underline"
+                  className="font-semibold text-petrol underline"
                 >
                   {t("undo")}
                 </button>

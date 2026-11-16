@@ -46,7 +46,7 @@ interface EmailContent {
   note?: string;
 }
 
-/** Brand shell: ink header with the wordmark, cobalt rule, cream body; RTL for Farsi; system fonts only (web fonts are unreliable in mail clients). */
+/** Brand shell: ink header with the wordmark, petrol rule, cream body; RTL for Farsi; system fonts only (web fonts are unreliable in mail clients). */
 export function renderEmail(content: EmailContent): string {
   const rtl = content.locale === "fa";
   const dir = rtl ? "rtl" : "ltr";
@@ -60,7 +60,7 @@ export function renderEmail(content: EmailContent): string {
     )
     .join("");
   const cta = content.cta
-    ? `<p style="margin:22px 0 8px;text-align:${align}"><a href="${escapeHtml(content.cta.url)}" style="display:inline-block;background:${brandColors.cobalt};color:#ffffff;text-decoration:none;font-weight:bold;font-size:15px;padding:12px 26px;border-radius:999px">${escapeHtml(content.cta.label)}</a></p>`
+    ? `<p style="margin:22px 0 8px;text-align:${align}"><a href="${escapeHtml(content.cta.url)}" style="display:inline-block;background:${brandColors.petrol};color:#ffffff;text-decoration:none;font-weight:bold;font-size:15px;padding:12px 26px;border-radius:999px">${escapeHtml(content.cta.label)}</a></p>`
     : "";
   const note = content.note
     ? `<p style="margin:10px 0 0;font-size:12px;line-height:1.6;color:#6b655e;text-align:${align}">${escapeHtml(content.note)}</p>`
@@ -75,7 +75,7 @@ export function renderEmail(content: EmailContent): string {
 <tr><td style="background:${brandColors.ink};padding:20px 28px;border-radius:16px 16px 0 0;text-align:${align}">
 <span dir="ltr" style="font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px">Roya Vosoughi</span>
 </td></tr>
-<tr><td style="height:4px;background:${brandColors.cobalt};font-size:0;line-height:0">&nbsp;</td></tr>
+<tr><td style="height:4px;background:${brandColors.petrol};font-size:0;line-height:0">&nbsp;</td></tr>
 <tr><td style="background:#ffffff;padding:28px;border-radius:0 0 16px 16px">
 <h1 style="margin:0 0 18px;font-size:21px;line-height:1.4;color:${brandColors.ink};text-align:${align}">${escapeHtml(content.heading)}</h1>
 ${paragraphs}${cta}${note}

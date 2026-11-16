@@ -1,6 +1,6 @@
 /**
  * Nura, the site's AI assistant. "Nur" means light, so the avatar is a cream
- * four-point spark on brand cobalt. Mirrors AVATAR_SVG in lib/widget/entry.ts
+ * four-point spark on brand petrol. Mirrors AVATAR_SVG in lib/widget/entry.ts
  * (the embeddable widget can't import React components).
  */
 export function NuraAvatar({ className = "h-10 w-10" }: { className?: string }) {

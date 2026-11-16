@@ -26,7 +26,7 @@ export default async function AdminCampaignPage({ params }: { params: Promise<{ 
 
   return (
     <div>
-      <Link href="/admin/campaigns" className="text-sm font-medium text-cobalt hover:underline">
+      <Link href="/admin/campaigns" className="text-sm font-medium text-petrol hover:underline">
         {t("backLink")}
       </Link>
       <h1 className="text-section mt-4 text-ink" dir="auto">

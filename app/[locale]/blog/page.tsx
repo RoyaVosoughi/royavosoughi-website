@@ -30,7 +30,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   return (
     <Section tone="light" className="pt-14 md:pt-20">
       <div className="max-w-3xl">
-        <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
+        <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
         <h1 className="text-section mt-4 text-ink">{t("title")}</h1>
         <p className="mt-6 text-xl text-ink/80">{t("intro")}</p>
       </div>
@@ -46,12 +46,12 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             <li key={post.id}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-paper p-8 transition-all duration-200 hover:border-cobalt/40 hover:shadow-[0_12px_32px_-12px_rgba(30,30,30,0.25)]"
+                className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-paper p-8 transition-all duration-200 hover:border-petrol/40 hover:shadow-[0_12px_32px_-12px_rgba(30,30,30,0.25)]"
               >
                 <p className="text-sm text-ink/60">
                   {formatPostDate(post.publishedAt, locale)} · {t("minutes", { count: readingMinutes(post.bodyMd) })}
                 </p>
-                <h2 className="mt-3 text-2xl text-ink group-hover:text-cobalt">{post.title}</h2>
+                <h2 className="mt-3 text-2xl text-ink group-hover:text-petrol">{post.title}</h2>
                 <p className="mt-3 flex-1 text-ink/75">{post.excerpt}</p>
                 {post.tags.length ? (
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -62,7 +62,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                     ))}
                   </div>
                 ) : null}
-                <span className="mt-6 font-semibold text-cobalt">{t("readMore")} {locale === "fa" ? "←" : "→"}</span>
+                <span className="mt-6 font-semibold text-petrol">{t("readMore")} {locale === "fa" ? "←" : "→"}</span>
               </Link>
             </li>
           ))}

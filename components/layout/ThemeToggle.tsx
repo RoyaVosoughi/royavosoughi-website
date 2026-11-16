@@ -37,7 +37,7 @@ export function ThemeToggle() {
       aria-pressed={dark}
       aria-label={t("theme")}
       title={t("theme")}
-      className="grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-ink/20 text-ink transition-colors hover:border-ink/40 hover:text-cobalt"
+      className="grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-ink/20 text-ink transition-colors hover:border-ink/40 hover:text-petrol"
     >
       {/* Moon in light — offers dark */}
       <svg

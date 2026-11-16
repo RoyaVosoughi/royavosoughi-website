@@ -5,7 +5,7 @@ import { HeroCodeCard } from "./HeroCodeCard";
 
 /**
  * The first screenful, built from the three reference styles:
- * - a framed dark panel with an atmospheric cobalt/lilac glow (Mercury's
+ * - a framed dark panel with an atmospheric petrol/seamist glow (Mercury's
  *   night canvas + Superhuman's gradient band, standing in for a photo),
  * - a centred whisper-weight serif headline with one italic word (Origin),
  * - one primary action (book) plus a quiet "ask Nura first" link to /chat —
@@ -26,7 +26,7 @@ export async function Hero() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 55% at 50% 108%, color-mix(in srgb, var(--color-cobalt) 70%, transparent) 0%, transparent 70%), radial-gradient(38% 40% at 88% 92%, color-mix(in srgb, var(--color-lilac) 38%, transparent) 0%, transparent 70%), radial-gradient(34% 36% at 10% 96%, color-mix(in srgb, var(--color-periwinkle) 30%, transparent) 0%, transparent 70%), radial-gradient(50% 40% at 50% -10%, color-mix(in srgb, var(--color-cobalt-light) 14%, transparent) 0%, transparent 70%)",
+              "radial-gradient(60% 55% at 50% 108%, color-mix(in srgb, var(--color-petrol) 70%, transparent) 0%, transparent 70%), radial-gradient(38% 40% at 88% 92%, color-mix(in srgb, var(--color-seamist) 38%, transparent) 0%, transparent 70%), radial-gradient(34% 36% at 10% 96%, color-mix(in srgb, var(--color-lagoon) 30%, transparent) 0%, transparent 70%), radial-gradient(50% 40% at 50% -10%, color-mix(in srgb, var(--color-petrol-light) 14%, transparent) 0%, transparent 70%)",
           }}
         />
         {/* Fine grid that fades out toward the bottom */}
@@ -44,7 +44,7 @@ export async function Hero() {
 
         <div className="relative px-5 pt-16 pb-12 text-center sm:px-10 md:pt-24 lg:pb-0">
           <p className="rise-in label-eyebrow inline-flex items-center gap-2.5 rounded-full border border-canvas/15 bg-canvas/[0.08] px-4 py-2 text-canvas/85 backdrop-blur">
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-cobalt-light" />
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-petrol-light" />
             {t("eyebrow")}
           </p>
 
@@ -53,7 +53,7 @@ export async function Hero() {
             style={{ animationDelay: "80ms" }}
           >
             {t("lineA")}{" "}
-            <em className="text-cobalt-light">{t("lineB")}</em>
+            <em className="text-petrol-light">{t("lineB")}</em>
           </h1>
 
           <p
@@ -111,7 +111,7 @@ export async function Hero() {
               <div className="mt-4 flex items-start gap-3">
                 <span
                   aria-hidden="true"
-                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lilac font-mono text-xs font-medium text-night"
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-seamist font-mono text-xs font-medium text-night"
                 >
                   N
                 </span>
@@ -123,7 +123,7 @@ export async function Hero() {
                 </div>
               </div>
               <p className="label-eyebrow mt-5 inline-flex items-center gap-2 rounded-full bg-canvas/10 px-3 py-1.5 text-canvas/80">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-lilac" />
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-seamist" />
                 {t("glassBadge")}
               </p>
             </div>

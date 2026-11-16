@@ -58,7 +58,7 @@ export function SecurityConfigForm({ initial }: { initial: SecurityConfigValues 
             max={1440}
             value={values.rateLimitWindowMinutes}
             onChange={(e) => setValues({ ...values, rateLimitWindowMinutes: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -69,7 +69,7 @@ export function SecurityConfigForm({ initial }: { initial: SecurityConfigValues 
             max={1000}
             value={values.rateLimitMaxMessages}
             onChange={(e) => setValues({ ...values, rateLimitMaxMessages: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -84,7 +84,7 @@ export function SecurityConfigForm({ initial }: { initial: SecurityConfigValues 
             disabled={!retentionEnabled}
             value={values.retentionDays ?? 90}
             onChange={(e) => setValues({ ...values, retentionDays: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none disabled:opacity-50"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none disabled:opacity-50"
           />
         </label>
       </div>
@@ -94,11 +94,11 @@ export function SecurityConfigForm({ initial }: { initial: SecurityConfigValues 
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "saving" ? t("saving") : t("save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("saveError")}</span> : null}
 
         <button

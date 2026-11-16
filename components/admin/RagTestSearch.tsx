@@ -46,12 +46,12 @@ export function RagTestSearch() {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && search()}
           placeholder={t("testSearch.placeholder")}
-          className="min-w-[240px] flex-1 rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+          className="min-w-[240px] flex-1 rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
         />
         <select
           value={locale}
           onChange={(e) => setLocale(e.target.value as "en" | "fa")}
-          className="rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
+          className="rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
         >
           <option value="en">{t("localeEnglish")}</option>
           <option value="fa">{t("localeFa")}</option>
@@ -60,7 +60,7 @@ export function RagTestSearch() {
           type="button"
           onClick={search}
           disabled={status === "searching" || !query.trim()}
-          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "searching" ? t("testSearch.searching") : t("testSearch.search")}
         </button>

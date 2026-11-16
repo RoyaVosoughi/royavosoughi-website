@@ -16,7 +16,7 @@ export async function Story() {
     <section className="bg-canvas pt-16 md:pt-24">
       <div className="container-page">
         <Reveal>
-          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
           <h2 className="text-section mt-5 max-w-[22ch] text-ink">{t("title")}</h2>
         </Reveal>
 
@@ -33,7 +33,7 @@ export async function Story() {
               >
                 <p
                   className={`label-eyebrow ${
-                    key === "success" ? "text-cobalt-light" : "text-cobalt"
+                    key === "success" ? "text-petrol-light" : "text-petrol"
                   }`}
                 >
                   {t(`${key}.label`)}

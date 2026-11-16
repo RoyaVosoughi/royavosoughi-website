@@ -75,14 +75,14 @@ export function PersonaSettingsForm({
               value={state.content}
               onChange={(e) => setState({ ...state, content: e.target.value })}
               rows={16}
-              className="w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 font-mono text-xs leading-relaxed text-ink transition-colors focus:border-cobalt focus:outline-none"
+              className="w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 font-mono text-xs leading-relaxed text-ink transition-colors focus:border-petrol focus:outline-none"
             />
             <div className="mt-3 flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => save(key)}
                 disabled={state.status === "saving"}
-                className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+                className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
               >
                 {state.status === "saving" ? t("persona.saving") : t("persona.save")}
               </button>
@@ -94,7 +94,7 @@ export function PersonaSettingsForm({
               >
                 {t("persona.reset")}
               </button>
-              {state.status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("persona.saved")}</span> : null}
+              {state.status === "saved" ? <span className="text-sm font-medium text-petrol">{t("persona.saved")}</span> : null}
               {state.status === "error" ? (
                 <span className="text-sm font-medium text-amber-deep">{t("persona.error")}</span>
               ) : null}

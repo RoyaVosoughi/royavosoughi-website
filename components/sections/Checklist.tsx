@@ -116,7 +116,7 @@ export function Checklist({ email }: { email: string }) {
 
     return (
       <div ref={resultRef} tabIndex={-1} className="focus:outline-none">
-        <p className="label-eyebrow text-cobalt">{t("resultEyebrow")}</p>
+        <p className="label-eyebrow text-petrol">{t("resultEyebrow")}</p>
         <h2 className="text-section mt-5 max-w-[22ch] text-ink">
           {t(`level${level}.title`)}
         </h2>
@@ -138,7 +138,7 @@ export function Checklist({ email }: { email: string }) {
                 const service = en.checklist.questions[key].service as "agent" | "automation";
                 return (
                   <li key={key} className="rounded-2xl border border-ink/10 bg-paper p-6">
-                    <span aria-hidden="true" className="label-eyebrow block text-cobalt">
+                    <span aria-hidden="true" className="label-eyebrow block text-petrol">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <p className="mt-3 text-lg text-ink">{t(`questions.${key}.leak`)}</p>
@@ -147,7 +147,7 @@ export function Checklist({ email }: { email: string }) {
                     </p>
                     <p className="label-eyebrow mt-4 text-ink/60">
                       {t("bestFit")}:{" "}
-                      <span className="text-cobalt">{services(`items.${service}.name`)}</span>
+                      <span className="text-petrol">{services(`items.${service}.name`)}</span>
                     </p>
                   </li>
                 );
@@ -267,7 +267,7 @@ export function Checklist({ email }: { email: string }) {
                 <legend className="sr-only">{t(`questions.${key}.q`)}</legend>
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                   <p className="flex gap-4 text-lg leading-snug text-ink" aria-hidden="true">
-                    <span className="label-eyebrow pt-1.5 text-cobalt">
+                    <span className="label-eyebrow pt-1.5 text-petrol">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span>{t(`questions.${key}.q`)}</span>
@@ -280,7 +280,7 @@ export function Checklist({ email }: { email: string }) {
                           key={String(option)}
                           className={`cursor-pointer rounded-full border px-6 py-2.5 text-[0.9375rem] font-medium transition-colors has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 ${
                             selected
-                              ? "border-cobalt bg-cobalt text-on-cobalt"
+                              ? "border-petrol bg-petrol text-on-petrol"
                               : "border-ink/25 text-ink hover:border-ink"
                           }`}
                         >

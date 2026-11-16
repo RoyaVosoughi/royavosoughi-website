@@ -37,20 +37,20 @@ export function AddCompanyForm() {
           placeholder={t("namePlaceholder")}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
+          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
         />
         <input
           type="text"
           placeholder={t("domainPlaceholder")}
           value={domain}
           onChange={(e) => setDomain(e.target.value)}
-          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
+          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
         />
         <button
           type="button"
           onClick={submit}
           disabled={status === "submitting" || !name}
-          className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
+          className="rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
         >
           {status === "submitting" ? t("adding") : t("addButton")}
         </button>
