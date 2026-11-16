@@ -36,7 +36,7 @@ export function MessageBubble({
             aria-label="Good response"
             aria-pressed={feedback === 1}
             className={`grid h-7 w-7 place-items-center rounded-full transition-colors disabled:cursor-default ${
-              feedback === 1 ? "bg-petrol/15 text-petrol" : "text-ink/35 hover:bg-ink/5 hover:text-petrol"
+              feedback === 1 ? "bg-cobalt/15 text-cobalt" : "text-ink/35 hover:bg-ink/5 hover:text-cobalt"
             }`}
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">

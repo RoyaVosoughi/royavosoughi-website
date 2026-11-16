@@ -16,7 +16,7 @@ function buildColumns(
 ): Column<Lead>[] {
   return [
     { header: t("columnName"), cell: (row) => row.name },
-    { header: t("columnEmail"), cell: (row) => <a className="text-petrol hover:underline" href={`mailto:${row.email}`}>{row.email}</a> },
+    { header: t("columnEmail"), cell: (row) => <a className="text-cobalt hover:underline" href={`mailto:${row.email}`}>{row.email}</a> },
     { header: t("columnInterest"), cell: (row) => row.interest ?? "—" },
     { header: t("columnSource"), cell: (row) => row.source ?? "—" },
     { header: t("columnStatus"), cell: (row) => <LeadStatusSelect id={row.id} status={row.status} /> },
@@ -52,7 +52,7 @@ export default async function AdminLeadsPage() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
           <p className="mt-3 text-ink/70">{t("subtitle")}</p>
         </div>

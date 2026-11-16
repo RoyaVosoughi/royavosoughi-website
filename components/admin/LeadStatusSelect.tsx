@@ -10,9 +10,9 @@ const STATUSES: LeadStatus[] = ["new", "contacted", "qualified", "converted", "l
 
 const STATUS_STYLES: Record<LeadStatus, string> = {
   new: "bg-ink/10 text-ink",
-  contacted: "bg-mist text-petrol",
-  qualified: "bg-petrol/20 text-petrol",
-  converted: "bg-petrol/20 text-petrol",
+  contacted: "bg-mist text-cobalt",
+  qualified: "bg-cobalt/20 text-cobalt",
+  converted: "bg-cobalt/20 text-cobalt",
   lost: "bg-amber/15 text-amber-deep",
 };
 

@@ -45,7 +45,7 @@ function ActionsCell({ doc }: { doc: DocumentRow }) {
 
   return (
     <div className="flex flex-wrap gap-3">
-      <button type="button" onClick={toggleStatus} disabled={busy !== null} className="text-sm font-medium text-petrol hover:underline disabled:opacity-50">
+      <button type="button" onClick={toggleStatus} disabled={busy !== null} className="text-sm font-medium text-cobalt hover:underline disabled:opacity-50">
         {doc.status === "active" ? t("table.actionArchive") : t("table.actionActivate")}
       </button>
       <button type="button" onClick={reindex} disabled={busy !== null} className="text-sm font-medium text-ink hover:underline disabled:opacity-50">
@@ -95,7 +95,7 @@ export function DocumentTable({ documents }: { documents: DocumentRow[] }) {
               <td className="px-5 py-3">
                 <span
                   className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    doc.status === "active" ? "bg-petrol/15 text-petrol" : "bg-ink/10 text-ink/50"
+                    doc.status === "active" ? "bg-cobalt/15 text-cobalt" : "bg-ink/10 text-ink/50"
                   }`}
                 >
                   {doc.status === "active" ? t("table.statusActive") : t("table.statusArchived")}

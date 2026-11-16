@@ -24,7 +24,7 @@ export default async function AdminCompanyDetailPage({ params }: { params: Promi
 
   return (
     <div>
-      <Link href="/admin/companies" className="text-sm font-medium text-petrol hover:underline">
+      <Link href="/admin/companies" className="text-sm font-medium text-cobalt hover:underline">
         {t("detail.backLink")}
       </Link>
 

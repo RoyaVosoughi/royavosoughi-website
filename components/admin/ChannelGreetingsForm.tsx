@@ -49,7 +49,7 @@ function Row({ row }: { row: AllChannelGreetingsRow }) {
             value={welcome}
             onChange={(e) => setWelcome(e.target.value)}
             placeholder={t("welcomePlaceholder")}
-            className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         ) : null}
         <input
@@ -57,7 +57,7 @@ function Row({ row }: { row: AllChannelGreetingsRow }) {
           value={replies}
           onChange={(e) => setReplies(e.target.value)}
           placeholder={t("quickRepliesPlaceholder")}
-          className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+          className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
         />
       </div>
       <div className="mt-3 flex items-center gap-3">
@@ -65,11 +65,11 @@ function Row({ row }: { row: AllChannelGreetingsRow }) {
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-petrol px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {status === "saving" ? t("saving") : t("save")}
         </button>
-        {status === "saved" ? <span className="text-xs font-medium text-petrol">{t("saved")}</span> : null}
+        {status === "saved" ? <span className="text-xs font-medium text-cobalt">{t("saved")}</span> : null}
         {status === "error" ? <span className="text-xs font-medium text-amber-deep">{t("saveError")}</span> : null}
       </div>
     </div>

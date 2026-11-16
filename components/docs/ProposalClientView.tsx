@@ -31,7 +31,7 @@ export interface PublicProposal {
 type Mode = "idle" | "changes" | "decline";
 
 const input =
-  "w-full rounded-2xl border-2 border-ink/15 bg-white px-4 py-2.5 text-sm text-ink focus:border-petrol focus:outline-none";
+  "w-full rounded-2xl border-2 border-ink/15 bg-white px-4 py-2.5 text-sm text-ink focus:border-cobalt focus:outline-none";
 
 export function ProposalClientView({
   token,
@@ -128,7 +128,7 @@ export function ProposalClientView({
 
         <aside className="flex flex-col gap-4 lg:sticky lg:top-4 lg:self-start">
           {thanks ? (
-            <div className="rounded-3xl border-2 border-petrol/30 bg-white p-5 text-sm text-ink">{P.proposal.thanks[thanks]}</div>
+            <div className="rounded-3xl border-2 border-cobalt/30 bg-white p-5 text-sm text-ink">{P.proposal.thanks[thanks]}</div>
           ) : open ? (
             <div className="rounded-3xl border-2 border-ink/10 bg-white p-5">
               <h2 className="font-display text-lg font-bold text-ink">{P.proposal.respondTitle}</h2>
@@ -141,16 +141,16 @@ export function ProposalClientView({
                     <label
                       key={o.id}
                       className={`flex cursor-pointer items-start gap-3 rounded-2xl border-2 px-4 py-3 transition-colors ${
-                        selected === o.id ? "border-petrol bg-petrol/5" : "border-ink/10 hover:border-ink/25"
+                        selected === o.id ? "border-cobalt bg-cobalt/5" : "border-ink/10 hover:border-ink/25"
                       }`}
                     >
-                      <input type="radio" name="option" value={o.id} checked={selected === o.id} onChange={() => setSelected(o.id)} className="mt-1 accent-petrol" />
+                      <input type="radio" name="option" value={o.id} checked={selected === o.id} onChange={() => setSelected(o.id)} className="mt-1 accent-cobalt" />
                       <span className="min-w-0 flex-1">
                         <span className="flex items-baseline justify-between gap-2">
                           <span className="font-semibold text-ink">{o.name}</span>
-                          <span className="whitespace-nowrap text-sm font-bold text-petrol">{formatMoney(o.priceCents, proposal.currency, locale)}</span>
+                          <span className="whitespace-nowrap text-sm font-bold text-cobalt">{formatMoney(o.priceCents, proposal.currency, locale)}</span>
                         </span>
-                        {o.recommended ? <span className="text-xs font-semibold text-petrol">{L.recommended}</span> : null}
+                        {o.recommended ? <span className="text-xs font-semibold text-cobalt">{L.recommended}</span> : null}
                       </span>
                     </label>
                   ))}
@@ -182,7 +182,7 @@ export function ProposalClientView({
                       type="button"
                       onClick={() => submit("approved")}
                       disabled={busy !== null || !nameOk || (proposal.content.options.length > 0 && !selected)}
-                      className="rounded-full bg-petrol px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+                      className="rounded-full bg-cobalt px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
                     >
                       {busy === "submit" ? P.proposal.submitting : P.proposal.approve}
                     </button>
@@ -224,7 +224,7 @@ export function ProposalClientView({
               <h3 className="font-display text-base font-bold text-ink">{P.proposal.conversation}</h3>
               <ul className="mt-3 flex flex-col gap-2">
                 {comments.map((c) => (
-                  <li key={c.id} className={`rounded-2xl px-3.5 py-2.5 text-sm ${c.author === "client" ? "bg-mist/60" : "bg-petrol/10"}`}>
+                  <li key={c.id} className={`rounded-2xl px-3.5 py-2.5 text-sm ${c.author === "client" ? "bg-mist/60" : "bg-cobalt/10"}`}>
                     <p className="text-xs font-semibold text-ink/55">
                       {c.author === "client" ? P.proposal.fromClient : P.proposal.fromRoya} · {formatDateTimeUtc(c.createdAt, locale)}
                     </p>

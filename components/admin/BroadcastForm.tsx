@@ -59,7 +59,7 @@ export function BroadcastForm() {
         }}
         rows={6}
         placeholder={t("messagePlaceholder")}
-        className="w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-3 text-ink transition-colors focus:border-petrol focus:outline-none"
+        className="w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-3 text-ink transition-colors focus:border-cobalt focus:outline-none"
       />
 
       <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -77,14 +77,14 @@ export function BroadcastForm() {
             type="button"
             onClick={send}
             disabled={status === "sending" || status === "sent"}
-            className="rounded-full bg-petrol px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+            className="rounded-full bg-cobalt px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
           >
             {status === "sending" ? t("sending") : t("sendButton", { count: recipientCount })}
           </button>
         )}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("errorGeneric")}</span> : null}
         {status === "sent" && result ? (
-          <span className="text-sm font-medium text-petrol">
+          <span className="text-sm font-medium text-cobalt">
             {result.failed > 0 ? t("sentResultWithFailed", { sent: result.sent, failed: result.failed }) : t("sentResult", { sent: result.sent })}
           </span>
         ) : null}

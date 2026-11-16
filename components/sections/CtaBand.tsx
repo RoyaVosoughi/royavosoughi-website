@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Closing call to action — no box: the headline and actions sit directly on
- * the cream canvas, like the section headings above. Ink headline, petrol
+ * the cream canvas, like the section headings above. Ink headline, cobalt
  * primary pill, hairline-outline secondary.
  */
 export async function CtaBand() {

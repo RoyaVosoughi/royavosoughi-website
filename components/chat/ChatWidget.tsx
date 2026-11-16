@@ -386,7 +386,7 @@ export function ChatWidget({
                     key={starter}
                     type="button"
                     onClick={() => sendMessage(starter)}
-                    className="rounded-full border-2 border-ink/15 bg-canvas px-4 py-2 text-sm text-ink/80 transition-colors hover:border-petrol hover:text-petrol"
+                    className="rounded-full border-2 border-ink/15 bg-canvas px-4 py-2 text-sm text-ink/80 transition-colors hover:border-cobalt hover:text-cobalt"
                   >
                     {starter}
                   </button>
@@ -415,7 +415,7 @@ export function ChatWidget({
                         onClick={() => setReasonChoice(reasonChoice === reason ? null : reason)}
                         aria-pressed={reasonChoice === reason}
                         className={`rounded-full border-2 px-3 py-1 text-xs transition-colors ${
-                          reasonChoice === reason ? "border-petrol bg-petrol/10 text-petrol" : "border-ink/15 text-ink/70 hover:border-ink/30"
+                          reasonChoice === reason ? "border-cobalt bg-cobalt/10 text-cobalt" : "border-ink/15 text-ink/70 hover:border-ink/30"
                         }`}
                       >
                         {reason}
@@ -429,7 +429,7 @@ export function ChatWidget({
                     rows={2}
                     aria-label={t("feedbackReasonPlaceholder")}
                     placeholder={t("feedbackReasonPlaceholder")}
-                    className="mt-2 w-full resize-none rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink placeholder:text-ink/35 focus:border-petrol focus:outline-none"
+                    className="mt-2 w-full resize-none rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink placeholder:text-ink/35 focus:border-cobalt focus:outline-none"
                   />
                   <div className="mt-2 flex justify-end gap-2">
                     <button
@@ -482,7 +482,7 @@ export function ChatWidget({
       ) : null}
 
       {status === "waitingForHuman" ? (
-        <p className="border-t border-ink/10 px-5 py-3 text-sm font-medium text-petrol">{t("waitingForHuman")}</p>
+        <p className="border-t border-ink/10 px-5 py-3 text-sm font-medium text-cobalt">{t("waitingForHuman")}</p>
       ) : null}
 
       {messages.length > 0 && status !== "sending" && status !== "streaming" ? (
@@ -490,7 +490,7 @@ export function ChatWidget({
           <button
             type="button"
             onClick={startNewChat}
-            className="rounded-full px-3 py-1 text-sm font-medium text-ink/60 transition-colors hover:text-petrol focus-visible:outline-2 focus-visible:outline-petrol"
+            className="rounded-full px-3 py-1 text-sm font-medium text-ink/60 transition-colors hover:text-cobalt focus-visible:outline-2 focus-visible:outline-cobalt"
           >
             {t("newChat")}
           </button>
@@ -522,7 +522,7 @@ export function ChatWidget({
           onChange={(event) => setInput(event.target.value)}
           placeholder={t("inputPlaceholder")}
           disabled={status === "sending" || status === "streaming"}
-          className="w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-3 text-ink transition-colors placeholder:text-ink/35 focus:border-petrol focus:outline-none"
+          className="w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-3 text-ink transition-colors placeholder:text-ink/35 focus:border-cobalt focus:outline-none"
         />
         {status === "sending" || status === "streaming" ? (
           <Button type="button" variant="secondary" onClick={stopReply}>

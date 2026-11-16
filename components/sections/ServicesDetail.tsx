@@ -41,7 +41,7 @@ export async function ServicesDetail() {
                   className="flex h-full flex-col rounded-[1.75rem] border border-ink/10 bg-paper p-6 transition-colors duration-200 hover:border-ink/30 md:p-8"
                 >
                   <header>
-                    <span aria-hidden="true" className="label-eyebrow text-petrol">
+                    <span aria-hidden="true" className="label-eyebrow text-cobalt">
                       {num.format(i + 1).padStart(2, num.format(0))}
                     </span>
                     <h2 className="mt-4 text-2xl text-ink md:text-3xl">{t(`items.${key}.name`)}</h2>
@@ -51,7 +51,7 @@ export async function ServicesDetail() {
                   <dl className="mt-6 flex-1 space-y-4">
                     {details.map((detail) => (
                       <div key={detail}>
-                        <dt className="label-eyebrow text-petrol">{t(`labels.${detail}`)}</dt>
+                        <dt className="label-eyebrow text-cobalt">{t(`labels.${detail}`)}</dt>
                         <dd className="mt-1 text-[0.9375rem] leading-relaxed text-ink/80">
                           {t(`items.${key}.${detail}`)}
                         </dd>
@@ -59,7 +59,7 @@ export async function ServicesDetail() {
                     ))}
                     {t.has(`items.${key}.tech`) && (
                       <div>
-                        <dt className="label-eyebrow text-petrol">{t("labels.tech")}</dt>
+                        <dt className="label-eyebrow text-cobalt">{t("labels.tech")}</dt>
                         <dd className="mt-1 text-[0.9375rem] leading-relaxed text-ink/80" dir="auto">
                           {t(`items.${key}.tech`)}
                         </dd>

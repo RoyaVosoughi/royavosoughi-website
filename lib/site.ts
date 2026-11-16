@@ -31,10 +31,10 @@ export const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${
 export const brandColors = {
   canvas: "#F5EBE0",
   ink: "#1E1E1E",
-  petrol: "#0C4C59",
+  cobalt: "#0047AB",
   mist: "#EBDFD1",
   inkSoft: "#2E2E2E",
   fog: "#B8B0A6",
-  petrolOnInk: "#2A93A3",
+  cobaltLight: "#7FA6E8",
   amber: "#E3A72F",
 } as const;

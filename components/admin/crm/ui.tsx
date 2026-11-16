@@ -7,11 +7,11 @@ import type { ReactNode } from "react";
  */
 
 export const inputClass =
-  "w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-sm text-ink focus:border-petrol focus:outline-none disabled:opacity-60";
+  "w-full rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-sm text-ink focus:border-cobalt focus:outline-none disabled:opacity-60";
 export const textareaClass = `${inputClass} leading-relaxed`;
 export const cardClass = "rounded-3xl border-2 border-ink/10 bg-canvas p-6";
 export const primaryButton =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-petrol px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-full bg-cobalt px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50";
 export const secondaryButton =
   "inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink/20 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-mist/50 disabled:opacity-50";
 export const dangerButton =
@@ -20,11 +20,11 @@ export const dangerButton =
 const STATUS_STYLES: Record<string, string> = {
   draft: "bg-ink/10 text-ink",
   pending: "bg-ink/10 text-ink",
-  sent: "bg-petrol/10 text-petrol",
-  ready: "bg-petrol/10 text-petrol",
-  viewed: "bg-petrol/20 text-petrol-dark",
-  approved: "bg-petrol text-white",
-  accepted: "bg-petrol text-white",
+  sent: "bg-cobalt/10 text-cobalt",
+  ready: "bg-cobalt/10 text-cobalt",
+  viewed: "bg-cobalt/20 text-cobalt-dark",
+  approved: "bg-cobalt text-white",
+  accepted: "bg-cobalt text-white",
   converted: "bg-ink text-canvas",
   changes_requested: "bg-amber/25 text-amber-deep",
   failed: "bg-amber/25 text-amber-deep",
@@ -62,9 +62,9 @@ export function Spinner({ className = "" }: { className?: string }) {
 
 export function Notice({ tone = "info", children }: { tone?: "info" | "warn" | "success"; children: ReactNode }) {
   const styles = {
-    info: "border-petrol/20 bg-petrol/5 text-ink",
+    info: "border-cobalt/20 bg-cobalt/5 text-ink",
     warn: "border-amber/40 bg-amber/10 text-amber-deep",
-    success: "border-petrol/30 bg-petrol/10 text-petrol-dark",
+    success: "border-cobalt/30 bg-cobalt/10 text-cobalt-dark",
   }[tone];
   return <div className={`rounded-2xl border-2 px-4 py-3 text-sm ${styles}`}>{children}</div>;
 }

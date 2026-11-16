@@ -114,7 +114,7 @@ export function AssistantChat() {
         {turns.length === 0 ? (
           <div className="flex flex-wrap gap-2">
             {suggestions.map((s) => (
-              <button key={s} type="button" onClick={() => ask(s)} className="rounded-full border-2 border-ink/10 bg-mist/30 px-4 py-2 text-start text-sm text-ink hover:border-petrol/40">
+              <button key={s} type="button" onClick={() => ask(s)} className="rounded-full border-2 border-ink/10 bg-mist/30 px-4 py-2 text-start text-sm text-ink hover:border-cobalt/40">
                 {s}
               </button>
             ))}
@@ -123,7 +123,7 @@ export function AssistantChat() {
         {turns.map((turn, i) => (
           <div key={i} className={`flex ${turn.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
-              className={`max-w-[85%] rounded-3xl px-5 py-3 text-sm leading-relaxed ${turn.role === "user" ? "bg-petrol text-white" : "bg-mist/50 text-ink"}`}
+              className={`max-w-[85%] rounded-3xl px-5 py-3 text-sm leading-relaxed ${turn.role === "user" ? "bg-cobalt text-white" : "bg-mist/50 text-ink"}`}
               dir="auto"
             >
               {turn.role === "assistant" ? (

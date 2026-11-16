@@ -56,7 +56,7 @@ export async function DocumentsCard({ contactId, dealId }: { contactId: string; 
         </ul>
       ) : null}
       <div className="mt-4 flex flex-wrap gap-2">
-        <Link href={`/admin/proposals/new?${query}`} className="rounded-full bg-petrol px-4 py-2 text-xs font-semibold text-white hover:bg-petrol-dark">
+        <Link href={`/admin/proposals/new?${query}`} className="rounded-full bg-cobalt px-4 py-2 text-xs font-semibold text-white hover:bg-cobalt-dark">
           {tp("newButton")}
         </Link>
         <Link href={`/admin/contracts/new?${query}`} className="rounded-full border-2 border-ink/20 px-4 py-1.5 text-xs font-semibold text-ink hover:bg-mist/40">

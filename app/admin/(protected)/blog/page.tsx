@@ -56,16 +56,16 @@ export default async function AdminBlogPage() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
           <p className="mt-3 max-w-3xl text-ink/70">{t("subtitle")}</p>
         </div>
         <div className="flex flex-wrap items-center gap-4">
-          <Link href="/admin/blog/studio" className="text-sm font-semibold text-petrol hover:underline">
+          <Link href="/admin/blog/studio" className="text-sm font-semibold text-cobalt hover:underline">
             {ts("studioLink")}
           </Link>
           {canEdit ? (
-            <Link href="/admin/blog/new" className="rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark">
+            <Link href="/admin/blog/new" className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark">
               {t("newButton")}
             </Link>
           ) : null}

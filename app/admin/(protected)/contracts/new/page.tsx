@@ -20,7 +20,7 @@ export default async function AdminNewContractPage({ searchParams }: { searchPar
 
   return (
     <div>
-      <Link href="/admin/contracts" className="text-sm font-medium text-petrol hover:underline">
+      <Link href="/admin/contracts" className="text-sm font-medium text-cobalt hover:underline">
         {t("backLink")}
       </Link>
       <h1 className="text-section mt-4 mb-6 text-ink">{t("newTitle")}</h1>

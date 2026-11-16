@@ -59,7 +59,7 @@ export function PipelineStageManager({ initial }: { initial: PipelineStage[] }) 
           <li key={stage.id} className="flex items-center justify-between gap-3 rounded-2xl border border-ink/10 bg-mist/20 px-4 py-2">
             <span className="text-sm font-medium text-ink/85">
               {stage.name}
-              {stage.isWon ? <span className="ms-2 rounded-full bg-petrol/20 px-2 py-0.5 text-xs text-petrol">{t("won")}</span> : null}
+              {stage.isWon ? <span className="ms-2 rounded-full bg-cobalt/20 px-2 py-0.5 text-xs text-cobalt">{t("won")}</span> : null}
               {stage.isLost ? <span className="ms-2 rounded-full bg-amber/20 px-2 py-0.5 text-xs text-amber-deep">{t("lost")}</span> : null}
             </span>
             <div className="flex items-center gap-2">
@@ -82,13 +82,13 @@ export function PipelineStageManager({ initial }: { initial: PipelineStage[] }) 
           placeholder={t("namePlaceholder")}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="flex-1 rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
+          className="flex-1 rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
         />
         <button
           type="button"
           onClick={addStage}
           disabled={!name}
-          className="rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {t("addButton")}
         </button>

@@ -18,7 +18,7 @@ Roya Vosoughi — an AI engineer and software developer who builds practical AI 
 2. Automation — a system that does a repetitive daily workflow at a set time.
 3. Agent creation — an agent that checks every step of a multi-day process and asks for approval.
 4. Multi-agent systems — several agents with independent jobs plus a final approval step.
-The first step is always a 45-minute consultation, €29 ("Request a consultation" on /contact).
+The first step is always a 45-minute consultation, €29 and credited in full if they hire Roya ("Request a consultation" on /contact).
 
 # Who reads the blog
 Owners and managers of businesses of every size — from a startup with a handful of people to companies with 300+ employees — who want to bring AI into how their company works. They are NOT developers. Many have been burned by AI projects before: late delivery, vague communication, a developer who vanished after handoff.

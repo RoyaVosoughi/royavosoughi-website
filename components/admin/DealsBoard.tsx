@@ -40,7 +40,7 @@ function DealCard({ deal }: { deal: DealWithRelations }) {
         <p className="text-sm font-semibold text-ink/85">{deal.title}</p>
         <p className="mt-1 text-xs text-ink/50">{deal.contactName}</p>
         <p className="mt-2 text-sm font-bold text-ink">{formatAmount(deal.amountCents, deal.currency)}</p>
-        {deal.aiNextAction ? <p className="mt-2 line-clamp-2 text-xs text-petrol">{deal.aiNextAction}</p> : null}
+        {deal.aiNextAction ? <p className="mt-2 line-clamp-2 text-xs text-cobalt">{deal.aiNextAction}</p> : null}
       </Link>
     </div>
   );
@@ -54,7 +54,7 @@ function StageColumn({ stage, deals, noDealsLabel }: { stage: PipelineStage; dea
     <div
       ref={setNodeRef}
       className={`flex w-72 shrink-0 flex-col gap-3 rounded-3xl border-2 p-4 transition-colors ${
-        isOver ? "border-petrol bg-mist/40" : "border-ink/10 bg-mist/10"
+        isOver ? "border-cobalt bg-mist/40" : "border-ink/10 bg-mist/10"
       }`}
     >
       <div>

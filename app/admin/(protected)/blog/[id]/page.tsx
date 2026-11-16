@@ -14,7 +14,7 @@ export default async function AdminBlogPostPage({ params }: { params: Promise<{ 
   if (!post) notFound();
   return (
     <div>
-      <Link href="/admin/blog" className="text-sm font-medium text-petrol hover:underline">
+      <Link href="/admin/blog" className="text-sm font-medium text-cobalt hover:underline">
         {t("backLink")}
       </Link>
       <h1 className="text-section mt-4 mb-6 text-ink" dir={post.locale === "fa" ? "rtl" : "ltr"}>

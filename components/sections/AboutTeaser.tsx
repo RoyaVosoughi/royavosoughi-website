@@ -31,14 +31,14 @@ export async function AboutTeaser() {
         </div>
 
         <Reveal className="lg:order-1">
-          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h2 className="about-title mt-5 text-ink">{t("title")}</h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/80">{t("p1")}</p>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink/80">{t("p2")}</p>
 
           <Link
             href="/about"
-            className="mt-10 inline-flex items-center justify-center rounded-full bg-ink px-8 py-4 text-base font-medium text-canvas transition-colors duration-200 hover:bg-petrol hover:text-on-petrol"
+            className="mt-10 inline-flex items-center justify-center rounded-full bg-ink px-8 py-4 text-base font-medium text-canvas transition-colors duration-200 hover:bg-cobalt hover:text-on-cobalt"
           >
             {t("readMore")}
           </Link>

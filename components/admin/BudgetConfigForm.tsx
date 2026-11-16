@@ -67,7 +67,7 @@ export function BudgetConfigForm({
             disabled={!capEnabled}
             value={cap}
             onChange={(e) => setCap(Number(e.target.value))}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none disabled:opacity-50"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none disabled:opacity-50"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -78,7 +78,7 @@ export function BudgetConfigForm({
             max={100}
             value={threshold}
             onChange={(e) => setThreshold(Number(e.target.value))}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
       </div>
@@ -88,11 +88,11 @@ export function BudgetConfigForm({
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {status === "saving" ? t("saving") : t("save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("saveError")}</span> : null}
       </div>
     </section>

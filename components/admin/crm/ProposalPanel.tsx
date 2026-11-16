@@ -114,7 +114,7 @@ export function ProposalPanel({ proposal, comments, canEdit }: { proposal: Propo
             ) : null}
           </li>
         ) : null}
-        {option ? <li className="font-semibold text-petrol">{t("selectedOption", { name: option.name })}</li> : null}
+        {option ? <li className="font-semibold text-cobalt">{t("selectedOption", { name: option.name })}</li> : null}
         {proposal.status === "changes_requested" ? <li className="text-xs text-ink/55">{t("resendHint")}</li> : null}
       </ul>
 
@@ -170,7 +170,7 @@ export function ProposalPanel({ proposal, comments, canEdit }: { proposal: Propo
                 <li
                   key={c.id}
                   className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${
-                    c.author === "client" ? "self-start bg-mist/60 text-ink" : "self-end bg-petrol/10 text-ink"
+                    c.author === "client" ? "self-start bg-mist/60 text-ink" : "self-end bg-cobalt/10 text-ink"
                   }`}
                 >
                   <p className="text-xs font-semibold text-ink/55">

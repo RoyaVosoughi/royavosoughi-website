@@ -10,7 +10,7 @@ const STATUSES: ContactStatus[] = ["active", "customer", "inactive"];
 
 const STATUS_STYLES: Record<ContactStatus, string> = {
   active: "bg-ink/10 text-ink",
-  customer: "bg-petrol/20 text-petrol",
+  customer: "bg-cobalt/20 text-cobalt",
   inactive: "bg-ink/10 text-ink/60",
 };
 

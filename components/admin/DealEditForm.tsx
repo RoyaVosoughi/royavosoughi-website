@@ -42,7 +42,7 @@ export function DealEditForm({ deal, stages }: { deal: Deal; stages: PipelineSta
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -50,7 +50,7 @@ export function DealEditForm({ deal, stages }: { deal: Deal; stages: PipelineSta
           <select
             value={pipelineStageId}
             onChange={(e) => setPipelineStageId(e.target.value)}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           >
             {stages.map((s) => (
               <option key={s.id} value={s.id}>
@@ -66,7 +66,7 @@ export function DealEditForm({ deal, stages }: { deal: Deal; stages: PipelineSta
             min={0}
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -76,7 +76,7 @@ export function DealEditForm({ deal, stages }: { deal: Deal; stages: PipelineSta
             maxLength={3}
             value={currency}
             onChange={(e) => setCurrency(e.target.value.toUpperCase())}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70 sm:col-span-2">
@@ -85,7 +85,7 @@ export function DealEditForm({ deal, stages }: { deal: Deal; stages: PipelineSta
             type="date"
             value={expectedCloseDate}
             onChange={(e) => setExpectedCloseDate(e.target.value)}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
       </div>
@@ -95,11 +95,11 @@ export function DealEditForm({ deal, stages }: { deal: Deal; stages: PipelineSta
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {status === "saving" ? t("saving") : t("save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("saveError")}</span> : null}
       </div>
     </div>

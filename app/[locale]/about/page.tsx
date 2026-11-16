@@ -35,7 +35,7 @@ export default async function AboutPage({
     <>
       <Section tone="light" className="pt-14 md:pt-20">
         <div className="max-w-3xl">
-          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h1 className="text-section mt-4 text-ink">{t("title")}</h1>
           <p className="mt-8 text-xl text-ink/80">{t("lead")}</p>
         </div>

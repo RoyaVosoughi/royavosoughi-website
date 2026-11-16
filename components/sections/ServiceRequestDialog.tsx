@@ -19,7 +19,7 @@ function fieldClass(invalid: boolean) {
     "transition-colors placeholder:text-ink/35 focus:outline-none " +
     (invalid
       ? "border-amber-deep focus:border-amber-deep"
-      : "border-ink/15 hover:border-ink/30 focus:border-petrol")
+      : "border-ink/15 hover:border-ink/30 focus:border-cobalt")
   );
 }
 
@@ -169,7 +169,7 @@ export function ServiceRequestDialog({
                 aria-hidden="true"
                 className="mx-auto h-12 w-12"
                 fill="none"
-                stroke="var(--color-petrol)"
+                stroke="var(--color-cobalt)"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"

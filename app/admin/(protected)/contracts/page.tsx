@@ -32,7 +32,7 @@ export default async function AdminContractsPage() {
     {
       header: t("columnNo"),
       cell: (row) => (
-        <Link href={`/admin/contracts/${row.id}`} dir="ltr" className="font-mono text-xs font-semibold text-petrol hover:underline">
+        <Link href={`/admin/contracts/${row.id}`} dir="ltr" className="font-mono text-xs font-semibold text-cobalt hover:underline">
           {row.contractNo}
         </Link>
       ),
@@ -59,12 +59,12 @@ export default async function AdminContractsPage() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
           <p className="mt-3 text-ink/70">{t("subtitle")}</p>
         </div>
         {canEdit ? (
-          <Link href="/admin/contracts/new" className="rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark">
+          <Link href="/admin/contracts/new" className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark">
             {t("newButton")}
           </Link>
         ) : null}

@@ -23,28 +23,28 @@ export async function Contact() {
 
           <dl className="mt-10 space-y-6">
             <div>
-              <dt className="label-eyebrow text-petrol">{t("emailLabel")}</dt>
+              <dt className="label-eyebrow text-cobalt">{t("emailLabel")}</dt>
               <dd className="mt-2">
                 <a
                   href={gmailComposeUrl}
                   target="_blank"
                   rel="noreferrer noopener"
                   dir="ltr"
-                  className="text-lg text-ink underline underline-offset-4 hover:text-petrol"
+                  className="text-lg text-ink underline underline-offset-4 hover:text-cobalt"
                 >
                   {site.email}
                 </a>
               </dd>
             </div>
             <div>
-              <dt className="label-eyebrow text-petrol">Instagram</dt>
+              <dt className="label-eyebrow text-cobalt">Instagram</dt>
               <dd className="mt-2">
                 <a
                   href={site.social.instagram}
                   target="_blank"
                   rel="noreferrer noopener"
                   dir="ltr"
-                  className="text-lg text-ink underline underline-offset-4 hover:text-petrol"
+                  className="text-lg text-ink underline underline-offset-4 hover:text-cobalt"
                 >
                   @Roya.vosoughii
                 </a>
@@ -52,14 +52,14 @@ export async function Contact() {
             </div>
             {site.social.linkedin && (
               <div>
-                <dt className="label-eyebrow text-petrol">LinkedIn</dt>
+                <dt className="label-eyebrow text-cobalt">LinkedIn</dt>
                 <dd className="mt-2">
                   <a
                     href={site.social.linkedin}
                     target="_blank"
                     rel="noreferrer noopener"
                     dir="ltr"
-                    className="text-lg text-ink underline underline-offset-4 hover:text-petrol"
+                    className="text-lg text-ink underline underline-offset-4 hover:text-cobalt"
                   >
                     LinkedIn
                   </a>
@@ -67,7 +67,7 @@ export async function Contact() {
               </div>
             )}
             <div>
-              <dt className="label-eyebrow text-petrol">{t("responseLabel")}</dt>
+              <dt className="label-eyebrow text-cobalt">{t("responseLabel")}</dt>
               <dd className="mt-2 text-lg text-ink/75">{t("responseValue")}</dd>
             </div>
           </dl>

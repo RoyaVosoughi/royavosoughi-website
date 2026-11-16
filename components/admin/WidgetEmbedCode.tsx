@@ -30,7 +30,7 @@ export function WidgetEmbedCode({ siteUrl, allowedDomains }: { siteUrl: string; 
         <button
           type="button"
           onClick={copy}
-          className="rounded-full bg-petrol px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-petrol-dark"
+          className="rounded-full bg-cobalt px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-cobalt-dark"
         >
           {copied ? t("copied") : t("copy")}
         </button>

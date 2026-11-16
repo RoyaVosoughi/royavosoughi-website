@@ -54,7 +54,7 @@ function ModelSelect({
         const slug = e.target.value;
         onChange(slug, slug ? getModelCatalogEntry(slug) : undefined);
       }}
-      className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+      className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
     >
       {allowNone ? <option value="">{noOverrideLabel}</option> : null}
       {groups.map((group) => (
@@ -166,7 +166,7 @@ function ChannelCard({
             step={0.1}
             value={row.temperature}
             onChange={(e) => setRow({ ...row, temperature: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -178,7 +178,7 @@ function ChannelCard({
             step={0.05}
             value={row.topP}
             onChange={(e) => setRow({ ...row, topP: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="col-span-2 text-xs font-medium text-ink/70">
@@ -189,7 +189,7 @@ function ChannelCard({
             max={8192}
             value={row.maxTokens}
             onChange={(e) => setRow({ ...row, maxTokens: Number(e.target.value) })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
       </div>
@@ -197,7 +197,7 @@ function ChannelCard({
       <button
         type="button"
         onClick={() => setScheduleOpen((v) => !v)}
-        className="mt-4 text-xs font-medium text-petrol hover:underline"
+        className="mt-4 text-xs font-medium text-cobalt hover:underline"
       >
         {scheduleOpen ? t("models.scheduleHide") : t("models.scheduleShow")}
       </button>
@@ -224,11 +224,11 @@ function ChannelCard({
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {status === "saving" ? t("models.saving") : t("models.save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("models.saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("models.saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("models.error")}</span> : null}
       </div>
     </div>

@@ -4,7 +4,7 @@ import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis
 
 import type { LeadStatus, MonthlyRevenue, PipelineValueByStage } from "@/lib/admin/queries";
 
-const COLORS = ["#1e1e1e", "#0c4c59", "#6b6b6b", "#e3a72f", "#2a93a3", "#b8b0a6"];
+const COLORS = ["#1e1e1e", "#0047ab", "#6b6b6b", "#e3a72f", "#7fa6e8", "#b8b0a6"];
 
 export function LeadFunnelChart({ stats }: { stats: Record<LeadStatus, number> }) {
   const data = (["new", "contacted", "qualified", "converted", "lost"] as LeadStatus[]).map((status) => ({

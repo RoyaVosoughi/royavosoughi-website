@@ -54,7 +54,7 @@ export function WidgetConfigForm({ initial }: { initial: WidgetConfigValues }) {
               type="text"
               value={values.primaryColor}
               onChange={(e) => setValues({ ...values, primaryColor: e.target.value })}
-              className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+              className="w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
             />
           </div>
         </label>
@@ -63,7 +63,7 @@ export function WidgetConfigForm({ initial }: { initial: WidgetConfigValues }) {
           <select
             value={values.position}
             onChange={(e) => setValues({ ...values, position: e.target.value as "bottom-end" | "bottom-start" })}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           >
             <option value="bottom-end">{t("positionTrailing")}</option>
             <option value="bottom-start">{t("positionLeading")}</option>
@@ -76,7 +76,7 @@ export function WidgetConfigForm({ initial }: { initial: WidgetConfigValues }) {
             value={values.welcomeMessageEn}
             onChange={(e) => setValues({ ...values, welcomeMessageEn: e.target.value })}
             placeholder="Say hello, or ask a question."
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="text-xs font-medium text-ink/70">
@@ -87,7 +87,7 @@ export function WidgetConfigForm({ initial }: { initial: WidgetConfigValues }) {
             value={values.welcomeMessageFa}
             onChange={(e) => setValues({ ...values, welcomeMessageFa: e.target.value })}
             placeholder="سلام کنید یا سوالی بپرسید."
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
         <label className="sm:col-span-2 text-xs font-medium text-ink/70">
@@ -97,7 +97,7 @@ export function WidgetConfigForm({ initial }: { initial: WidgetConfigValues }) {
             onChange={(e) => setDomainsText(e.target.value)}
             rows={4}
             placeholder={t("allowedDomainsPlaceholder")}
-            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-petrol focus:outline-none"
+            className="mt-1 w-full rounded-xl border-2 border-ink/15 bg-canvas px-3 py-2 font-mono text-sm text-ink focus:border-cobalt focus:outline-none"
           />
         </label>
       </div>
@@ -107,11 +107,11 @@ export function WidgetConfigForm({ initial }: { initial: WidgetConfigValues }) {
           type="button"
           onClick={save}
           disabled={status === "saving"}
-          className="rounded-full bg-petrol px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {status === "saving" ? t("saving") : t("save")}
         </button>
-        {status === "saved" ? <span className="text-sm font-medium text-petrol">{t("saved")}</span> : null}
+        {status === "saved" ? <span className="text-sm font-medium text-cobalt">{t("saved")}</span> : null}
         {status === "error" ? <span className="text-sm font-medium text-amber-deep">{t("saveError")}</span> : null}
       </div>
     </section>

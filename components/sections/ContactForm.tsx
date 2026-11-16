@@ -38,7 +38,7 @@ function fieldClass(invalid: boolean) {
     "transition-colors placeholder:text-ink/35 focus:outline-none " +
     (invalid
       ? "border-amber-deep focus:border-amber-deep"
-      : "border-ink/15 hover:border-ink/30 focus:border-petrol")
+      : "border-ink/15 hover:border-ink/30 focus:border-cobalt")
   );
 }
 
@@ -184,7 +184,7 @@ export function ContactForm({
   function group(title: string, children: ReactNode) {
     return (
       <fieldset className="space-y-5">
-        <legend className="label-eyebrow mb-4 text-petrol">{title}</legend>
+        <legend className="label-eyebrow mb-4 text-cobalt">{title}</legend>
         {children}
       </fieldset>
     );
@@ -220,7 +220,7 @@ export function ContactForm({
         <p className="text-lg text-ink/80">{t("fallbackIntro")}</p>
         <a
           href={`mailto:${email}`}
-          className="mt-5 inline-block text-xl font-semibold text-petrol underline underline-offset-4 hover:text-ink"
+          className="mt-5 inline-block text-xl font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
         >
           {email}
         </a>
@@ -237,7 +237,7 @@ export function ContactForm({
           aria-hidden="true"
           className="mx-auto h-12 w-12"
           fill="none"
-          stroke="var(--color-petrol)"
+          stroke="var(--color-cobalt)"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"

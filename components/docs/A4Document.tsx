@@ -48,8 +48,8 @@ const C = {
   ink: "#1E1E1E",
   inkMuted: "#5C5853",
   inkFaint: "#8A847D",
-  petrol: "#0c4c59",
-  petrolTint: "#EDF2FA",
+  cobalt: "#0047AB",
+  cobaltTint: "#EDF2FA",
   cream: "#F5EBE0",
   creamDeep: "#EBDFD1",
   rule: "#E3DACF",
@@ -189,7 +189,7 @@ function fonts(locale: DocLocale) {
     : { body: "var(--font-inter), 'Segoe UI', sans-serif", display: "var(--font-space-grotesk), 'Segoe UI', sans-serif", lh: 1.65 };
 }
 
-function CheckMark({ color = C.petrol }: { color?: string }) {
+function CheckMark({ color = C.cobalt }: { color?: string }) {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style={{ flex: "none", marginTop: 5 }}>
       <path d="M2 6.5 L5 9 L10 3" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -204,11 +204,11 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
     return (
       <div style={{ display: "flex", gap: 10, paddingBottom: atom.last ? 12 : 5, fontSize: 13, lineHeight: f.lh, color: C.ink }}>
         {atom.ordered ? (
-          <span style={{ flex: "none", minWidth: 18, fontWeight: 700, color: C.petrol }}>
+          <span style={{ flex: "none", minWidth: 18, fontWeight: 700, color: C.cobalt }}>
             {localizeDigits(String(atom.index), locale)}.
           </span>
         ) : (
-          <span style={{ flex: "none", width: 6, height: 6, marginTop: locale === "fa" ? 11 : 8, background: C.petrol, borderRadius: 1 }} />
+          <span style={{ flex: "none", width: 6, height: 6, marginTop: locale === "fa" ? 11 : 8, background: C.cobalt, borderRadius: 1 }} />
         )}
         <span style={{ minWidth: 0 }}>
           <Inline text={atom.text} />
@@ -255,7 +255,7 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
           }}
         >
           {atom.cells.map((cell, i) => (
-            <div key={i} style={{ padding: "7px 10px", minWidth: 0, color: i === 0 ? C.petrol : C.ink, fontWeight: i === 0 ? 700 : 400 }}>
+            <div key={i} style={{ padding: "7px 10px", minWidth: 0, color: i === 0 ? C.cobalt : C.ink, fontWeight: i === 0 ? 700 : 400 }}>
               <Inline text={cell} />
             </div>
           ))}
@@ -286,7 +286,7 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
         </div>
       ) : (
         <div style={{ paddingTop: 14, paddingBottom: 6 }}>
-          <div style={{ fontFamily: f.display, fontSize: 17, fontWeight: 700, color: C.petrol, lineHeight: 1.4 }}>{block.text}</div>
+          <div style={{ fontFamily: f.display, fontSize: 17, fontWeight: 700, color: C.cobalt, lineHeight: 1.4 }}>{block.text}</div>
         </div>
       );
     case "paragraph":
@@ -324,8 +324,8 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
         <div style={{ paddingBottom: 12 }}>
           <div
             style={{
-              border: `${block.highlight ? 2 : 1}px solid ${block.highlight ? C.petrol : C.rule}`,
-              background: block.highlight ? C.petrolTint : C.white,
+              border: `${block.highlight ? 2 : 1}px solid ${block.highlight ? C.cobalt : C.rule}`,
+              background: block.highlight ? C.cobaltTint : C.white,
               borderRadius: 12,
               padding: "14px 16px",
             }}
@@ -335,7 +335,7 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
                 <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                   <span style={{ fontFamily: f.display, fontSize: 16, fontWeight: 700, color: C.ink }}>{block.title}</span>
                   {block.badge ? (
-                    <span style={{ fontSize: 10.5, fontWeight: 700, color: C.white, background: C.petrol, borderRadius: 999, padding: "2px 9px" }}>
+                    <span style={{ fontSize: 10.5, fontWeight: 700, color: C.white, background: C.cobalt, borderRadius: 999, padding: "2px 9px" }}>
                       {block.badge}
                     </span>
                   ) : null}
@@ -343,7 +343,7 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
                 {block.subtitle ? <div style={{ fontSize: 12, color: C.inkMuted, marginTop: 2 }}>{block.subtitle}</div> : null}
               </div>
               {block.price ? (
-                <div style={{ flex: "none", fontFamily: f.display, fontSize: 18, fontWeight: 700, color: C.petrol }}>{block.price}</div>
+                <div style={{ flex: "none", fontFamily: f.display, fontSize: 18, fontWeight: 700, color: C.cobalt }}>{block.price}</div>
               ) : null}
             </div>
             {block.items?.length ? (
@@ -374,11 +374,11 @@ function AtomView({ atom, locale }: { atom: Atom; locale: DocLocale }) {
               <div
                 key={i}
                 style={{
-                  border: `1.5px ${party.signed ? "solid" : "dashed"} ${party.signed ? C.petrol : C.inkFaint}`,
+                  border: `1.5px ${party.signed ? "solid" : "dashed"} ${party.signed ? C.cobalt : C.inkFaint}`,
                   borderRadius: 10,
                   padding: "12px 14px",
                   minHeight: 118,
-                  background: party.signed ? C.petrolTint : C.white,
+                  background: party.signed ? C.cobaltTint : C.white,
                 }}
               >
                 <div style={{ fontSize: 10.5, fontWeight: 700, color: C.inkFaint }}>{party.role}</div>
@@ -404,7 +404,7 @@ function SignalMark() {
     // 0.7em ≈ Space Grotesk's cap height, so the mark sits on the baseline as the "R".
     <svg viewBox="0 0 74 100" aria-hidden="true" style={{ height: "0.7em", width: "auto" }}>
       <path d="M10 90 V10 H40 a22 22 0 0 1 0 44 H10" fill="none" stroke={C.ink} strokeWidth="20" strokeLinecap="round" strokeLinejoin="round" />
-      <line x1="26" y1="54" x2="64" y2="90" stroke={C.petrol} strokeWidth="20" strokeLinecap="round" />
+      <line x1="26" y1="54" x2="64" y2="90" stroke={C.cobalt} strokeWidth="20" strokeLinecap="round" />
     </svg>
   );
 }
@@ -470,7 +470,7 @@ function Page({
         </div>
       </div>
       <div style={{ position: "absolute", top: 84, insetInline: MARGIN_X, height: 2, background: C.ink }} />
-      <div style={{ position: "absolute", top: 89, insetInlineStart: MARGIN_X, width: 96, height: 3, background: C.petrol }} />
+      <div style={{ position: "absolute", top: 89, insetInlineStart: MARGIN_X, width: 96, height: 3, background: C.cobalt }} />
 
       {/* Body */}
       <div style={{ position: "absolute", top: HEADER_H, insetInline: MARGIN_X, height: CONTENT_H, overflow: "hidden" }}>{children}</div>

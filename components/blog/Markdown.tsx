@@ -35,7 +35,7 @@ function inline(text: string): ReactNode[] {
       const url = safeHref(href);
       out.push(
         url ? (
-          <a key={key++} href={url} className="font-medium text-petrol underline underline-offset-4 hover:text-ink" {...(/^https?:/.test(url) ? { target: "_blank", rel: "noreferrer noopener" } : {})}>
+          <a key={key++} href={url} className="font-medium text-cobalt underline underline-offset-4 hover:text-ink" {...(/^https?:/.test(url) ? { target: "_blank", rel: "noreferrer noopener" } : {})}>
             {label}
           </a>
         ) : (
@@ -135,7 +135,7 @@ export function Markdown({ source, className = "" }: { source: string; className
             );
           case "quote":
             return (
-              <blockquote key={i} className="border-s-4 border-petrol/40 ps-5 text-ink/75 italic">
+              <blockquote key={i} className="border-s-4 border-cobalt/40 ps-5 text-ink/75 italic">
                 {inline(block.text)}
               </blockquote>
             );
@@ -147,7 +147,7 @@ export function Markdown({ source, className = "" }: { source: string; className
             );
           case "ul":
             return (
-              <ul key={i} className="ms-6 list-disc space-y-2 marker:text-petrol">
+              <ul key={i} className="ms-6 list-disc space-y-2 marker:text-cobalt">
                 {block.items.map((item, j) => (
                   <li key={j}>{inline(item)}</li>
                 ))}
@@ -155,7 +155,7 @@ export function Markdown({ source, className = "" }: { source: string; className
             );
           case "ol":
             return (
-              <ol key={i} className="ms-6 list-decimal space-y-2 marker:font-semibold marker:text-petrol">
+              <ol key={i} className="ms-6 list-decimal space-y-2 marker:font-semibold marker:text-cobalt">
                 {block.items.map((item, j) => (
                   <li key={j}>{inline(item)}</li>
                 ))}

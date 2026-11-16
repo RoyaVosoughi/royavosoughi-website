@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 function scoreColor(score: number): string {
-  if (score >= 70) return "bg-petrol/20 text-petrol";
-  if (score >= 40) return "bg-petrol/20 text-petrol";
+  if (score >= 70) return "bg-cobalt/20 text-cobalt";
+  if (score >= 40) return "bg-cobalt/20 text-cobalt";
   return "bg-ink/10 text-ink/60";
 }
 

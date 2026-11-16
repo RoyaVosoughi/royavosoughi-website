@@ -52,7 +52,7 @@ export function AddDealForm({ contacts, defaultStageId }: { contacts: Contact[];
         <select
           value={contactId}
           onChange={(e) => setContactId(e.target.value)}
-          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
+          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
         >
           {contacts.map((c) => (
             <option key={c.id} value={c.id}>
@@ -65,7 +65,7 @@ export function AddDealForm({ contacts, defaultStageId }: { contacts: Contact[];
           placeholder={t("titlePlaceholder")}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
+          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
         />
         <input
           type="number"
@@ -73,13 +73,13 @@ export function AddDealForm({ contacts, defaultStageId }: { contacts: Contact[];
           placeholder={t("amountPlaceholder")}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-petrol focus:outline-none"
+          className="rounded-2xl border-2 border-ink/15 bg-canvas px-4 py-2.5 text-ink focus:border-cobalt focus:outline-none"
         />
         <button
           type="button"
           onClick={submit}
           disabled={status === "submitting" || !title || !contactId}
-          className="rounded-full bg-petrol px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-petrol-dark disabled:opacity-50"
+          className="rounded-full bg-cobalt px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cobalt-dark disabled:opacity-50"
         >
           {status === "submitting" ? t("adding") : t("addButton")}
         </button>

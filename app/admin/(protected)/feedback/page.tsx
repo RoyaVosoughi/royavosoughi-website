@@ -17,7 +17,7 @@ function buildColumns(
       cell: (row) => (
         <span
           className={`rounded-full px-3 py-1 text-xs font-semibold ${
-            row.rating === 1 ? "bg-mist text-petrol" : "bg-amber/20 text-amber-deep"
+            row.rating === 1 ? "bg-mist text-cobalt" : "bg-amber/20 text-amber-deep"
           }`}
         >
           {row.rating === 1 ? t("ratingGood") : t("ratingBad")}
@@ -30,7 +30,7 @@ function buildColumns(
       header: t("columnConversation"),
       cell: (row) =>
         row.conversationId ? (
-          <Link href={`/admin/conversations/${row.conversationId}`} className="text-petrol hover:underline">
+          <Link href={`/admin/conversations/${row.conversationId}`} className="text-cobalt hover:underline">
             {t("viewLink")}
           </Link>
         ) : (
@@ -61,7 +61,7 @@ export default async function AdminFeedbackPage() {
 
   return (
     <div>
-      <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+      <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
       <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
       <p className="mt-3 text-ink/70">{t("subtitle")}</p>
 
@@ -86,7 +86,7 @@ export default async function AdminFeedbackPage() {
             <ul className="flex flex-col gap-2">
               {flagged.map((c) => (
                 <li key={c.id} className="rounded-xl border border-ink/10 bg-mist/20 p-3 text-sm">
-                  <Link href={`/admin/conversations/${c.id}`} className="font-semibold text-petrol hover:underline">
+                  <Link href={`/admin/conversations/${c.id}`} className="font-semibold text-cobalt hover:underline">
                     {c.channel} · {c.leadEmail ?? t("anonymous")} →
                   </Link>
                   <span className="ms-2 text-ink/50">{new Date(c.lastActiveAt).toLocaleString()}</span>
@@ -110,7 +110,7 @@ export default async function AdminFeedbackPage() {
                   <p className="font-medium text-ink/80">{u.question ?? t("noQuestionCaptured")}</p>
                   <p className="mt-1 text-ink/50 line-clamp-2">{u.reply}</p>
                   <div className="mt-2 flex gap-3">
-                    <Link href={`/admin/conversations/${u.conversationId}`} className="text-xs font-semibold text-petrol hover:underline">
+                    <Link href={`/admin/conversations/${u.conversationId}`} className="text-xs font-semibold text-cobalt hover:underline">
                       {t("viewConversation")}
                     </Link>
                     <Link href="/admin/knowledge" className="text-xs font-semibold text-ink hover:underline">

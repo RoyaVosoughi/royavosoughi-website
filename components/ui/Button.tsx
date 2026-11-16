@@ -8,17 +8,17 @@ const base =
   "focus-visible:outline-3 focus-visible:outline-offset-3 " +
   "disabled:opacity-50 disabled:pointer-events-none";
 
-/* Flat pills, no shadows: Petrol is the one filled action per screen,
+/* Flat pills, no shadows: Cobalt is the one filled action per screen,
    everything else is a hairline outline. */
 const variants: Record<Variant, string> = {
-  // Petrol solid. Text on petrol is white in light (8:1; ink on petrol is only
-  // 2.2:1) — on-petrol flips it in dark. Hover deepens to petrol-dark.
-  primary: "bg-petrol text-on-petrol hover:bg-petrol-dark",
+  // Cobalt solid. Text on cobalt is white in light (8:1; ink on cobalt is only
+  // 2.2:1) — on-cobalt flips it in dark. Hover deepens to cobalt-dark.
+  primary: "bg-cobalt text-on-cobalt hover:bg-cobalt-dark",
   // Hairline outline on light
   secondary:
     "border border-ink/25 text-ink hover:border-ink hover:bg-ink/[0.04]",
-  // Petrol on Ink sections — white text keeps 8:1; hover flips to cream
-  onDark: "bg-petrol text-on-petrol hover:bg-canvas hover:text-ink",
+  // Cobalt on Ink sections — white text keeps 8:1; hover flips to cream
+  onDark: "bg-cobalt text-on-cobalt hover:bg-canvas hover:text-ink",
   onDarkGhost:
     "border border-canvas/30 text-canvas hover:border-canvas hover:bg-canvas/[0.06]",
 };

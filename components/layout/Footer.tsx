@@ -39,7 +39,7 @@ export async function Footer() {
                     <li key={key}>
                       <Link
                         href={key === "about" || key === "blog" ? `/${key}` : `/#${key}`}
-                        className="text-mist transition-colors hover:text-petrol-on-ink"
+                        className="text-mist transition-colors hover:text-cobalt-light"
                       >
                         {nav(key)}
                       </Link>
@@ -57,7 +57,7 @@ export async function Footer() {
                     <a
                       href={link.href}
                       {...(link.external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-                      className="inline-flex items-center gap-3 text-mist transition-colors hover:text-petrol-on-ink"
+                      className="inline-flex items-center gap-3 text-mist transition-colors hover:text-cobalt-light"
                     >
                       <SocialIcon name={link.icon} />
                       {link.label}

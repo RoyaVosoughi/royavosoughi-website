@@ -38,7 +38,7 @@ export default async function AdminOverviewPage({
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="label-eyebrow text-petrol">{t("eyebrow")}</p>
+          <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <h1 className="text-section mt-3 text-ink">{t("title")}</h1>
         </div>
         <div className="flex gap-1 rounded-full bg-ink/5 p-1">
@@ -47,7 +47,7 @@ export default async function AdminOverviewPage({
               key={d}
               href={`/admin?days=${d}`}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-                days === d ? "bg-petrol text-white" : "text-ink/60 hover:bg-ink/10"
+                days === d ? "bg-cobalt text-white" : "text-ink/60 hover:bg-ink/10"
               }`}
             >
               {d}
@@ -76,7 +76,7 @@ export default async function AdminOverviewPage({
             {tOverdue("title")}
             {overdue.length ? <span className="ms-2 rounded-full bg-amber/25 px-2.5 py-0.5 text-sm text-amber-deep">{overdue.length}</span> : null}
           </h2>
-          <Link href="/admin/activities?overdue=1" className="text-sm font-medium text-petrol hover:underline">
+          <Link href="/admin/activities?overdue=1" className="text-sm font-medium text-cobalt hover:underline">
             {tOverdue("viewAll")}
           </Link>
         </div>

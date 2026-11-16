@@ -2,11 +2,11 @@
  * Roya Vosoughi lockup — "Reclaim your time".
  *
  * The mark is a "Signal R": a rounded single-stroke R whose leg is the one
- * Petrol stroke — the step from idea to working system. In the wordmark the
+ * Cobalt stroke — the step from idea to working system. In the wordmark the
  * mark *is* the R of "Roya", so no letter is repeated; on its own it is the
  * favicon / app icon.
  * The R follows currentColor (Ink on light, Canvas on the Ink footer); the
- * leg is Petrol on light and Petrol-on-ink on dark (raw petrol is 2.1:1 on ink).
+ * leg is Cobalt on light and Cobalt-light on dark (raw cobalt is 2.1:1 on ink).
  * The name is set in Space Grotesk. Always Latin — the wordmark does not change
  * per locale, and it is pinned to Space Grotesk even on Farsi pages.
  * Rules: never recolour the leg outside the palette, never stretch, min height 20px.
@@ -33,7 +33,7 @@ export function SignalR({
         y1="54"
         x2="64"
         y2="90"
-        className={onDark ? "stroke-petrol-on-ink" : "stroke-petrol"}
+        className={onDark ? "stroke-cobalt-light" : "stroke-cobalt"}
         strokeWidth="20"
         strokeLinecap="round"
       />
