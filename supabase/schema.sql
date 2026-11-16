@@ -1084,7 +1084,7 @@ A team answering the same delivery-status questions all day is a strong candidat
 
 ## What to do next
 
-Write down the three most repetitive tasks in your team this week. Bring them to a free 30-minute consultation and we'll find out together which one — if any — is worth building.$md$
+Write down the three most repetitive tasks in your team this week. Bring them to a 45-minute consultation (€29, credited in full if you hire me) and we'll find out together which one — if any — is worth building.$md$
 ),
 (
   'fa',
@@ -1108,7 +1108,7 @@ Write down the three most repetitive tasks in your team this week. Bring them to
 
 ## قدم بعدی
 
-سه کار تکراری تیم‌تان را در همین هفته یادداشت کنید. آن‌ها را به یک جلسه‌ی مشاوره‌ی رایگان ۳۰ دقیقه‌ای بیاورید تا با هم ببینیم کدام‌یک — اگر اصلاً — ارزش ساختن دارد.$md$
+سه کار تکراری تیم‌تان را در همین هفته یادداشت کنید. آن‌ها را به یک جلسه‌ی مشاوره‌ی ۴۵ دقیقه‌ای (۲۹ یورو، که اگر همکاری کنیم کامل از هزینه‌ی پروژه کم می‌شود) بیاورید تا با هم ببینیم کدام‌یک — اگر اصلاً — ارزش ساختن دارد.$md$
 )
 on conflict (locale, slug) do nothing;
 
