@@ -16,6 +16,8 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/roya-vosoughi-1925382b9/",
     github: "https://github.com/RoyaVosoughi",
     instagram: "https://www.instagram.com/Roya.vosoughii",
+    /** Roya's own Telegram account (not the Nura bot). Used by the "Ask directly" chip. */
+    telegram: "https://t.me/Roya_o0o",
   },
 } as const;
 
