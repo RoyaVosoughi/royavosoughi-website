@@ -46,7 +46,7 @@ export async function Services() {
               <Reveal delayMs={60 + i * 60} className="h-full">
                 <Link
                   href="/services"
-                  className={`group flex h-full min-h-60 flex-col justify-between rounded-[1.875rem] p-7 transition-transform duration-300 hover:-translate-y-1 md:p-8 ${
+                  className={`soft-shadow group flex h-full min-h-60 flex-col justify-between rounded-[1.875rem] p-7 transition-transform duration-300 hover:-translate-y-1 md:p-8 ${
                     i < 2 ? "lg:min-h-80" : ""
                   } ${tile.fill}`}
                 >

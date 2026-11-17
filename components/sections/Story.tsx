@@ -23,29 +23,12 @@ export async function Story() {
         <ul className="mt-10 grid gap-5 md:grid-cols-3">
           {beats.map((key, i) => (
             <li key={key}>
-              <Reveal
-                delayMs={i * 80}
-                className={`h-full rounded-2xl p-6 md:p-8 ${
-                  key === "success"
-                    ? "surface-ink bg-ink text-canvas"
-                    : "border border-ink/10 bg-paper text-ink"
-                }`}
-              >
-                <p
-                  className={`label-eyebrow ${
-                    key === "success" ? "text-cobalt-light" : "text-cobalt"
-                  }`}
-                >
-                  {t(`${key}.label`)}
-                </p>
-                <h3 className="mt-4 text-xl">{t(`${key}.title`)}</h3>
-                <p
-                  className={`mt-3 text-[0.9375rem] leading-relaxed ${
-                    key === "success" ? "text-fog" : "text-ink/75"
-                  }`}
-                >
-                  {t(`${key}.body`)}
-                </p>
+              <Reveal delayMs={i * 80} className="night-card">
+                <div className="night-card__inner p-6 md:p-8">
+                  <p className="label-eyebrow night-card__label">{t(`${key}.label`)}</p>
+                  <h3 className="mt-4 text-xl">{t(`${key}.title`)}</h3>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed">{t(`${key}.body`)}</p>
+                </div>
               </Reveal>
             </li>
           ))}

@@ -742,3 +742,41 @@
     transition: none !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Night card (Story section) — adapted from the Uiverse "bgblue" card by
+   Spacious74: a 1px diagonal gradient rim around a deep navy → cobalt → navy
+   fill, with a tight drop shadow. Fixed colours (it is a dark surface in both
+   themes); the reference's #3a4b8a is swapped for brand cobalt-dark.
+   -------------------------------------------------------------------------- */
+.night-card {
+  height: 100%;
+  padding: 1px;
+  border-radius: 1.2rem;
+  background: linear-gradient(135deg, #fffffff5, #003a8c, #ffffff98);
+  box-shadow: 0 1rem 1.5rem -0.9rem #000000e1;
+}
+.night-card__inner {
+  height: 100%;
+  border-radius: calc(1.2rem - 1px);
+  background: linear-gradient(135deg, #0d1120 0%, #003a8c 43%, #0d1120 100%);
+  color: #bec4cf;
+}
+.night-card__inner h3 {
+  color: #f5ebe0;
+}
+.night-card__label {
+  color: #9dbbee;
+}
+
+/* --------------------------------------------------------------------------
+   Soft shadow (Services tiles) — the Uiverse neumorphic shadow by Yaseen549:
+   dark shadow down-right, light shadow up-left, 15px offset / 30px blur.
+   The reference's greys suit a #212121 page; here both shades are mixed from
+   the page background so it works on cream and in dark mode.
+   -------------------------------------------------------------------------- */
+.soft-shadow {
+  box-shadow:
+    15px 15px 30px color-mix(in srgb, var(--color-canvas) 78%, #000),
+    -15px -15px 30px color-mix(in srgb, var(--color-canvas) 30%, #fff);
+}
