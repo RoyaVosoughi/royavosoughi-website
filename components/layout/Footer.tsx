@@ -18,7 +18,6 @@ export async function Footer() {
   const t = await getTranslations("footer");
   const nav = await getTranslations("nav");
   const projects = await getTranslations("projects");
-  const aboutPage = await getTranslations("aboutPage");
   const blog = await getTranslations("blog");
   const year = new Date().getFullYear();
   // The bottom bar never mirrors: brand left, links right in both languages.
@@ -48,7 +47,7 @@ export async function Footer() {
             })}
           </h2>
 
-          <p className="mx-auto mt-5 max-w-xl text-lg text-mist">{aboutPage("ctaBody")}</p>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-mist">{t("ctaBody")}</p>
 
           <div className="mt-8 flex justify-center">
             <Link href="/contact" className={buttonStyles("onDark")}>

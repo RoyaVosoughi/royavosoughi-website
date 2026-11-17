@@ -369,7 +369,8 @@
     "siteLinks": "Site",
     "elsewhere": "Elsewhere",
     "rights": "All rights reserved.",
-    "ctaTitle": "Ready to reclaim <accent>your time?</accent>"
+    "ctaTitle": "Ready to start your <accent>project?</accent>",
+    "ctaBody": "Let's discuss your vision and create something extraordinary together. Get in touch today."
   },
   "notFound": {
     "title": "This page doesn't exist.",
