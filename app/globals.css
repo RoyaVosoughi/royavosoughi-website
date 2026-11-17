@@ -387,6 +387,48 @@
   background-position: -14px -14px;
 }
 
+/* Busy indicator inside buttons (components/admin/crm/ui.tsx → Spinner).
+   12 blades fading in turn; based on the Uiverse.io spinner by mrhyddenn.
+   Sized in em (set font-size to resize) and painted in currentColor, so it
+   matches whatever button it sits in. */
+.blade-spinner {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  font-size: 1rem;
+}
+.blade-spinner > span {
+  position: absolute;
+  left: 0.4629em;
+  bottom: 0;
+  width: 0.074em;
+  height: 0.2777em;
+  border-radius: 0.0555em;
+  background-color: transparent;
+  transform-origin: center -0.2222em;
+  animation: blade-fade 1s infinite linear;
+}
+@keyframes blade-fade {
+  0% {
+    background-color: currentColor;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global rule below would leave every blade at its transparent end
+     frame; show a still, evenly drawn wheel instead. */
+  .blade-spinner > span {
+    animation: none !important;
+    background-color: currentColor;
+    opacity: 0.55;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -421,4 +463,282 @@
 
 .cursor-blink {
   animation: blink-cursor 1000ms step-end infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Hero "focus-in" — each headline word sharpens out of a blur and settles.
+   Same safety rule as rise-in-solid: animates FILTER + TRANSFORM only, never
+   opacity, so the headline is always readable even if the animation stalls.
+   Reduced motion (above) collapses it to an instant, sharp render.
+--------------------------------------------------------------------------- */
+@keyframes focus-in {
+  from {
+    filter: blur(14px);
+    transform: translateY(0.35em) scale(0.98);
+  }
+  to {
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.focus-in {
+  display: inline-block;
+  animation: focus-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-display {
+  font-family: var(--font-space-grotesk), var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.75rem, 9vw, 7rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.locale-fa .hero-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5.2vw, 4rem);
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+/* Muted first line: a soft grey gradient, like ink fading into the dark. */
+.hero-muted {
+  background: linear-gradient(180deg, #8a8580 0%, #4a4643 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Inline icon "chip" inside the headline — sized in em so it scales with type. */
+.hero-glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 0.78em;
+  height: 0.78em;
+  vertical-align: -0.06em;
+  color: var(--color-cobalt-light);
+  filter: drop-shadow(0 0 0.18em color-mix(in srgb, var(--color-cobalt-light) 70%, transparent));
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  transform-origin: 50% 50%;
+  animation: spin-slow 9s linear infinite;
+}
+.spin-fast {
+  transform-origin: 50% 50%;
+  animation: spin-slow 1.6s linear infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-cobalt-light) 45%, transparent),
+      0 0 24px 2px color-mix(in srgb, var(--color-cobalt-light) 22%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-cobalt-light) 80%, transparent),
+      0 0 42px 6px color-mix(in srgb, var(--color-cobalt-light) 38%, transparent);
+  }
+}
+.glow-pulse {
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+/* Faint drifting star-field behind the hero copy. */
+@keyframes drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 -220px, 0 -340px;
+  }
+}
+.hero-stars {
+  background-image:
+    radial-gradient(color-mix(in srgb, var(--color-canvas) 22%, transparent) 1px, transparent 1.5px),
+    radial-gradient(color-mix(in srgb, var(--color-cobalt-light) 18%, transparent) 1px, transparent 1.5px);
+  background-size: 110px 110px, 170px 170px;
+  animation: drift 40s linear infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Blob card (adapted from Uiverse.io by dylanharriscameron) — a soft cobalt
+   blob orbits behind a frosted paper panel, so only a glowing rim and a faint
+   tint show through. Used by the four promise cards in Proof.
+   ------------------------------------------------------------------------- */
+.blob-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow:
+    14px 14px 40px color-mix(in srgb, var(--color-ink) 12%, transparent),
+    -14px -14px 40px color-mix(in srgb, var(--color-paper) 90%, transparent);
+}
+.blob-card__bg {
+  position: absolute;
+  inset: 5px;
+  z-index: 2;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--color-paper) 94%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  outline: 2px solid var(--color-paper);
+}
+.blob-card__blob {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--color-cobalt);
+  filter: blur(14px);
+  animation: blob-bounce 6s infinite ease;
+}
+.blob-card__content {
+  position: relative;
+  z-index: 3;
+}
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blob-card__blob {
+    animation: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Fingerprint glyph: a light band sweeps down the ridges, like a scanner. */
+@keyframes fp-scan {
+  from { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  to { -webkit-mask-position: 0 100%; mask-position: 0 100%; }
+}
+.fp-scan {
+  -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.45) 0%, rgb(0 0 0 / 0.45) 38%, #000 50%, rgb(0 0 0 / 0.45) 62%, rgb(0 0 0 / 0.45) 100%);
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.45) 0%, rgb(0 0 0 / 0.45) 38%, #000 50%, rgb(0 0 0 / 0.45) 62%, rgb(0 0 0 / 0.45) 100%);
+  -webkit-mask-size: 100% 300%;
+  mask-size: 100% 300%;
+  animation: fp-scan 2.6s ease-in-out infinite alternate;
+}
+
+/* --------------------------------------------------------------------------
+   Process — fanned glass cards (2026-11-17, adapted from a Uiverse
+   "glass" card). Four frosted cards fanned like a hand of cards; hovering the
+   group (or tabbing into it) deals them out flat in a row. The fan only runs
+   on wide screens with a real pointer — touch and narrow screens get a flat,
+   readable grid, so no step is ever hidden behind another.
+   Palette-safe: cream-tinted glass, cobalt glow behind (so the blur has
+   something to show), cobalt-light accents. Only the one soft drop shadow
+   the reference depends on for depth.
+   -------------------------------------------------------------------------- */
+
+.glass-fan {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .glass-fan {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Cobalt glow under the cards — glass on a flat ink fill reads as plain grey */
+.glass-fan::before {
+  content: "";
+  position: absolute;
+  inset: 10% 15%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side at 30% 55%, color-mix(in srgb, var(--color-royal) 70%, transparent), transparent),
+    radial-gradient(closest-side at 72% 45%, color-mix(in srgb, var(--color-periwinkle) 28%, transparent), transparent);
+  filter: blur(40px);
+}
+
+.glass-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-cream) 12%, transparent);
+  background: linear-gradient(
+    color-mix(in srgb, var(--color-cream) 14%, transparent),
+    color-mix(in srgb, var(--color-cream) 3%, transparent)
+  );
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
+}
+
+.glass-card__icon {
+  color: var(--color-cobalt-light);
+}
+
+/* Bottom label strip — the reference's data-text bar */
+.glass-card__strip {
+  margin-top: auto;
+  padding: 0.75rem 1.5rem;
+  background: color-mix(in srgb, var(--color-cream) 5%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-cream) 8%, transparent);
+}
+
+@media (min-width: 80rem) and (hover: hover) {
+  .glass-fan {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding-block: 2.5rem;
+  }
+
+  .glass-card {
+    width: 15.5rem;
+    flex: none;
+    margin-inline: -1.75rem;
+    transform: rotate(calc(var(--r) * 1deg)) translateY(calc(var(--y) * 1rem));
+    transition:
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      margin 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .glass-fan:hover .glass-card,
+  .glass-fan:focus-within .glass-card {
+    transform: none;
+    margin-inline: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card {
+    transition: none !important;
+  }
 }

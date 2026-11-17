@@ -243,7 +243,7 @@ royavosoughi.com
 
 طراحی ادیتوریال روشن با پالت کرم، جوهری و آبی کبالت، با الهام از Superhuman، Origin و Mercury (۲۰۲۶/۱۰/۱۷). تیترهای سریف Fraunces، برچسب‌های مونو، دکمه‌های قرصی تخت، کارت‌های Paper با لبه‌ی باریک و بدون سایه. صفحه‌ی اصلی بر ساختار **StoryBrand** بنا شده (۲۰۲۶/۱۰/۲۸):
 
-1. **Hero:** برچسب = شعار «Reclaim your time»؛ تیتر «Built to work, built to last.»؛ زیرتیتر = نتیجه (کار تکراری کمتر، پاسخ سریع‌تر به مشتری) + آنچه می‌سازم. **یک CTA اصلی:** [Book a consultation] (آبی) + لینک ثانویه [See my work]. زیر آن لینک چک‌لیست: «Not ready to book? Find where you're losing your time →». کادر پرسش «Ask Nura» پیام را به `/chat?q=` می‌فرستد (هرگز خودکار ارسال نمی‌شود).
+1. **Hero:** پنل تقریباً سیاه با انیمیشن فوکوس کلمه‌به‌کلمه. برچسب = شعار «Reclaim your time» (FA: «زمانتان را پس بگیرید»)؛ تیتر «The vision of engineering is human + AI» با آیکون اثر انگشت کنار human و ستاره‌ی چرخان کنار AI (FA: «چشم‌انداز مهندسی یعنی انسان + هوش مصنوعی»)؛ زیرتیتر = نتیجه (کار تکراری کمتر، پاسخ سریع‌تر به مشتری) + آنچه می‌سازم. **یک CTA اصلی:** [Book a consultation] (آبی) + لینک ثانویه [See my work]. زیر آن لینک چک‌لیست: «Not ready to book? Find where you're losing your time →». کادر پرسش «Ask Nura» پیام را به `/chat?q=` می‌فرستد (هرگز خودکار ارسال نمی‌شود).
 2. **Story (مشکل ← هزینه‌ی صبر ← زندگی بعد):** «Your best hours go to the same tasks» ← «Every week it stays manual, it costs more» ← «Work that runs while you focus».
 3. **Services:** کاشی‌های رنگی با خدمات؛ واژه‌های فنی (Python · LLMs · RAG) فقط در خط «Built with» روی کارت‌ها می‌آیند، نه در Hero.
 4. **Process / Projects:** روند چهارمرحله‌ای و پروژه‌ها با دموی زنده و GitHub.

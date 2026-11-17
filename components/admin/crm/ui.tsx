@@ -53,10 +53,11 @@ export function Field({ label, hint, children, className = "" }: { label: string
 
 export function Spinner({ className = "" }: { className?: string }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-e-transparent ${className}`}
-    />
+    <span aria-hidden="true" className={`blade-spinner ${className}`}>
+      {Array.from({ length: 12 }, (_, i) => (
+        <span key={i} style={{ transform: `rotate(${i * 30}deg)`, animationDelay: `${(i * 0.083).toFixed(3)}s` }} />
+      ))}
+    </span>
   );
 }
 

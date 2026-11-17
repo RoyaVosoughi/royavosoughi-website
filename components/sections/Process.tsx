@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import type { CSSProperties, ReactNode } from "react";
 
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
@@ -9,51 +10,103 @@ import { Reveal } from "@/components/ui/Reveal";
  * copy) laid out as four steps, so a first-time visitor knows exactly what
  * they're signing up for before they scroll to the form.
  *
- * The page's dark feature band (Superhuman) in Mercury's language: a
- * two-column split, heading held on the left, graphite step cards one value
- * step above the ink canvas on the right — no shadows, no borders needed.
+ * Dark feature band with four frosted glass cards fanned like a hand of
+ * cards; hovering deals them out flat (styles: .glass-fan in globals.css).
+ * On touch and narrow screens they sit flat in a grid instead.
  */
 const steps = ["request", "reply", "call", "roadmap"] as const;
+
+/** Fan angle (deg) and lift (rem) per card — a gentle arc, centre cards higher. */
+const fan = [
+  { r: -12, y: 0.9 },
+  { r: -4, y: 0 },
+  { r: 4, y: 0 },
+  { r: 12, y: 0.9 },
+];
+
+const icon = (path: ReactNode) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="28"
+    height="28"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.6"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    {path}
+  </svg>
+);
+
+const icons: Record<(typeof steps)[number], ReactNode> = {
+  // Form / request
+  request: icon(
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </>,
+  ),
+  // Personal reply
+  reply: icon(
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </>,
+  ),
+  // Consultation call
+  call: icon(
+    <>
+      <rect x="3" y="6" width="13" height="12" rx="2" />
+      <path d="m16 10 5-3v10l-5-3" />
+    </>,
+  ),
+  // Written roadmap
+  roadmap: icon(
+    <>
+      <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z" />
+      <path d="M9 4v14M15 6v14" />
+    </>,
+  ),
+};
 
 export async function Process() {
   const t = await getTranslations("process");
 
   return (
     <Section id="process" tone="forest">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
-        <Reveal className="lg:sticky lg:top-32 lg:self-start">
-          <SectionHeading
-            eyebrow={t("eyebrow")}
-            title={t("title")}
-            intro={t("intro")}
-            tone="forest"
-          />
-        </Reveal>
+      <Reveal className="max-w-2xl">
+        <SectionHeading
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          intro={t("intro")}
+          tone="forest"
+        />
+      </Reveal>
 
-        <ol className="grid gap-3">
+      <Reveal delayMs={120} className="mt-12 lg:mt-16">
+        <ol className="glass-fan">
           {steps.map((key, i) => (
-            <li key={key}>
-              <Reveal
-                delayMs={i * 80}
-                className="grid gap-x-6 gap-y-3 rounded-2xl bg-ink-soft p-7 sm:grid-cols-[3.5rem_1fr] md:p-8"
-              >
-                <span
-                  aria-hidden="true"
-                  className="grid h-11 w-11 place-items-center rounded-full border border-canvas/15 font-mono text-sm text-cobalt-light"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-xl text-canvas">{t(`steps.${key}.name`)}</h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-fog">
-                    {t(`steps.${key}.body`)}
-                  </p>
-                </div>
-              </Reveal>
+            <li
+              key={key}
+              className="glass-card"
+              style={{ "--r": fan[i].r, "--y": fan[i].y } as CSSProperties}
+            >
+              <div className="flex flex-1 flex-col p-6">
+                <span className="glass-card__icon">{icons[key]}</span>
+                <h3 className="mt-6 text-xl text-canvas">{t(`steps.${key}.name`)}</h3>
+                <p className="mt-2 text-[0.9375rem] leading-relaxed text-fog">
+                  {t(`steps.${key}.body`)}
+                </p>
+              </div>
+              <div aria-hidden="true" className="glass-card__strip font-mono text-xs tracking-widest text-cobalt-light">
+                {String(i + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
+              </div>
             </li>
           ))}
         </ol>
-      </div>
+      </Reveal>
     </Section>
   );
 }

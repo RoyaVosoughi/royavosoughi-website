@@ -21,7 +21,12 @@
     "theme": "Toggle dark theme"
   },
   "hero": {
-    "eyebrow": "AI agents & automation for your business",
+    "eyebrow": "Reclaim your time",
+    "visionA": "The vision",
+    "visionB": "of engineering",
+    "visionIs": "is",
+    "visionHuman": "human",
+    "visionAI": "AI",
     "lineA": "Reclaim",
     "lineB": "your time.",
     "subtitle": "I'm a software engineer who builds AI assistants for businesses. Each assistant takes over one specific job your team does by hand, from answering customers to repetitive office work.",
