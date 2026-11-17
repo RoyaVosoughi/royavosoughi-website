@@ -47,6 +47,10 @@
     "announceLink": "Request one",
     "ctaChat": "Or ask Nura first",
     "glassBadge": "Illustrative: 12 hours back this week",
+    "directRole": "Software Engineer",
+    "directName": "Roya Vosoughi",
+    "directCta": "Ask directly",
+    "directPhotoAlt": "Roya Vosoughi",
     "closingTitle": "Ready to reclaim your time?",
     "checklistLink": "Not ready to book? Find where you're losing your time →"
   },
@@ -365,7 +369,8 @@
     "tagline": "Reclaim your time.",
     "siteLinks": "Site",
     "elsewhere": "Elsewhere",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "ctaTitle": "Ready to reclaim <accent>your time?</accent>"
   },
   "notFound": {
     "title": "This page doesn't exist.",

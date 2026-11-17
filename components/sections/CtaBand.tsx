@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { ButtonLink } from "@/components/ui/Button";
+import { DirectContactChip } from "@/components/ui/DirectContactChip";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
@@ -18,13 +19,16 @@ export async function CtaBand() {
     <section className="bg-canvas">
       <Reveal className="container-page flex flex-col gap-10 py-16 md:py-24 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
         <h2 className="text-section max-w-[14ch] text-ink">{hero("closingTitle")}</h2>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href={`/${locale}/contact`} variant="primary">
-            {t("ctaButton")}
-          </ButtonLink>
-          <ButtonLink href={`/${locale}/checklist`} variant="secondary">
-            {checklist("teaserCta")}
-          </ButtonLink>
+        <div className="flex flex-col items-start gap-6 lg:items-end">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href={`/${locale}/contact`} variant="primary">
+              {t("ctaButton")}
+            </ButtonLink>
+            <ButtonLink href={`/${locale}/checklist`} variant="secondary">
+              {checklist("teaserCta")}
+            </ButtonLink>
+          </div>
+          <DirectContactChip />
         </div>
       </Reveal>
     </section>
