@@ -853,6 +853,10 @@ if (!(window as unknown as { __royaChatWidgetLoaded?: boolean }).__royaChatWidge
     /** Undoes everything a prior conversation left behind, so the next open starts clean rather than resuming a closed one. */
     function resetToFresh() {
       abortController?.abort();
+      if (pollTimer) {
+        clearInterval(pollTimer);
+        pollTimer = null;
+      }
       ended = false;
       messages.length = 0;
       endScreen.dataset.visible = "false";
@@ -929,6 +933,9 @@ if (!(window as unknown as { __royaChatWidgetLoaded?: boolean }).__royaChatWidge
             body: JSON.stringify({ channelSessionId: sessionId, reason: "user_closed" }),
           }).catch(() => {});
         }
+        // Closing always wipes the thread — reopening (even right away)
+        // shows a clean panel on a brand-new session, never the old chat.
+        if (hadRealExchange || ended) resetToFresh();
       }
     }
 
