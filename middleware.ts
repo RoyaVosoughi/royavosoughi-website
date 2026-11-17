@@ -1,7 +1,15 @@
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
+import type { NextRequest } from "next/server";
 
-export default createMiddleware(routing);
+import { routing } from "./i18n/routing";
+import { refreshAuthSession } from "./lib/auth/middleware";
+
+const intlMiddleware = createMiddleware(routing);
+
+export default async function middleware(request: NextRequest) {
+  const response = intlMiddleware(request);
+  return refreshAuthSession(request, response);
+}
 
 export const config = {
   // Run on everything except API routes, the internal admin panel (its own

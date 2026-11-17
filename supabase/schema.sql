@@ -1272,3 +1272,68 @@ alter table public.ai_usage_log
 -- =============================================================================
 
 alter table public.blog_pipeline_runs add column if not exists lease_until timestamptz;
+
+-- =============================================================================
+-- V8 — Visitor accounts (/register, /sign-in, /account). Supabase Auth owns
+-- the login itself (auth.users); this is the one row per person we keep
+-- next to it, filled automatically on sign-up. Run once. Idempotent.
+-- =============================================================================
+
+create table if not exists public.profiles (
+  id         uuid primary key references auth.users(id) on delete cascade,
+  email      text not null,
+  full_name  text not null default '',
+  locale     text not null default 'en' check (locale in ('en', 'fa')),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists profiles_created_at_idx on public.profiles (created_at desc);
+
+alter table public.profiles enable row level security;
+
+-- A signed-in person may read and edit only their own row. Admin pages use
+-- the service-role key, which bypasses RLS.
+drop policy if exists "users read own profile" on public.profiles;
+create policy "users read own profile"
+  on public.profiles for select to authenticated
+  using (id = auth.uid());
+
+drop policy if exists "users update own profile" on public.profiles;
+create policy "users update own profile"
+  on public.profiles for update to authenticated
+  using (id = auth.uid()) with check (id = auth.uid());
+
+revoke all on public.profiles from anon;
+grant select, update (full_name, locale, updated_at) on public.profiles to authenticated;
+
+-- Copy name/locale from the sign-up form into profiles. SECURITY DEFINER with
+-- a pinned search_path; any failure here is swallowed so a profile problem
+-- can never block someone from creating an account.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  begin
+    insert into public.profiles (id, email, full_name, locale)
+    values (
+      new.id,
+      coalesce(new.email, ''),
+      left(coalesce(new.raw_user_meta_data ->> 'full_name', ''), 120),
+      case when new.raw_user_meta_data ->> 'locale' = 'fa' then 'fa' else 'en' end
+    )
+    on conflict (id) do nothing;
+  exception when others then
+    raise warning 'handle_new_user failed for %: %', new.id, sqlerrm;
+  end;
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();

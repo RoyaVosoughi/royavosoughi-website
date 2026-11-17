@@ -18,7 +18,9 @@
     "menu": "Open menu",
     "close": "Close menu",
     "skipToContent": "Skip to content",
-    "theme": "Toggle dark theme"
+    "theme": "Toggle dark theme",
+    "signIn": "Sign in",
+    "account": "Account"
   },
   "hero": {
     "eyebrow": "Reclaim your time",
@@ -501,5 +503,84 @@
         "service": "automation"
       }
     }
+  },
+  "auth": {
+    "register": {
+      "metaTitle": "Create an account",
+      "eyebrow": "Create an account",
+      "title": "Join in a minute",
+      "intro": "One account for booking consultations and using my services."
+    },
+    "signIn": {
+      "metaTitle": "Sign in",
+      "eyebrow": "Sign in",
+      "title": "Welcome back",
+      "intro": "Sign in to your account.",
+      "noticeLink": "That link couldn't sign you in here — usually because it was opened in another browser. Your email is confirmed, so just sign in below."
+    },
+    "forgot": {
+      "metaTitle": "Forgot password",
+      "eyebrow": "Forgot password",
+      "title": "Reset your password",
+      "intro": "Enter your email and I'll send you a link to choose a new one."
+    },
+    "reset": {
+      "metaTitle": "New password",
+      "eyebrow": "New password",
+      "title": "Choose a new password",
+      "intro": "Pick something you haven't used here before."
+    },
+    "account": {
+      "metaTitle": "Your account",
+      "eyebrow": "Your account",
+      "title": "Welcome",
+      "titleNamed": "Welcome, {name}",
+      "intro": "You're signed in.",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "sinceLabel": "Member since",
+      "book": "Book a consultation",
+      "services": "See services",
+      "signOut": "Sign out"
+    },
+    "nameLabel": "Full name",
+    "namePlaceholder": "Your name",
+    "nameError": "Please enter your name.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@company.com",
+    "emailError": "Please enter a valid email address.",
+    "passwordLabel": "Password",
+    "newPasswordLabel": "New password",
+    "passwordPlaceholder": "Your password",
+    "newPasswordPlaceholder": "At least {min} characters",
+    "passwordRequired": "Please enter your password.",
+    "passwordError": "Use at least {min} characters.",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "forgotLink": "Forgot password?",
+    "registerSubmit": "Create account",
+    "signInSubmit": "Sign in",
+    "forgotSubmit": "Send reset link",
+    "resetSubmit": "Save new password",
+    "working": "One moment…",
+    "haveAccount": "Already have an account?",
+    "signInLink": "Sign in",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Create one",
+    "backToSignIn": "Back to sign in",
+    "orWith": "or",
+    "google": "Continue with Google",
+    "checkInboxTitle": "Check your inbox",
+    "checkInboxRegister": "I've sent a confirmation link to {email}. Click it to activate your account.",
+    "checkInboxReset": "If an account exists for {email}, a reset link is on its way.",
+    "checkInboxSpam": "Nothing after a few minutes? Check your spam folder.",
+    "errorInvalid": "That email and password don't match. Try again or reset your password.",
+    "errorUnconfirmed": "Please confirm your email first — the link is in your inbox.",
+    "errorExists": "An account with this email already exists. Sign in instead.",
+    "errorWeak": "That password is too easy to guess. Try a longer one.",
+    "errorRateLimit": "Too many attempts. Please wait a few minutes and try again.",
+    "errorSamePassword": "That's your current password. Choose a different one.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "unavailable": "Accounts aren't available right now. Please use the contact page instead."
   }
 }

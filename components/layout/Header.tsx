@@ -8,6 +8,7 @@ import { Wordmark } from "@/components/ui/Logo";
 import { buttonStyles } from "@/components/ui/Button";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { ThemeToggle } from "./ThemeToggle";
+import { AccountLink } from "@/components/auth/AccountLink";
 
 const navItems = [
   { key: "homeNav", href: "/" },
@@ -109,6 +110,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-3">
+            <AccountLink className="hidden rounded-full px-3 py-2 text-[0.9375rem] whitespace-nowrap text-ink/70 transition-colors hover:text-ink md:inline-block" />
             <div className="hidden md:block">
               <Link href="/contact" className={`${buttonStyles("primary")} whitespace-nowrap`}>
                 {t("cta")}
@@ -172,6 +174,9 @@ export function Header() {
                 {t(item.key)}
               </Link>
             ))}
+            <AccountLink
+              className="border-b border-ink/10 py-5 text-3xl font-light text-ink"
+            />
             <Link
               href="/contact"
               className={`mt-6 justify-center ${buttonStyles("primary")}`}
