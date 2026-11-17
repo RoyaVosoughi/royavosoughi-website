@@ -13,7 +13,8 @@
     "admin:reset-password": "tsx --conditions=react-server --env-file=.env.local scripts/reset-admin-password.ts",
     "telegram:set-webhook": "tsx --env-file=.env.local scripts/telegram-set-webhook.ts",
     "build:widget": "esbuild lib/widget/entry.ts --bundle --minify --target=es2018 --format=iife --outfile=public/widget.js",
-    "prebuild": "npm run build:widget"
+    "prebuild": "npm run build:widget",
+    "predev": "npm run build:widget"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
