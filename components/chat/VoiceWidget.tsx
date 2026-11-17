@@ -193,7 +193,10 @@ export function VoiceWidget() {
           type="button"
           onClick={startCall}
           aria-label={t("start")}
-          className="grid h-[60px] w-[60px] place-items-center rounded-full bg-ink text-canvas shadow-[0_8px_24px_rgba(30,30,30,0.35)] transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-ink-soft"
+          // Hardcoded hexes (not theme tokens) on purpose — mirrors the chat
+          // launcher in lib/widget/entry.ts (.rv-launcher) exactly, in both
+          // light and dark mode, so the two stacked buttons read as one set.
+          className="grid h-[60px] w-[60px] place-items-center rounded-full bg-[#0047ab] text-white shadow-[0_8px_24px_rgba(30,30,30,0.3)] transition-[background-color,color,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#1e1e1e] hover:text-[#f5ebe0]"
         >
           <PhoneIcon className="h-[18px] w-[18px]" />
         </button>
