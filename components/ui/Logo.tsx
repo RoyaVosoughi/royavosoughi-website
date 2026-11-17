@@ -44,7 +44,7 @@ export function SignalR({
 }
 
 /**
- * Gradient V: a coral-to-gold chevron with a glowing "ignition point" at
+ * Amber V: an amber chevron (brand --color-amber #e3a72f) with a glowing "ignition point" at
  * its centre. It sits in front of the Signal R in the wordmark.
  * The viewBox is cropped to the chevron (the original drawing was 100×100),
  * and gradient/filter ids come from useId so the header and footer copies
@@ -59,15 +59,15 @@ export function GradientV({ className = "" }: { className?: string }) {
     <svg viewBox="16 22 68 56" aria-hidden="true" className={className}>
       <defs>
         <linearGradient id={main} x1="0%" y1="0%" x2="100%" y2="50%">
-          <stop offset="0%" stopColor="#F97316" />
-          <stop offset="60%" stopColor="#FB923C" />
-          <stop offset="100%" stopColor="#EAB308" />
+          <stop offset="0%" stopColor="#C98A17" />
+          <stop offset="60%" stopColor="#E3A72F" />
+          <stop offset="100%" stopColor="#F0C25E" />
         </linearGradient>
         <radialGradient id={ignition} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#FDE047" />
-          <stop offset="30%" stopColor="#FBBF24" />
-          <stop offset="70%" stopColor="#F97316" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#F97316" stopOpacity="0" />
+          <stop offset="0%" stopColor="#FFE9B0" />
+          <stop offset="30%" stopColor="#F0C25E" />
+          <stop offset="70%" stopColor="#E3A72F" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#E3A72F" stopOpacity="0" />
         </radialGradient>
         <filter id={glow} x="-100%" y="-100%" width="300%" height="300%">
           <feGaussianBlur stdDeviation="1.5" result="blur" />
@@ -86,7 +86,7 @@ export function GradientV({ className = "" }: { className?: string }) {
       <path d="M32 35 L50 58 L68 35 C60 45 40 45 32 35 Z" fill="#1E1E1E" />
       {/* Ignition glow + core */}
       <ellipse cx="50" cy="52" rx="8" ry="6" fill={`url(#${ignition})`} filter={`url(#${glow})`} opacity="0.9" />
-      <ellipse cx="50" cy="52" rx="2.5" ry="2" fill="#FEF3C7" />
+      <ellipse cx="50" cy="52" rx="2.5" ry="2" fill="#FFF6DE" />
     </svg>
   );
 }
@@ -101,15 +101,15 @@ export function Wordmark({
   return (
     <span
       dir="ltr"
-      className={`inline-flex items-baseline text-[1.6rem] leading-none font-bold tracking-[-0.04em] whitespace-nowrap ${className}`}
-      style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
+      className={`inline-flex items-baseline text-[1.7rem] leading-none font-medium tracking-[-0.01em] whitespace-nowrap ${className}`}
+      style={{ fontFamily: "var(--font-bodoni), var(--font-fraunces), Georgia, serif" }}
       aria-hidden="true"
     >
-      <GradientV className="me-[0.14em] h-[0.7em] w-auto" />
-      {/* 0.7em ≈ Space Grotesk's cap height, so the mark sits as the "R" */}
-      <SignalR onDark={onDark} className="h-[0.7em] w-auto" />
-      <span className="ms-[0.02em]">oya</span>
-      <span className="ms-[0.26em]">Vosoughi</span>
+      {/* Amber V, then the name in a high-contrast Didone: "Roya" in Ink
+          (currentColor), "Vosoughi" in Cobalt. 0.68em ≈ Bodoni's cap height. */}
+      <GradientV className="me-[0.18em] h-[0.68em] w-auto" />
+      <span>Roya</span>
+      <span className={`ms-[0.24em] ${onDark ? "text-cobalt-light" : "text-cobalt"}`}>Vosoughi</span>
     </span>
   );
 }
