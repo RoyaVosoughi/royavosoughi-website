@@ -20,6 +20,14 @@ export async function Projects() {
           title={t("title")}
           intro={t("intro")}
         />
+        <a
+          href={site.social.github}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-6 inline-block font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
+        >
+          {t("followGithub")} →
+        </a>
       </Reveal>
 
       {items.length === 0 ? (
@@ -31,14 +39,6 @@ export async function Projects() {
           <p className="mx-auto max-w-md text-lg text-ink/75">
             {t("emptyState")}
           </p>
-          <a
-            href={site.social.github}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="mt-5 inline-block font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
-          >
-            {t("followGithub")}
-          </a>
         </Reveal>
       ) : (
         <ul className="mt-14 grid gap-6 md:grid-cols-2">
