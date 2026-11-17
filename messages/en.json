@@ -51,7 +51,6 @@
     "directName": "Roya Vosoughi",
     "directCta": "Ask directly",
     "directPhotoAlt": "Roya Vosoughi",
-    "closingTitle": "Ready to reclaim your time?",
     "checklistLink": "Not ready to book? Find where you're losing your time →"
   },
   "proof": {
@@ -587,5 +586,26 @@
     "errorSamePassword": "That's your current password. Choose a different one.",
     "errorGeneric": "Something went wrong. Please try again.",
     "unavailable": "Accounts aren't available right now. Please use the contact page instead."
+  },
+  "question": {
+    "eyebrow": "Roya Vosoughi",
+    "title": "Have a question?",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "How can I help?",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "legal": "By submitting, you agree that I use your details only to reply to you.",
+    "success": "Message sent. I'll get back to you within one business day.",
+    "error": "That didn't go through. Please use \"Ask directly\" to email me instead.",
+    "talkTitle": "Let's talk.",
+    "talkBody": "Tell me about your needs: an AI assistant, a repetitive task, or a project idea. I reply within one business day.",
+    "quickTitle": "Quick response",
+    "quickBody": "Most messages receive a reply in under 24h.",
+    "stepsTitle": "Clear next steps",
+    "stepsBody": "I'll follow up with a concise plan and timeline."
   }
 }

@@ -102,6 +102,36 @@ export async function sendContactNotification(data: ContactNotification) {
   }
 }
 
+/** Best-effort notification for the short "Have a question?" form. */
+export async function sendQuestionNotification(data: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  const client = getClient();
+  if (!client) return;
+
+  const html = `
+    <div style="font-family: sans-serif; max-width: 560px;">
+      <h2 style="color: #1E1E1E;">New question from the website</h2>
+      <p><strong>${escapeHtml(data.name)}</strong> &lt;${escapeHtml(data.email)}&gt;</p>
+      <p style="white-space: pre-wrap;">${escapeHtml(data.message)}</p>
+    </div>
+  `;
+
+  try {
+    await client.emails.send({
+      from: FROM,
+      to: NOTIFY_TO.toLowerCase(),
+      replyTo: data.email,
+      subject: `New question from ${data.name}`,
+      html,
+    });
+  } catch (error) {
+    console.error("[resend] question notification failed:", error);
+  }
+}
+
 type ServiceRequestNotification = {
   service: ServiceKey;
   name: string;
