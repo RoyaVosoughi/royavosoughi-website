@@ -13,8 +13,7 @@ export const site = {
     "https://royavosoughi.com",
   email: "Roya.vosoughii@gmail.com",
   social: {
-    /** Empty until the LinkedIn profile exists — every use hides itself when blank. */
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/roya-vosoughi-1925382b9/",
     github: "https://github.com/RoyaVosoughi",
     instagram: "https://www.instagram.com/Roya.vosoughii",
   },
