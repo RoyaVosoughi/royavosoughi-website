@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Bodoni_Moda, Inter, Space_Grotesk, Vazirmatn } from "next/font/google";
+import { Exo_2, Inter, Space_Grotesk, Vazirmatn } from "next/font/google";
 
 import "../globals.css";
 
@@ -13,7 +13,7 @@ import "../globals.css";
  */
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
-const bodoni = Bodoni_Moda({ subsets: ["latin"], variable: "--font-bodoni", axes: ["opsz"], display: "swap" });
+const exo = Exo_2({ subsets: ["latin"], variable: "--font-exo", style: ["italic"], display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const vazirmatn = Vazirmatn({ subsets: ["arabic", "latin"], variable: "--font-vazirmatn", display: "swap" });
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function DocumentsLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${bodoni.variable} ${inter.variable} ${vazirmatn.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${exo.variable} ${inter.variable} ${vazirmatn.variable}`} suppressHydrationWarning>
       <body className="min-h-dvh bg-mist/50" suppressHydrationWarning>
         {children}
       </body>

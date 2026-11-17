@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Bodoni_Moda, Fraunces, Inter, JetBrains_Mono, Space_Grotesk, Vazirmatn } from "next/font/google";
+import { Exo_2, Fraunces, Inter, JetBrains_Mono, Space_Grotesk, Vazirmatn } from "next/font/google";
 import Script from "next/script";
 
 import { routing, getDirection } from "@/i18n/routing";
@@ -29,11 +29,11 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-// High-contrast Didone, used only for the "Roya Vosoughi" wordmark.
-const bodoni = Bodoni_Moda({
+// Heavy slanted sans, used only for the "Roya Vosoughi" wordmark.
+const exo = Exo_2({
   subsets: ["latin"],
-  variable: "--font-bodoni",
-  axes: ["opsz"],
+  variable: "--font-exo",
+  style: ["italic"],
   display: "swap",
 });
 
@@ -116,7 +116,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const dir = getDirection(locale);
-  const fontVars = `${spaceGrotesk.variable} ${fraunces.variable} ${bodoni.variable} ${inter.variable} ${vazirmatn.variable} ${jetbrainsMono.variable}`;
+  const fontVars = `${spaceGrotesk.variable} ${fraunces.variable} ${exo.variable} ${inter.variable} ${vazirmatn.variable} ${jetbrainsMono.variable}`;
 
   return (
     <html lang={locale} dir={dir} className={fontVars} suppressHydrationWarning>

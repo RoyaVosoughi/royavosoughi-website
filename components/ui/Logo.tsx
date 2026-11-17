@@ -101,15 +101,15 @@ export function Wordmark({
   return (
     <span
       dir="ltr"
-      className={`inline-flex items-baseline text-[1.7rem] leading-none font-medium tracking-[-0.01em] whitespace-nowrap ${className}`}
-      style={{ fontFamily: "var(--font-bodoni), var(--font-fraunces), Georgia, serif" }}
+      className={`inline-flex items-baseline text-[1.35rem] leading-none font-extrabold italic uppercase tracking-[0.01em] whitespace-nowrap ${className}`}
+      style={{ fontFamily: "var(--font-exo), var(--font-space-grotesk), system-ui, sans-serif" }}
       aria-hidden="true"
     >
-      {/* Amber V, then the name in a high-contrast Didone: "Roya" in Ink
-          (currentColor), "Vosoughi" in Cobalt. 0.68em ≈ Bodoni's cap height. */}
-      <GradientV className="me-[0.18em] h-[0.68em] w-auto" />
+      {/* Amber V, then the name in heavy slanted caps (Exo 2 ExtraBold Italic):
+          "ROYA" in Ink (currentColor), "VOSOUGHI" in Cobalt. 0.7em ≈ Exo 2's cap height. */}
+      <GradientV className="me-[0.2em] h-[0.7em] w-auto" />
       <span>Roya</span>
-      <span className={`ms-[0.24em] ${onDark ? "text-cobalt-light" : "text-cobalt"}`}>Vosoughi</span>
+      <span className={`ms-[0.3em] ${onDark ? "text-cobalt-light" : "text-cobalt"}`}>Vosoughi</span>
     </span>
   );
 }
