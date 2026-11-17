@@ -1,7 +1,7 @@
 # Frequently asked questions
 
 **How long until I hear back after I contact Roya or the assistant submits a request for me?**
-Within two working days. Always a real reply, even if the answer is no.
+Within one business day. Always a real reply, even if the answer is no.
 
 **Does the first consultation cost anything?**
 Yes — the consultation is a 45-minute session for €29. It's where Roya gets to know your work and what you want to improve; the price of any service is set after that meeting (or, for Automation, Agent Creation and Multi-Agent, after the consulting session).
@@ -16,7 +16,7 @@ Don't invent an alternative field to collect (no phone number, no other contact 
 By email at Roya.vosoughii@gmail.com, or on Instagram at https://www.instagram.com/Roya.vosoughii. Her code and open-source projects are on GitHub at https://github.com/RoyaVosoughi. The assistant on this site can also submit a request for an initial conversation on your behalf — it only needs your name and email.
 
 **What are Roya's working hours?**
-There are no fixed published office hours. What is fixed is the reply time: every request gets a real reply within two working days.
+There are no fixed published office hours. What is fixed is the reply time: every request gets a real reply within one business day.
 
 **Where can I see Roya's services on the website?**
 On the Services page — "Services" in the site's main menu. It has one card per service — who it's for, the problem, the deliverable, duration and price — each with a "Register / Request" button. The home page also has a short services summary with a "See all services" button.
@@ -25,4 +25,4 @@ On the Services page — "Services" in the site's main menu. It has one card per
 On the Services page, click "Register / Request" on that service's card. A short form opens with the service already selected: name, business name, phone number or Telegram ID, email, and the most important task you want to improve with AI. Roya gets in touch within 24 business hours.
 
 **How do I request a consultation on the website?**
-Click "Request a consultation" — it's in the top bar of every page and on the Services page. It opens the consultation form on its own page, where you share your name, email and a few lines about the problem. Roya replies within two working days. The assistant on this site can also submit the request for you with just your name and email.
+Click "Request a consultation" — it's in the top bar of every page and on the Services page. It opens the consultation form on its own page, where you share your name, email and a few lines about the problem. Roya replies within one business day. The assistant on this site can also submit the request for you with just your name and email.

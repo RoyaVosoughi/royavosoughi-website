@@ -156,7 +156,7 @@
       },
       "reply": {
         "name": "Hear back personally",
-        "body": "I read every message myself and reply within two working days — even if the honest answer is that I'm not the right fit."
+        "body": "I read every message myself and reply within one business day — even if the honest answer is that I'm not the right fit."
       },
       "call": {
         "name": "45-minute consultation — €29",
@@ -261,13 +261,13 @@
   },
   "contact": {
     "metaTitle": "Request a consultation",
-    "metaDescription": "Tell Roya Vosoughi what you're trying to solve. A personal reply within two working days with an honest view of whether AI is the right fit.",
+    "metaDescription": "Tell Roya Vosoughi what you're trying to solve. A personal reply within one business day with an honest view of whether AI is the right fit.",
     "eyebrow": "Contact",
     "title": "Tell me what you're trying to solve.",
-    "intro": "Share a few lines about your business and the problem. I'll reply personally within two working days with an honest view of whether AI is the right fit.",
+    "intro": "Share a few lines about your business and the problem. I'll reply personally within one business day with an honest view of whether AI is the right fit.",
     "emailLabel": "Email",
     "responseLabel": "Response time",
-    "responseValue": "Within two working days. Always a real reply, even if the answer is no.",
+    "responseValue": "Within one business day. Always a real reply, even if the answer is no.",
     "nameLabel": "Your name",
     "namePlaceholder": "Maria Rossi",
     "nameError": "Enter your name — at least 2 characters.",
@@ -295,7 +295,7 @@
     "submit": "Send message",
     "sending": "Sending…",
     "successTitle": "Message sent.",
-    "successBody": "Thank you — I'll get back to you within two working days.",
+    "successBody": "Thank you — I'll get back to you within one business day.",
     "errorBody": "That didn't go through. Please email me directly at",
     "formErrorSummary": "Please fix the highlighted field before sending.",
     "fallbackIntro": "The contact form isn't switched on yet. Email me directly — I read every message.",
@@ -449,7 +449,7 @@
     "send": "Request the full plan",
     "sending": "Sending…",
     "sentTitle": "Request received",
-    "sentBody": "Thank you. I'll reply personally within two working days.",
+    "sentBody": "Thank you. I'll reply personally within one business day.",
     "errorBody": "That didn't go through. Please try again, or email me directly at",
     "bookLine": "Prefer to talk it through? Book the 45-minute consultation.",
     "bookCta": "Book a consultation",
@@ -599,7 +599,7 @@
     "messagePlaceholder": "How can I help?",
     "submit": "Send message",
     "sending": "Sending…",
-    "legal": "By submitting, you agree that I use your details only to reply to you.",
+    "legal": "I only use your details to reply to you. No newsletter, never shared.",
     "success": "Message sent. I'll get back to you within one business day.",
     "error": "That didn't go through. Please use \"Ask directly\" to email me instead.",
     "talkTitle": "Let's talk.",
