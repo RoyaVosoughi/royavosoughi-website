@@ -56,8 +56,18 @@ function touchSession() {
 }
 
 /** A fresh id starts a brand-new conversation server-side (getOrCreateConversation keys on channel + external_user_id). */
+/** crypto.randomUUID is secure-context only (https/localhost) — fall back to getRandomValues on plain-http LAN addresses. */
+function uuid(): string {
+  if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  const b = crypto.getRandomValues(new Uint8Array(16));
+  b[6] = (b[6] & 0x0f) | 0x40;
+  b[8] = (b[8] & 0x3f) | 0x80;
+  const h = Array.from(b, (x) => x.toString(16).padStart(2, "0")).join("");
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+}
+
 function rotateSessionId(): string {
-  const id = crypto.randomUUID();
+  const id = uuid();
   window.localStorage.setItem(SESSION_STORAGE_KEY, id);
   touchSession();
   return id;

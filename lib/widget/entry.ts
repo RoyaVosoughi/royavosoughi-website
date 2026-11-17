@@ -172,8 +172,22 @@ if (!(window as unknown as { __royaChatWidgetLoaded?: boolean }).__royaChatWidge
     return rotateSessionId();
   }
   /** A fresh id starts a brand-new conversation server-side (getOrCreateConversation keys on channel+external_user_id) — used once the previous one has ended, so reopening the widget never resumes a closed conversation. */
+  /**
+   * crypto.randomUUID only exists in secure contexts (https or localhost) —
+   * on a plain-http LAN address (testing on a phone via 192.168.x.x) it's
+   * undefined and the whole widget crashed before drawing the bubble.
+   * getRandomValues works everywhere; the server requires a real v4 UUID.
+   */
+  function uuid(): string {
+    if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+    const b = crypto.getRandomValues(new Uint8Array(16));
+    b[6] = (b[6] & 0x0f) | 0x40;
+    b[8] = (b[8] & 0x3f) | 0x80;
+    const h = Array.from(b, (x) => x.toString(16).padStart(2, "0")).join("");
+    return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+  }
   function rotateSessionId(): string {
-    const id = crypto.randomUUID();
+    const id = uuid();
     window.localStorage.setItem(SESSION_STORAGE_KEY, id);
     return id;
   }
