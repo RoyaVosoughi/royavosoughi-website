@@ -8,8 +8,23 @@ import { isSupabaseConfigured } from "@/lib/supabase";
 import { serviceKeys } from "@/lib/service-options";
 
 import { ServiceRequestDialog } from "./ServiceRequestDialog";
+import { ServicesShowcase } from "./ServicesShowcase";
 
 const details = ["for", "problem", "deliverable", "duration", "price"] as const;
+
+/** The "real work" ring, in service order. `file` names the image in public/services (card version in cards/). */
+const showcase = [
+  { key: "proposal", file: "proposal-sample", service: "consulting" },
+  { key: "emailReport", file: "email-automation", service: "automation", full: "svg" },
+  { key: "chatbot", file: "chatbot-demo-poster", service: "agent" },
+  { key: "voice", file: "voice-demo-poster", service: "agent" },
+  { key: "rag", file: "rag-playground", service: "agent" },
+  { key: "studio", file: "multi-agent-studio", service: "multiAgent" },
+  { key: "crmLeads", file: "crm-leads", service: "crm" },
+  { key: "crmDeals", file: "crm-deals", service: "crm" },
+  { key: "crmContact", file: "crm-contact", service: "crm" },
+  { key: "dashboard", file: "admin-dashboard", service: "adminPanel" },
+] as const;
 
 /**
  * The full /services page: one tilted paper card per service (they straighten
@@ -32,7 +47,46 @@ export async function ServicesDetail() {
         as="h1"
       />
 
-      <div className="mt-14">
+      <div className="mt-16">
+        <p className="label-eyebrow text-cobalt">{t("showcase.eyebrow")}</p>
+        <h2 className="mt-3 text-3xl text-ink md:text-4xl">{t("showcase.title")}</h2>
+        <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-ink/70">{t("showcase.intro")}</p>
+        <div className="mt-6">
+          <ServicesShowcase
+            locale={locale}
+            labels={{
+              carouselLabel: t("showcase.carouselLabel"),
+              watch: t("showcase.watch"),
+              listen: t("showcase.listen"),
+              viewFull: t("showcase.viewFull"),
+              close: t("showcase.close"),
+              captions: t("showcase.captions"),
+            }}
+            items={showcase.map((s) => ({
+              key: s.key,
+              card: `/services/cards/${s.file}.jpg`,
+              full: `/services/${s.file}.${"full" in s ? s.full : "jpg"}`,
+              alt: t(`showcase.items.${s.key}.alt`),
+              title: t(`showcase.items.${s.key}.title`),
+              body: t(`showcase.items.${s.key}.body`),
+              serviceName: t(`items.${s.service}.name`),
+              media:
+                s.key === "chatbot"
+                  ? { kind: "watch", src: "/services/chatbot-demo.mp4", poster: "/services/chatbot-demo-poster.jpg" }
+                  : s.key === "voice"
+                    ? {
+                        kind: "listen",
+                        src: "/services/voice-demo.mp4",
+                        poster: "/services/voice-demo-poster.jpg",
+                        captions: `/services/voice-demo.${locale === "fa" ? "fa" : "en"}.vtt`,
+                      }
+                    : undefined,
+            }))}
+          />
+        </div>
+      </div>
+
+      <div className="mt-20">
         <ol className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {serviceKeys.map((key, i) => (
             <li key={key}>

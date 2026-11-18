@@ -74,10 +74,10 @@
   },
   "services": {
     "metaTitle": "Services",
-    "metaDescription": "Roya Vosoughi's AI services: consulting sessions, automation, custom agents and multi-agent systems.",
+    "metaDescription": "Roya Vosoughi's AI services: consulting sessions, automation, custom agents, multi-agent systems, CRMs and management panels.",
     "eyebrow": "Services",
     "title": "From one consulting session to a team of agents.",
-    "intro": "Four ways to make AI actually work in your business. Pick the one closest to your problem and send a request.",
+    "intro": "Six ways to make AI actually work in your business. Pick the one closest to your problem and send a request.",
     "teaserLink": "See all services",
     "cta": "Register / Request",
     "labels": {
@@ -95,7 +95,7 @@
         "problem": "They don't know what improvements AI could bring to their work.",
         "deliverable": "A 45-minute session reviewing your workflow, then a written proposal of opportunities and solutions a few days later.",
         "duration": "One session plus a few working days.",
-        "price": "Set after the introductory meeting or once the proposal is ready."
+        "price": "€29."
       },
       "automation": {
         "name": "Automation",
@@ -123,6 +123,24 @@
         "deliverable": "Several agents with independent tasks, and a manager agent for final approval.",
         "duration": "6–8 weeks.",
         "price": "Set after the consulting session."
+      },
+      "crm": {
+        "name": "CRM",
+        "tech": "Next.js · Supabase · LLMs",
+        "for": "A business whose leads and clients are spread across email, chats and spreadsheets.",
+        "problem": "Leads slip through and follow-ups get forgotten.",
+        "deliverable": "One place for every lead, client and deal. Your AI assistant adds new leads automatically, scores them, and writes a summary of each client.",
+        "duration": "Around 4–6 weeks.",
+        "price": "Set after the consulting session."
+      },
+      "adminPanel": {
+        "name": "Management Panel",
+        "tech": "Next.js · Supabase · LLMs",
+        "for": "A manager who wants to see how the business and the team are doing without chasing people for updates.",
+        "problem": "Numbers and reports live in different tools, so nobody sees the whole picture.",
+        "deliverable": "A private dashboard with your key numbers, tasks and reports in one place, with roles so each person sees only what they need.",
+        "duration": "Around 4–6 weeks.",
+        "price": "Set after the consulting session."
       }
     },
     "form": {
@@ -143,6 +161,69 @@
       "successTitle": "Request received",
       "successBody": "Your request has been submitted. I will contact you within 24 business hours.",
       "errorBody": "That didn't go through. Please try again, or email me directly at"
+    },
+    "showcase": {
+      "eyebrow": "Real work",
+      "title": "See it working.",
+      "intro": "The projects behind each service. Drag the ring, or click an image to bring it to the front.",
+      "carouselLabel": "Examples of real work",
+      "watch": "Watch the demo",
+      "listen": "Listen to Nura",
+      "viewFull": "View full image",
+      "close": "Close",
+      "captions": "English captions",
+      "items": {
+        "proposal": {
+          "title": "From a 45-minute session to a written plan.",
+          "body": "After the session you get a written proposal: what to automate, how, and how long it takes. (Client name hidden.)",
+          "alt": "First page of a written proposal for an automated content system, with the client's name removed"
+        },
+        "emailReport": {
+          "title": "Your inbox, summed up every morning.",
+          "body": "An agent reads new emails each day, sorts them by what needs you, and sends one short report.",
+          "alt": "Diagram: every morning an AI agent reads new emails, sorts them into urgent, needs a reply and FYI, and sends a daily report"
+        },
+        "chatbot": {
+          "title": "A website assistant that answers like your team would.",
+          "body": "Nura answers visitors from the site's own content, day or night, and turns interested visitors into leads.",
+          "alt": "Nura, the website chat assistant, answering a question about services"
+        },
+        "voice": {
+          "title": "The same assistant, on a voice call.",
+          "body": "Visitors can talk instead of type. Press play to hear Nura.",
+          "alt": "Nura's voice call window showing Speaking"
+        },
+        "rag": {
+          "title": "Answers from your own documents, with the sources.",
+          "body": "Every answer is built from your files, and you can see exactly which parts it used.",
+          "alt": "A question, the assistant's answer, and the six document passages it was built from"
+        },
+        "studio": {
+          "title": "A content team made of agents.",
+          "body": "One idea goes in; agents write the script, the posts for LinkedIn, Telegram and Instagram, and the video. Nothing goes live until you approve it.",
+          "alt": "Map of a content studio where an idea scout, scenario writer, channel writers and video agents feed into publishing"
+        },
+        "crmLeads": {
+          "title": "Every new lead, scored by AI.",
+          "body": "Leads from your chatbot and voice agent land here automatically, with an AI score so you know who to contact first. (Shown with sample data.)",
+          "alt": "CRM leads table with AI scores, using sample data"
+        },
+        "crmDeals": {
+          "title": "Your sales pipeline at a glance.",
+          "body": "Move each deal from New to Won, with a suggested next step on every card. (Shown with sample data.)",
+          "alt": "CRM deals board with pipeline stages, using sample data"
+        },
+        "crmContact": {
+          "title": "The whole story of each client.",
+          "body": "Every call, meeting and note in one timeline, with an AI summary at the top. (Shown with sample data.)",
+          "alt": "CRM contact page with an AI summary and a timeline, using sample data"
+        },
+        "dashboard": {
+          "title": "Your business on one screen.",
+          "body": "Conversations, leads, tasks and costs in one dashboard, with roles so each person sees what they need.",
+          "alt": "Management panel dashboard with key numbers and charts"
+        }
+      }
     }
   },
   "process": {

@@ -8,6 +8,8 @@ export const serviceKeys = [
   "automation",
   "agent",
   "multiAgent",
+  "crm",
+  "adminPanel",
 ] as const;
 
 export type ServiceKey = (typeof serviceKeys)[number];

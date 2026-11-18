@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { serviceKeys } from "@/lib/service-options";
 
 /**
- * Home-page teaser: the four services as Origin-style colour tiles — large
+ * Home-page teaser: the six services as Origin-style colour tiles — large
  * 30px-radius panels where colour alone separates the categories. The fills
  * are fixed accent panels (they don't flip in dark mode), so the text on
  * each uses the fixed night/cream pair. The full cards and the request form
