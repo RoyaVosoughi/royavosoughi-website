@@ -165,7 +165,7 @@ const messages = {
     personaOverridePlaceholder: "Leave blank to use the currently-active persona",
     running: "Running…",
     run: "Run",
-    runError: "Run failed — check OPENROUTER_API_KEY is set.",
+    runError: "Run failed — check the API key for this model (GEMINI_API_KEY for Gemini models, OPENROUTER_API_KEY for the rest).",
     tokensLine: "{tokensIn}→{tokensOut} tokens",
     toolCallsSuffix: " · would call: {calls}",
     emptyReply: "(empty reply)",

@@ -160,7 +160,7 @@ const messages: DeepStringify<typeof source> = {
     personaOverridePlaceholder: "برای استفاده از شخصیت فعال فعلی، خالی بگذارید",
     running: "در حال اجرا…",
     run: "اجرا",
-    runError: "اجرا ناموفق بود — بررسی کنید OPENROUTER_API_KEY تنظیم شده باشد.",
+    runError: "اجرا ناموفق بود — کلید API این مدل را بررسی کنید (GEMINI_API_KEY برای مدل‌های Gemini و OPENROUTER_API_KEY برای بقیه).",
     tokensLine: "{tokensIn}→{tokensOut} توکن",
     toolCallsSuffix: " · فراخوانی می‌شد: {calls}",
     emptyReply: "(پاسخ خالی)",
