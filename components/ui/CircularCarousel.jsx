@@ -202,6 +202,7 @@ const CircularCarousel = ({
   innerShade = 0.6,
   cornerRadius = 12,
   captions = false,
+  renderOverlay,
   onChange,
   onItemClick,
   className = '',
@@ -881,6 +882,12 @@ const CircularCarousel = ({
               decoding="async"
               style={{ ...photoStyle, animationDelay: `${Math.round(leaving.delays[index])}ms` }}
             />
+          )}
+          {/* Card content (text/chips) sliced across the curved strips the same way as the photo. */}
+          {!back && renderOverlay && (
+            <div className="circular-carousel__overlay" style={photoStyle}>
+              {renderOverlay(item, index)}
+            </div>
           )}
           {back && <div className="circular-carousel__inner" />}
           <div className="circular-carousel__shade" />

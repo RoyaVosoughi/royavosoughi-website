@@ -35,6 +35,68 @@ type Labels = {
 };
 
 /**
+ * Front face of one ring card: the screenshot under a dark scrim, service +
+ * count chips on top, the headline and what you can open at the bottom.
+ * Sizes are px because the whole ring is scaled as one 3D stage. No
+ * backdrop-filter: it's costly and glitchy inside preserve-3d.
+ */
+function ShowcaseCard({
+  item,
+  index,
+  total,
+  pad,
+  labels,
+  rtl,
+}: {
+  item: ShowcaseItem;
+  index: number;
+  total: number;
+  pad: (n: number) => string;
+  labels: Labels;
+  rtl: boolean;
+}) {
+  const action = item.media ? (item.media.kind === "watch" ? labels.watch : labels.listen) : labels.viewFull;
+  return (
+    <div
+      dir={rtl ? "rtl" : "ltr"}
+      className="flex h-full w-full flex-col justify-between p-5 text-white"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(20,20,22,0.6) 0%, rgba(20,20,22,0.1) 24%, rgba(20,20,22,0.55) 44%, rgba(20,20,22,0.9) 60%, rgba(20,20,22,0.96) 100%)",
+      }}
+    >
+      <div className="flex flex-wrap gap-2">
+        <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white/90 ring-1 ring-white/30">
+          {item.serviceName}
+        </span>
+        <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-medium tracking-wider text-white/90 tabular-nums ring-1 ring-white/30">
+          {pad(index + 1)} / {pad(total)}
+        </span>
+      </div>
+      <div>
+        <p className="font-display text-[22px] leading-[1.15] tracking-tight text-white">{item.title}</p>
+        <div className="mt-4 flex items-center gap-3">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/25">
+            {item.media ? (
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect width="20" height="14" x="2" y="3" rx="2" />
+                <line x1="8" x2="16" y1="21" y2="21" />
+                <line x1="12" x2="12" y1="17" y2="21" />
+              </svg>
+            )}
+          </span>
+          <span className="text-xs font-medium text-white/85">{action}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
  * The /services "real work" ring: a React Bits CircularCarousel of project
  * screenshots, with the front-facing item's headline, sentence and service
  * name underneath. The ring itself is decorative-interactive; the panel
@@ -57,13 +119,16 @@ export function ServicesShowcase({ items, labels, locale }: { items: ShowcaseIte
   return (
     <div>
       {/* The ring's geometry assumes left-to-right; text direction is handled by the panel below. */}
-      <div dir="ltr" className="relative h-[230px] text-ink sm:h-[400px] md:h-[480px]">
+      <div dir="ltr" className="relative h-[300px] text-ink sm:h-[440px] md:h-[520px]">
         <CircularCarousel
           items={items.map((i) => ({ src: i.card, alt: i.alt, title: i.title, subtitle: i.serviceName }))}
+          renderOverlay={(_: unknown, index: number) => (
+            <ShowcaseCard item={items[index]} index={index} total={items.length} pad={pad} labels={labels} rtl={locale === "fa"} />
+          )}
           preset="cylinder"
           intro="rise"
           cardWidth={320}
-          aspectRatio={4 / 3}
+          aspectRatio={320 / 300}
           gap={28}
           speed={9}
           parallax={0.25}
@@ -84,7 +149,8 @@ export function ServicesShowcase({ items, labels, locale }: { items: ShowcaseIte
             {pad(active + 1)} / {pad(items.length)}
           </span>
         </p>
-        <h3 key={item.key} className="mt-3 text-2xl text-ink md:text-3xl">
+        {/* The headline is printed on the front card; keep it here for screen readers. */}
+        <h3 key={item.key} className="sr-only">
           {item.title}
         </h3>
         <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink/75">{item.body}</p>
