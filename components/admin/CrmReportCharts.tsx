@@ -4,7 +4,8 @@ import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis
 
 import type { LeadStatus, MonthlyRevenue, PipelineValueByStage } from "@/lib/admin/queries";
 
-const COLORS = ["#1e1e1e", "#0047ab", "#6b6b6b", "#e3a72f", "#7fa6e8", "#b8b0a6"];
+/* Glass palette — these charts only render inside the admin's frosted-sky shell. */
+const COLORS = ["#e6f6ff", "#8fd3ff", "#3fa2f0", "#c4e9ff", "#5ab8f5", "#b9cfe2"];
 
 export function LeadFunnelChart({ stats }: { stats: Record<LeadStatus, number> }) {
   const data = (["new", "contacted", "qualified", "converted", "lost"] as LeadStatus[]).map((status) => ({
@@ -16,10 +17,10 @@ export function LeadFunnelChart({ stats }: { stats: Record<LeadStatus, number> }
     <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 8, right: 8, bottom: 8, left: -16 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e1e1e1f" vertical={false} />
-          <XAxis dataKey="status" tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={{ stroke: "#1e1e1e1f" }} />
-          <YAxis tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={false} allowDecimals={false} />
-          <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }} cursor={{ fill: "#ebdfd1" }} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#ffffff26" vertical={false} />
+          <XAxis dataKey="status" tick={{ fontSize: 12, fill: "#ffffffcc" }} tickLine={false} axisLine={{ stroke: "#ffffff26" }} />
+          <YAxis tick={{ fontSize: 12, fill: "#ffffffcc" }} tickLine={false} axisLine={false} allowDecimals={false} />
+          <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid #ffffff33", background: "#10294a", color: "#ffffff", fontSize: 13 }} cursor={{ fill: "#ffffff14" }} />
           <Bar dataKey="count" radius={[8, 8, 0, 0]}>
             {data.map((entry, i) => (
               <Cell key={entry.status} fill={COLORS[i % COLORS.length]} />
@@ -39,19 +40,19 @@ export function PipelineValueChart({ stages, noDataLabel }: { stages: PipelineVa
     <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 8, right: 24, bottom: 8, left: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e1e1e1f" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#ffffff26" horizontal={false} />
           <XAxis
             type="number"
-            tick={{ fontSize: 12, fill: "#1e1e1e" }}
+            tick={{ fontSize: 12, fill: "#ffffffcc" }}
             tickLine={false}
-            axisLine={{ stroke: "#1e1e1e1f" }}
+            axisLine={{ stroke: "#ffffff26" }}
             tickFormatter={(v) => `$${v}`}
           />
-          <YAxis type="category" dataKey="stage" width={120} tick={{ fontSize: 11, fill: "#1e1e1e" }} tickLine={false} axisLine={false} />
+          <YAxis type="category" dataKey="stage" width={120} tick={{ fontSize: 11, fill: "#ffffffcc" }} tickLine={false} axisLine={false} />
           <Tooltip
             formatter={(value) => [`$${Number(value).toFixed(2)}`, "Value"]}
-            contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }}
-            cursor={{ fill: "#ebdfd1" }}
+            contentStyle={{ borderRadius: 12, border: "1px solid #ffffff33", background: "#10294a", color: "#ffffff", fontSize: 13 }}
+            cursor={{ fill: "#ffffff14" }}
           />
           <Bar dataKey="valueUsd" radius={[0, 8, 8, 0]}>
             {data.map((entry, i) => (
@@ -71,13 +72,13 @@ export function MonthlyRevenueChart({ months, noDataLabel }: { months: MonthlyRe
     <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={months} margin={{ top: 8, right: 8, bottom: 8, left: -16 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e1e1e1f" vertical={false} />
-          <XAxis dataKey="label" tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={{ stroke: "#1e1e1e1f" }} />
-          <YAxis tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#ffffff26" vertical={false} />
+          <XAxis dataKey="label" tick={{ fontSize: 12, fill: "#ffffffcc" }} tickLine={false} axisLine={{ stroke: "#ffffff26" }} />
+          <YAxis tick={{ fontSize: 12, fill: "#ffffffcc" }} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
           <Tooltip
             formatter={(value) => [`$${Number(value).toFixed(2)}`, "Revenue"]}
-            contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }}
-            cursor={{ fill: "#ebdfd1" }}
+            contentStyle={{ borderRadius: 12, border: "1px solid #ffffff33", background: "#10294a", color: "#ffffff", fontSize: 13 }}
+            cursor={{ fill: "#ffffff14" }}
           />
           <Bar dataKey="amountUsd" radius={[8, 8, 0, 0]} fill={COLORS[0]} />
         </BarChart>

@@ -1,0 +1,523 @@
+/*
+ * Persistent admin environment: sky + icon rail + section tabs + glass window.
+ * --u is the layout unit: 10px on working pages, the fluid 1rem on Overview
+ * (where html font-size scales with the viewport) — so the rail lines up with
+ * the Overview artboard at 1440×810 and never jumps between pages.
+ * Physical left/right only (logical insets compile to :lang() selectors that
+ * the mobile overrides can't beat).
+ */
+
+.shell {
+  --u: 10px;
+  --rail-x: max(calc(2.4 * var(--u)), calc(50% - 60.6 * var(--u)));
+  --win-end: max(calc(2.4 * var(--u)), calc(50% - 60.2 * var(--u)));
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: clip;
+}
+
+.shellOverview {
+  --u: 1rem;
+}
+
+:global(html):has(.shell) body {
+  background: #3f8fe0;
+}
+
+.glass {
+  background: rgba(14, 38, 70, 0.5);
+  backdrop-filter: blur(28px) saturate(1.35);
+  -webkit-backdrop-filter: blur(28px) saturate(1.35);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 3rem 8rem -3rem rgba(8, 24, 48, 0.55);
+}
+
+/* -------------------------------------------------------------------- sky */
+
+.room {
+  position: fixed;
+  inset: -3%;
+  z-index: 0;
+  overflow: hidden;
+  will-change: transform;
+  animation: roomIn 1.6s var(--out) both;
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #1c68c4 0%, #3a8ce0 28%, #72b9ef 58%, #b9e0f9 82%, #e9f6fe 100%);
+}
+
+.sun {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(14% 22% at 16% 18%, rgba(255, 252, 238, 0.85), transparent 70%),
+    radial-gradient(42% 52% at 18% 24%, rgba(255, 240, 205, 0.38), transparent 72%);
+  mix-blend-mode: soft-light;
+  transition: opacity 1s var(--ease);
+}
+
+.cloud {
+  position: absolute;
+  width: 700px;
+  height: 220px;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0)) 0% 60% / 42% 64% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0)) 28% 20% / 46% 92% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)) 62% 40% / 48% 80% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0)) 100% 64% / 36% 58% no-repeat;
+  filter: blur(4px);
+  animation: drift 150s ease-in-out infinite alternate;
+}
+
+.cloudA {
+  top: 6%;
+  left: 52%;
+  opacity: 0.75;
+}
+.cloudB {
+  top: 70%;
+  left: -6%;
+  transform: scale(1.5);
+  opacity: 0.9;
+  animation-duration: 190s;
+  animation-delay: -60s;
+}
+.cloudC {
+  top: 38%;
+  left: 74%;
+  transform: scale(0.8);
+  opacity: 0.55;
+  animation-duration: 170s;
+  animation-delay: -30s;
+}
+.cloudD {
+  top: 84%;
+  left: 58%;
+  transform: scale(1.8);
+  opacity: 0.85;
+  animation-duration: 210s;
+  animation-delay: -100s;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(6, 22, 48, 0.45) 100%);
+}
+
+.dim {
+  position: absolute;
+  inset: 0;
+  background: #071a33;
+  transition: opacity 1s var(--ease);
+}
+
+/* ------------------------------------------------------------------- rail */
+
+.rail {
+  position: fixed;
+  left: var(--rail-x);
+  top: calc(11.2 * var(--u));
+  z-index: 20;
+  width: calc(6.4 * var(--u));
+  padding: calc(0.8 * var(--u));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.6 * var(--u));
+  border-radius: 999px;
+  animation: railIn 1s var(--out) 0.3s both;
+}
+
+:global([dir="rtl"]) .rail {
+  left: auto;
+  right: var(--rail-x);
+  animation-name: railInRtl;
+}
+
+.railBtn {
+  --i: 0;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(4.8 * var(--u));
+  height: calc(4.8 * var(--u));
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.4s var(--spring),
+    background 0.3s;
+  animation: pop 0.6s var(--spring) both;
+  animation-delay: calc(0.5s + var(--i) * 0.06s);
+}
+
+.railBtn svg {
+  width: calc(2.2 * var(--u));
+  height: calc(2.2 * var(--u));
+}
+
+.railBtn:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.railBtn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.railBtn:disabled {
+  opacity: 0.5;
+}
+
+.railActive,
+.railActive:hover {
+  background: #fff;
+  color: #0d2340;
+}
+
+.railLocale {
+  font-size: calc(1.15 * var(--u));
+  font-weight: 700;
+  animation-delay: 1s;
+}
+
+.railSep {
+  width: calc(2.4 * var(--u));
+  height: 1px;
+  margin: calc(0.4 * var(--u)) 0;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.tip {
+  position: absolute;
+  left: calc(100% + 1.4 * var(--u));
+  top: 50%;
+  translate: calc(-0.8 * var(--u)) -50%;
+  padding: calc(0.7 * var(--u)) calc(1.4 * var(--u));
+  border-radius: 999px;
+  font-size: calc(1.3 * var(--u));
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s var(--out),
+    translate 0.4s var(--out);
+}
+
+:global([dir="rtl"]) .tip {
+  left: auto;
+  right: calc(100% + 1.4 * var(--u));
+  translate: calc(0.8 * var(--u)) -50%;
+}
+
+.railBtn:hover .tip,
+.railBtn:focus-visible .tip {
+  opacity: 1;
+  translate: 0 -50%;
+}
+
+/* ------------------------------------------------------------------- page */
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: calc(11.2 * var(--u)) var(--win-end) calc(6 * var(--u)) calc(var(--rail-x) + 9 * var(--u));
+}
+
+:global([dir="rtl"]) .page {
+  padding-left: var(--win-end);
+  padding-right: calc(var(--rail-x) + 9 * var(--u));
+}
+
+.tabs {
+  position: absolute;
+  top: calc(3.2 * var(--u));
+  left: 50%;
+  translate: -50% 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: calc(0.4 * var(--u));
+  max-width: calc(100% - 4.8 * var(--u));
+  height: calc(6 * var(--u));
+  padding: calc(0.6 * var(--u));
+  border-radius: 999px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  animation: dropIn 0.8s var(--out) both;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: calc(4.8 * var(--u));
+  padding: 0 calc(2 * var(--u));
+  border-radius: 999px;
+  color: #fff;
+  font-size: calc(1.45 * var(--u));
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    color 0.4s var(--ease),
+    background 0.3s;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tab:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+.tabActive,
+.tabActive:hover {
+  background: transparent;
+  color: #0d2340;
+}
+
+.tabIndicator {
+  position: absolute;
+  top: calc(0.6 * var(--u));
+  height: calc(4.8 * var(--u));
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0.6rem 1.6rem -0.6rem rgba(8, 24, 48, 0.45);
+  transition:
+    left 0.7s var(--spring),
+    width 0.7s var(--spring);
+}
+
+.window {
+  position: relative;
+  min-height: calc(100vh - 17.2 * var(--u));
+  border-radius: calc(4.2 * var(--u));
+  background: rgba(14, 38, 70, 0.56);
+  animation: windowIn 1s var(--out) both;
+}
+
+.content {
+  padding: calc(4 * var(--u)) calc(4.4 * var(--u)) calc(5 * var(--u));
+  animation: contentIn 0.55s var(--out) both;
+}
+
+/* ------------------------------------------------------------------ login */
+
+.loginStage {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 36px 36px;
+  border-radius: 32px;
+  background: rgba(14, 38, 70, 0.56);
+  animation: windowIn 1s var(--out) 0.2s both;
+}
+
+/* -------------------------------------------------------------- keyframes */
+
+@keyframes drift {
+  from {
+    translate: -140px 0;
+  }
+  to {
+    translate: 140px 0;
+  }
+}
+
+@keyframes roomIn {
+  from {
+    filter: blur(24px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+
+@keyframes railIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes railInRtl {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes windowIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes contentIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* ------------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  .shell {
+    --u: 10px;
+  }
+
+  .room {
+    animation: none;
+  }
+
+  /* the rail becomes a scrolling row at the top of every page */
+  .rail,
+  :global([dir="rtl"]) .rail {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: auto;
+    max-width: calc(100% - 32px);
+    margin: 16px auto 0;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    animation: dropIn 0.8s var(--out) both;
+  }
+
+  .shell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .railBtn {
+    flex: none;
+  }
+
+  .railSep {
+    width: 1px;
+    height: 24px;
+    margin: 0 4px;
+  }
+
+  .tip {
+    display: none;
+  }
+
+  .page,
+  :global([dir="rtl"]) .page {
+    padding: 12px 16px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tabs {
+    position: relative;
+    top: auto;
+    left: auto;
+    translate: none;
+    max-width: 100%;
+    align-self: center;
+  }
+
+  .window {
+    min-height: 60vh;
+    border-radius: 24px;
+  }
+
+  .content {
+    padding: 20px 16px 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell *,
+  .shell *::before,
+  .shell *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

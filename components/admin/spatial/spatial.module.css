@@ -25,8 +25,8 @@ html:has(.stage) {
   min-height: 100vh;
   color: #fff;
   font-family: var(--font-inter), var(--font-vazirmatn), system-ui, sans-serif;
-  background: #3f8fe0;
-  overflow-x: hidden;
+  background: transparent;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -58,107 +58,6 @@ html:has(.stage) {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.28),
     0 3rem 8rem -3rem rgba(8, 24, 48, 0.55);
-}
-
-/* ------------------------------------------------------------------ sky */
-
-.room {
-  position: fixed;
-  inset: -3%;
-  z-index: 0;
-  overflow: hidden;
-  will-change: transform;
-  animation: roomIn 1.6s var(--out) both;
-}
-
-.sky {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #1c68c4 0%, #3a8ce0 28%, #72b9ef 58%, #b9e0f9 82%, #e9f6fe 100%);
-}
-
-.sun {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(14% 22% at 16% 18%, rgba(255, 252, 238, 0.85), transparent 70%),
-    radial-gradient(42% 52% at 18% 24%, rgba(255, 240, 205, 0.38), transparent 72%);
-  mix-blend-mode: soft-light;
-  transition: opacity 1s var(--ease);
-}
-
-.cloud {
-  position: absolute;
-  width: 70rem;
-  height: 22rem;
-  background:
-    radial-gradient(closest-side, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0)) 0% 60% / 42% 64% no-repeat,
-    radial-gradient(closest-side, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0)) 28% 20% / 46% 92% no-repeat,
-    radial-gradient(closest-side, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)) 62% 40% / 48% 80% no-repeat,
-    radial-gradient(closest-side, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0)) 100% 64% / 36% 58% no-repeat;
-  filter: blur(4px);
-  animation: drift 150s ease-in-out infinite alternate;
-}
-
-.cloudA {
-  top: 6%;
-  left: 52%;
-  opacity: 0.75;
-}
-.cloudB {
-  top: 70%;
-  left: -6%;
-  transform: scale(1.5);
-  opacity: 0.9;
-  animation-duration: 190s;
-  animation-delay: -60s;
-}
-.cloudC {
-  top: 38%;
-  left: 74%;
-  transform: scale(0.8);
-  opacity: 0.55;
-  animation-duration: 170s;
-  animation-delay: -30s;
-}
-.cloudD {
-  top: 84%;
-  left: 58%;
-  transform: scale(1.8);
-  opacity: 0.85;
-  animation-duration: 210s;
-  animation-delay: -100s;
-}
-
-.vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(6, 22, 48, 0.45) 100%);
-}
-
-.dim {
-  position: absolute;
-  inset: 0;
-  background: #071a33;
-  transition: opacity 1s var(--ease);
-}
-
-@keyframes drift {
-  from {
-    translate: -14rem 0;
-  }
-  to {
-    translate: 14rem 0;
-  }
-}
-
-@keyframes roomIn {
-  from {
-    filter: blur(24px);
-  }
-  to {
-    filter: blur(0);
-  }
 }
 
 /* --------------------------------------------------------------- layout */
@@ -263,104 +162,6 @@ html:has(.stage) {
 .tabPlus:hover {
   transform: rotate(90deg);
   background: rgba(255, 255, 255, 0.2);
-}
-
-/* ------------------------------------------------------------------ rail */
-
-.rail {
-  position: absolute;
-  inset-inline-start: 11.4rem;
-  top: 11.2rem;
-  width: 6.4rem;
-  padding: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  border-radius: 99rem;
-  z-index: 6;
-  animation: railIn 1s var(--out) 0.7s both;
-}
-
-.railBtn {
-  --i: 0;
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 4.8rem;
-  height: 4.8rem;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: #fff;
-  font: inherit;
-  cursor: pointer;
-  transition:
-    transform 0.4s var(--spring),
-    background 0.3s;
-  animation: pop 0.6s var(--spring) both;
-  animation-delay: calc(0.9s + var(--i) * 0.06s);
-}
-
-.railBtn svg {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-
-.railBtn:hover {
-  transform: scale(1.08);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.railBtn:disabled {
-  opacity: 0.5;
-}
-
-.railActive,
-.railActive:hover {
-  background: #fff;
-  color: #0d2340;
-}
-
-.railLocale {
-  font-size: 1.15rem;
-  font-weight: 700;
-  animation-delay: 1.4s;
-}
-
-.railSep {
-  width: 2.4rem;
-  height: 1px;
-  margin: 0.4rem 0;
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.tip {
-  position: absolute;
-  inset-inline-start: calc(100% + 1.4rem);
-  top: 50%;
-  translate: -0.8rem -50%;
-  padding: 0.7rem 1.4rem;
-  border-radius: 99rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-  white-space: nowrap;
-  color: #fff;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.3s var(--out),
-    translate 0.4s var(--out);
-}
-
-:global([dir="rtl"]) .tip {
-  translate: 0.8rem -50%;
-}
-
-.railBtn:hover .tip,
-.railBtn:focus-visible .tip {
-  opacity: 1;
-  translate: 0 -50%;
 }
 
 /* --------------------------------------------------------------- window */
@@ -1632,14 +1433,9 @@ html:has(.stage) {
 
   /* logical insets compile to :lang()-qualified selectors, so reset with physical props at matching specificity */
   .window > .card,
-  .tilt > .rail,
   .tilt > .window {
     left: auto;
     right: auto;
-  }
-
-  .room {
-    animation: none;
   }
 
   .screen {
@@ -1681,37 +1477,6 @@ html:has(.stage) {
 
   .tabPlus {
     flex: none;
-  }
-
-  /* the rail turns into a scrolling row so the other sections stay reachable */
-  .rail {
-    position: relative;
-    inset-inline-start: auto;
-    top: auto;
-    width: auto;
-    max-width: 100%;
-    flex-direction: row;
-    align-self: center;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .rail::-webkit-scrollbar {
-    display: none;
-  }
-
-  .railSep {
-    width: 1px;
-    height: 2.4rem;
-    margin: 0 0.4rem;
-  }
-
-  .railBtn {
-    flex: none;
-  }
-
-  .tip {
-    display: none;
   }
 
   .window {

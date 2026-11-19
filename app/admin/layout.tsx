@@ -7,6 +7,7 @@ import { getAdminLocale, getAdminMessages } from "@/lib/admin/i18n/server";
 import { getAdminDirection } from "@/lib/admin/i18n/shared";
 
 import "../globals.css";
+import "./glass-theme.css";
 
 /**
  * /admin sits outside app/[locale]/ on purpose — it's Roya's own internal

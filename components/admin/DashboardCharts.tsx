@@ -15,7 +15,7 @@ function palette(tone: ChartTone) {
     : { bars: COLORS, ink: "#1e1e1e", grid: "#1e1e1e1f", cursor: "#ebdfd1" };
 }
 
-export function ChannelBreakdownChart({ sessionsByChannel, tone = "light" }: { sessionsByChannel: Record<string, number>; tone?: ChartTone }) {
+export function ChannelBreakdownChart({ sessionsByChannel, tone = "glass" }: { sessionsByChannel: Record<string, number>; tone?: ChartTone }) {
   const p = palette(tone);
   const data = Object.entries(sessionsByChannel).map(([channel, count]) => ({ channel, count }));
 
@@ -27,7 +27,7 @@ export function ChannelBreakdownChart({ sessionsByChannel, tone = "light" }: { s
           <XAxis dataKey="channel" tick={{ fontSize: 12, fill: p.ink }} tickLine={false} axisLine={{ stroke: p.grid }} />
           <YAxis tick={{ fontSize: 12, fill: p.ink }} tickLine={false} axisLine={false} allowDecimals={false} />
           <Tooltip
-            contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }}
+            contentStyle={{ borderRadius: 12, border: "1px solid #ffffff33", background: "#10294a", color: "#ffffff", fontSize: 13 }}
             cursor={{ fill: p.cursor }}
           />
           <Bar dataKey="count" radius={[8, 8, 0, 0]}>
@@ -41,7 +41,7 @@ export function ChannelBreakdownChart({ sessionsByChannel, tone = "light" }: { s
   );
 }
 
-export function CostByModelChart({ byModel, tone = "light" }: { byModel: Array<{ model: string; costUsd: number }>; tone?: ChartTone }) {
+export function CostByModelChart({ byModel, tone = "glass" }: { byModel: Array<{ model: string; costUsd: number }>; tone?: ChartTone }) {
   const p = palette(tone);
   if (byModel.length === 0) {
     return <p className={tone === "glass" ? "text-sm text-white/70" : "text-sm text-soft/60"}>No model usage recorded yet this month.</p>;
@@ -58,7 +58,7 @@ export function CostByModelChart({ byModel, tone = "light" }: { byModel: Array<{
           <YAxis type="category" dataKey="model" width={160} tick={{ fontSize: 11, fill: p.ink }} tickLine={false} axisLine={false} />
           <Tooltip
             formatter={(value) => [`$${Number(value).toFixed(4)}`, "Est. cost"]}
-            contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }}
+            contentStyle={{ borderRadius: 12, border: "1px solid #ffffff33", background: "#10294a", color: "#ffffff", fontSize: 13 }}
             cursor={{ fill: p.cursor }}
           />
           <Bar dataKey="costUsd" radius={[0, 8, 8, 0]}>

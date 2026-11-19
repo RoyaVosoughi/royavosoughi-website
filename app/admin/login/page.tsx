@@ -1,5 +1,6 @@
 import { AdminLocaleSwitcher } from "@/components/admin/AdminLocaleSwitcher";
 import { LoginForm } from "@/components/admin/LoginForm";
+import { AdminLoginShell } from "@/components/admin/shell/AdminShell";
 import { isAdminConfigured } from "@/lib/admin/auth";
 import { getAdminTranslator } from "@/lib/admin/i18n/server";
 
@@ -8,18 +9,18 @@ export default async function AdminLoginPage() {
 
   if (!isAdminConfigured()) {
     return (
-      <main className="flex min-h-dvh items-center justify-center p-6">
-        <div className="max-w-sm rounded-3xl border-2 border-dashed border-ink/20 bg-mist/50 p-8 text-center">
+      <AdminLoginShell>
+        <div className="text-center">
           <p className="font-display text-lg font-bold text-ink">{t("notConfiguredTitle")}</p>
           <p className="mt-2 text-ink/70">{t("notConfiguredBody")}</p>
         </div>
-      </main>
+      </AdminLoginShell>
     );
   }
 
   return (
-    <main className="flex min-h-dvh items-center justify-center p-6">
-      <div className="w-full max-w-sm">
+    <AdminLoginShell>
+      <div className="w-full">
         <div className="flex items-center justify-between gap-3">
           <p className="label-eyebrow text-cobalt">{t("eyebrow")}</p>
           <AdminLocaleSwitcher className="rounded-full border-2 border-ink/15 px-3 py-1 text-xs font-medium text-ink transition-colors hover:border-cobalt hover:text-cobalt" />
@@ -30,6 +31,6 @@ export default async function AdminLoginPage() {
           <LoginForm />
         </div>
       </div>
-    </main>
+    </AdminLoginShell>
   );
 }

@@ -21,7 +21,8 @@ import type { DashboardStats } from "@/lib/admin/queries";
 import type { WeekdaySchedule } from "@/lib/ai/model-config";
 import type { Channel } from "@/lib/ai/types";
 
-import { AdminLocaleSwitcher } from "../AdminLocaleSwitcher";
+import { Icon, ICONS } from "../shell/icons";
+import { useSky } from "../shell/AdminShell";
 import { ChannelBreakdownChart, CostByModelChart } from "../DashboardCharts";
 import s from "./spatial.module.css";
 
@@ -71,7 +72,6 @@ const RANGE_OPTIONS = [7, 30, 90];
 const TEMP_MIN = 0;
 const TEMP_MAX = 2;
 const LIVE_WINDOW_MS = 15 * 60 * 1000;
-const SKY_KEY = "admin.spatial.sky";
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
@@ -122,117 +122,17 @@ function useIntro(delay: number) {
   return done;
 }
 
-/* ------------------------------------------------------------------ icons */
-
-function Icon({ children, size = 22 }: { children: ReactNode; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {children}
-    </svg>
-  );
-}
-
-const ICONS = {
-  home: <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" />,
-  pen: (
-    <>
-      <path d="M4 20h4L19 9l-4-4L4 16z" />
-      <path d="m13.5 6.5 4 4" />
-    </>
-  ),
-  spark: <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6" />,
-  inbox: (
-    <>
-      <path d="M4 13h4l1.5 3h5L16 13h4" />
-      <path d="M5.5 5h13L20 13v6H4v-6z" />
-    </>
-  ),
-  people: (
-    <>
-      <circle cx="9" cy="8" r="3.2" />
-      <path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" />
-      <path d="M16 5.2a3 3 0 0 1 0 5.6M17.5 14.3c1.6.6 2.7 2.2 3 4.7" />
-    </>
-  ),
-  broadcast: (
-    <>
-      <circle cx="12" cy="12" r="2" />
-      <path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" />
-    </>
-  ),
-  gear: (
-    <>
-      <circle cx="12" cy="12" r="3" />
-      <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
-    </>
-  ),
-  globe: (
-    <>
-      <circle cx="12" cy="12" r="8.5" />
-      <path d="M3.5 12h17M12 3.5c2.4 2.4 3.5 5.2 3.5 8.5S14.4 18.1 12 20.5C9.6 18.1 8.5 15.3 8.5 12S9.6 5.9 12 3.5z" />
-    </>
-  ),
-  send: <path d="M21 3 3 10.5l7 2.5 2.5 7zM10 13l5-5" />,
-  bubble: <path d="M5 5h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-6l-4 3.5V17H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />,
-  plus: <path d="M12 5v14M5 12h14" />,
-  sun: (
-    <>
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
-    </>
-  ),
-  play: <path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none" />,
-  handoff: (
-    <>
-      <path d="M3 12h10M9 8l4 4-4 4" />
-      <path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4" />
-    </>
-  ),
-  arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
-  reset: (
-    <>
-      <path d="M4 12a8 8 0 1 0 2.4-5.7" />
-      <path d="M4 4v4.5h4.5" />
-    </>
-  ),
-  logout: (
-    <>
-      <path d="M15 4h3a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3" />
-      <path d="M10 8l-4 4 4 4M6 12h10" />
-    </>
-  ),
-  target: (
-    <>
-      <circle cx="12" cy="12" r="8.5" />
-      <circle cx="12" cy="12" r="4.5" />
-      <circle cx="12" cy="12" r="1" fill="currentColor" />
-    </>
-  ),
-  check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
-};
-
 const CHANNEL_ICON: Record<Channel, ReactNode> = { web: ICONS.globe, telegram: ICONS.send, widget: ICONS.bubble };
 const CHANNEL_LABEL_KEY = { web: "channelWeb", telegram: "channelTelegram", widget: "channelWidget" } as const;
 
-const RAIL: Array<{ href: string; icon: ReactNode; labelKey: "groupOverview" | "groupContent" | "groupKnowledgeAi" | "groupInboxPeople" | "groupCrm" | "groupChannels" | "groupSystem" }> = [
-  { href: "/admin", icon: ICONS.home, labelKey: "groupOverview" },
-  { href: "/admin/blog", icon: ICONS.pen, labelKey: "groupContent" },
-  { href: "/admin/knowledge", icon: ICONS.spark, labelKey: "groupKnowledgeAi" },
-  { href: "/admin/conversations", icon: ICONS.inbox, labelKey: "groupInboxPeople" },
-  { href: "/admin/leads", icon: ICONS.people, labelKey: "groupCrm" },
-  { href: "/admin/channels", icon: ICONS.broadcast, labelKey: "groupChannels" },
-  { href: "/admin/team", icon: ICONS.gear, labelKey: "groupSystem" },
-];
 
 /* --------------------------------------------------------------- the page */
 
 export function SpatialOverview({ days, locale, channels, stats, analytics, overdue }: Props) {
   const t = useTranslations("dashboard");
-  const tNav = useTranslations("nav");
   const tOverdue = useTranslations("crmOverdue");
   const router = useRouter();
 
-  const roomRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState<Channel>("web");
@@ -243,11 +143,10 @@ export function SpatialOverview({ days, locale, channels, stats, analytics, over
   const [temps, setTemps] = useState<Record<Channel, number>>(() =>
     Object.fromEntries(channels.map((c) => [c.channel, c.model.temperature])) as Record<Channel, number>,
   );
-  const [sky, setSky] = useState(72);
+  const { sky, setSky, saveSky } = useSky();
   const [now, setNow] = useState<Date | null>(null);
   const [toast, setToast] = useState<{ text: string; id: number } | null>(null);
   const [pendingDays, setPendingDays] = useState(days);
-  const [loggingOut, setLoggingOut] = useState(false);
 
   const introDone = useIntro(1500);
   const fmt0 = numberFormat(locale);
@@ -273,26 +172,6 @@ export function SpatialOverview({ days, locale, channels, stats, analytics, over
     return () => window.clearInterval(id);
   }, []);
 
-  /* sky brightness — a per-viewer preference */
-  useEffect(() => {
-    let saved = 72;
-    try {
-      const raw = window.localStorage.getItem(SKY_KEY);
-      if (raw) saved = clamp(Number(raw) || 72, 1, 100);
-    } catch {
-      /* storage blocked — keep default */
-    }
-    setSky(20);
-    const id = window.setTimeout(() => setSky(saved), 1300);
-    return () => window.clearTimeout(id);
-  }, []);
-  const saveSky = useCallback((v: number) => {
-    try {
-      window.localStorage.setItem(SKY_KEY, String(Math.round(v)));
-    } catch {
-      /* ignore */
-    }
-  }, []);
 
   /* keep the server's days in sync once a range navigation lands */
   useEffect(() => setPendingDays(days), [days]);
@@ -312,14 +191,11 @@ export function SpatialOverview({ days, locale, channels, stats, analytics, over
     const loop = () => {
       sx += (tx - sx) * 0.05;
       sy += (ty - sy) * 0.05;
-      const room = roomRef.current;
       const ui = tiltRef.current;
-      if (room && ui) {
+      if (ui) {
         if (mq.matches) {
-          room.style.transform = "";
           ui.style.transform = "";
         } else {
-          room.style.transform = `scale(1.04) translate(${(sx * 18).toFixed(2)}px, ${(sy * 12).toFixed(2)}px)`;
           ui.style.transform = `translate(${(sx * -14).toFixed(2)}px, ${(sy * -10).toFixed(2)}px) rotateY(${(sx * 4).toFixed(3)}deg) rotateX(${(-sy * 3).toFixed(3)}deg)`;
         }
       }
@@ -397,31 +273,11 @@ export function SpatialOverview({ days, locale, channels, stats, analytics, over
     );
   }
 
-  async function logout() {
-    setLoggingOut(true);
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
-    router.refresh();
-  }
-
-  const dimOpacity = ((100 - sky) / 100) * 0.34;
   const isLive = Boolean(now && shownChannel.latest && now.getTime() - new Date(shownChannel.latest.lastActiveAt).getTime() < LIVE_WINDOW_MS);
   const clock = now ? now.toLocaleTimeString(locale === "fa" ? "fa-IR" : "en-GB", { hour12: false }) : "--:--:--";
 
   return (
     <div className={s.stage}>
-      {/* ---------- sky ---------- */}
-      <div className={s.room} ref={roomRef} aria-hidden="true">
-        <div className={s.sky} />
-        <div className={`${s.cloud} ${s.cloudA}`} />
-        <div className={`${s.cloud} ${s.cloudB}`} />
-        <div className={`${s.cloud} ${s.cloudC}`} />
-        <div className={`${s.cloud} ${s.cloudD}`} />
-        <div className={s.sun} style={{ opacity: 0.35 + (sky / 100) * 0.65 }} />
-        <div className={s.vignette} />
-        <div className={s.dim} style={{ opacity: dimOpacity }} />
-      </div>
-
       <div className={s.screen}>
         <div className={s.artboard}>
           <div className={s.tilt} ref={tiltRef}>
@@ -434,28 +290,6 @@ export function SpatialOverview({ days, locale, channels, stats, analytics, over
               onSelect={switchChannel}
               manageLabel={t("manageChannels")}
             />
-
-            {/* ---------- icon rail ---------- */}
-            <nav className={`${s.glass} ${s.rail}`} aria-label={t("railLabel")}>
-              {RAIL.map((item, i) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`${s.railBtn} ${item.href === "/admin" ? s.railActive : ""}`}
-                  style={{ "--i": i } as CSSProperties}
-                  aria-current={item.href === "/admin" ? "page" : undefined}
-                >
-                  <Icon>{item.icon}</Icon>
-                  <span className={`${s.glass} ${s.tip}`}>{tNav(item.labelKey)}</span>
-                </Link>
-              ))}
-              <span className={s.railSep} />
-              <AdminLocaleSwitcher className={`${s.railBtn} ${s.railLocale}`} />
-              <button type="button" className={s.railBtn} onClick={logout} disabled={loggingOut} style={{ "--i": 8 } as CSSProperties}>
-                <Icon>{ICONS.logout}</Icon>
-                <span className={`${s.glass} ${s.tip}`}>{loggingOut ? tNav("signingOut") : tNav("signOut")}</span>
-              </button>
-            </nav>
 
             {/* ---------- window ---------- */}
             <main className={`${s.glass} ${s.window}`}>

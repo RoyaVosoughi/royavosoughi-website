@@ -1,0 +1,105 @@
+/*
+ * Glass theme for the admin's working pages.
+ *
+ * Every admin page is written against the brand tokens (ink / canvas /
+ * cobalt / mist / amber…). Inside the spatial shell's glass window
+ * (.glass-theme) those tokens are re-valued for white-on-frosted-sky, so the
+ * pages turn into the same environment as the Overview without each one
+ * being rewritten. Same idea as the site's dark theme in globals.css.
+ *
+ * These rules are deliberately unlayered: Tailwind's utilities live in
+ * @layer utilities, so the few fix-ups below win without !important.
+ */
+
+.glass-theme {
+  color-scheme: dark;
+  color: #fff;
+
+  --color-ink: #ffffff;
+  --color-canvas: rgba(255, 255, 255, 0.07);
+  --color-paper: rgba(255, 255, 255, 0.1);
+  --color-mist: rgba(255, 255, 255, 0.12);
+  --color-ink-soft: #e3f3ff;
+  --color-fog: rgba(255, 255, 255, 0.68);
+  --color-cobalt: #9fdcff;
+  --color-cobalt-dark: #c4ebff;
+  --color-cobalt-light: #9fdcff;
+  --color-on-cobalt: #0b2c4f;
+  --color-amber-deep: #ffd58a;
+  --color-amber: #ffc861;
+
+  /* headings follow the Overview (Inter), not the site's Fraunces */
+  --font-display: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+}
+
+.locale-fa .glass-theme {
+  --font-display: var(--font-vazirmatn), "Segoe UI", system-ui, sans-serif;
+}
+
+/* Solid light fills (buttons, chips) carry deep-navy text instead of white —
+   white on sky blue would be unreadable. */
+.glass-theme :is(.bg-cobalt, .bg-cobalt-dark, .bg-ink, .bg-ink-soft),
+.glass-theme :is(.hover\:bg-cobalt:hover, .hover\:bg-cobalt-dark:hover, .hover\:bg-ink:hover, .hover\:bg-ink-soft:hover) {
+  color: #0b2c4f;
+}
+
+/* "canvas-coloured text" means text on a light fill in the old design. */
+.glass-theme .text-canvas,
+.glass-theme .hover\:text-canvas:hover {
+  color: #0b2c4f;
+}
+
+/* Sticky editor toolbars sit over scrolling content: keep them opaque enough. */
+.glass-theme .bg-canvas\/95 {
+  background-color: rgba(16, 42, 76, 0.92);
+}
+
+/* Form fields: a touch more contrast than plain cards, and a sky focus ring. */
+.glass-theme :is(input, select, textarea):not([type="checkbox"], [type="radio"], [type="range"], [type="file"]) {
+  background-color: rgba(4, 18, 40, 0.28);
+  color: #fff;
+}
+
+.glass-theme :is(input, textarea)::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.glass-theme select option,
+.glass-theme select optgroup {
+  background: #10294a;
+  color: #fff;
+}
+
+.glass-theme :is(input, select, textarea):focus-visible {
+  outline: 2px solid #9fdcff;
+  outline-offset: 1px;
+}
+
+.glass-theme :is(input[type="checkbox"], input[type="radio"], input[type="range"]) {
+  accent-color: #9fdcff;
+}
+
+/* Tables: soft row dividers on glass */
+.glass-theme table {
+  color: inherit;
+}
+
+.glass-theme thead {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.glass-theme ::selection {
+  background: rgba(159, 220, 255, 0.4);
+}
+
+/* Page titles: semibold like the Overview, a little smaller than the site's hero scale */
+.glass-theme .text-section {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+}
+
+/* The old design's solid "ink" drop-shadow under buttons turns white on glass — use a soft shadow instead. */
+.glass-theme .bg-cobalt {
+  box-shadow: 0 0.6rem 1.6rem -0.6rem rgba(8, 24, 48, 0.5);
+}

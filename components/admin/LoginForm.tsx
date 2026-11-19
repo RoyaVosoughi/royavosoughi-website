@@ -39,7 +39,7 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full max-w-sm">
+    <form onSubmit={onSubmit} className="w-full">
       <label htmlFor="admin-email" className="mb-2 block text-sm font-medium text-ink/80">
         {t("emailLabel")}
       </label>
