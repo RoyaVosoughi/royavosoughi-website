@@ -61,7 +61,17 @@ const GoogleIcon = () => (
 
 /* ---------- component ---------- */
 
-export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
+export function AuthForm({
+  mode,
+  next,
+  variant = "card",
+}: {
+  mode: AuthMode;
+  next?: string;
+  /** "card": boxed form under a centred header. "split": bare form for AuthSplitShell. */
+  variant?: "card" | "split";
+}) {
+  const split = variant === "split";
   const t = useTranslations("auth");
   const locale = useLocale();
   const router = useRouter();
@@ -190,21 +200,26 @@ export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
     return (
       <div>
         <div className="mb-2 flex items-baseline justify-between gap-3">
-          <label htmlFor={name} className="font-medium text-ink">
+          <label htmlFor={name} className={split ? "text-sm font-medium text-ink/80" : "font-medium text-ink"}>
             {label}
           </label>
-          {aside}
+          {split ? null : aside}
         </div>
         <div
-          className={`flex h-14 items-center gap-3 rounded-2xl border-2 bg-canvas px-4 text-ink/50 transition-colors focus-within:text-cobalt ${
+          className={`flex items-center gap-3 bg-canvas text-ink/50 transition-colors ${
+            split
+              ? "h-12 rounded-xl border px-4 focus-within:ring-2 focus-within:ring-cobalt/40"
+              : "h-14 rounded-2xl border-2 px-4 focus-within:text-cobalt"
+          } ${
             error
               ? "border-amber-deep"
               : "border-ink/15 hover:border-ink/30 focus-within:border-cobalt"
           }`}
         >
-          {icon}
+          {split ? null : icon}
           {input}
         </div>
+        {split && aside ? <div className="mt-2 flex justify-end">{aside}</div> : null}
         {error ? (
           <p id={`${name}-error`} role="alert" className="mt-1.5 text-sm font-medium text-amber-deep">
             {error}
@@ -226,7 +241,7 @@ export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
     };
   }
 
-  const cardClass = "rounded-[2rem] border border-ink/10 bg-paper p-6 sm:p-10";
+  const cardClass = split ? "" : "rounded-[2rem] border border-ink/10 bg-paper p-6 sm:p-10";
 
   if (!supabase) {
     return (
@@ -252,6 +267,30 @@ export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
     );
   }
 
+  const switchLine = (
+    <p className={split ? "-mt-4 text-ink/70" : "text-center text-sm text-ink/75"}>
+      {mode === "register" ? (
+        <>
+          {t("haveAccount")}{" "}
+          <Link href="/sign-in" className="font-medium text-cobalt hover:underline">
+            {t("signInLink")}
+          </Link>
+        </>
+      ) : mode === "signIn" ? (
+        <>
+          {t("noAccount")}{" "}
+          <Link href="/register" className="font-medium text-cobalt hover:underline">
+            {t("registerLink")}
+          </Link>
+        </>
+      ) : (
+        <Link href="/sign-in" className="font-medium text-cobalt hover:underline">
+          {t("backToSignIn")}
+        </Link>
+      )}
+    </p>
+  );
+
   const submitLabel = {
     register: t("registerSubmit"),
     signIn: t("signInSubmit"),
@@ -261,6 +300,7 @@ export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
 
   return (
     <form onSubmit={onSubmit} noValidate className={`${cardClass} flex flex-col gap-5`}>
+      {split ? switchLine : null}
       {showName
         ? field(
             "name",
@@ -326,32 +366,12 @@ export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
       <button
         type="submit"
         disabled={status === "working"}
-        className="mt-3 h-14 w-full rounded-full bg-cobalt font-medium text-on-cobalt transition-colors hover:bg-cobalt-dark focus-visible:outline-3 focus-visible:outline-offset-3 disabled:opacity-60"
+        className={`mt-3 w-full bg-cobalt ${split ? "h-12 rounded-xl" : "h-14 rounded-full"} font-medium text-on-cobalt transition-colors hover:bg-cobalt-dark focus-visible:outline-3 focus-visible:outline-offset-3 disabled:opacity-60`}
       >
         {status === "working" ? t("working") : submitLabel}
       </button>
 
-      <p className="text-center text-sm text-ink/75">
-        {mode === "register" ? (
-          <>
-            {t("haveAccount")}{" "}
-            <Link href="/sign-in" className="font-medium text-cobalt hover:underline">
-              {t("signInLink")}
-            </Link>
-          </>
-        ) : mode === "signIn" ? (
-          <>
-            {t("noAccount")}{" "}
-            <Link href="/register" className="font-medium text-cobalt hover:underline">
-              {t("registerLink")}
-            </Link>
-          </>
-        ) : (
-          <Link href="/sign-in" className="font-medium text-cobalt hover:underline">
-            {t("backToSignIn")}
-          </Link>
-        )}
-      </p>
+      {split ? null : switchLine}
 
       {googleAuthEnabled && (mode === "register" || mode === "signIn") ? (
         <>
@@ -363,7 +383,11 @@ export function AuthForm({ mode, next }: { mode: AuthMode; next?: string }) {
           <button
             type="button"
             onClick={onGoogle}
-            className="flex h-14 w-full items-center justify-center gap-3 rounded-full border border-ink/25 font-medium text-ink transition-colors hover:border-ink hover:bg-ink/[0.04]"
+            className={`flex w-full items-center justify-center gap-3 border font-medium text-ink transition-colors ${
+              split
+                ? "h-12 rounded-xl border-ink/15 bg-canvas hover:border-ink/30 hover:bg-mist"
+                : "h-14 rounded-full border-ink/25 hover:border-ink hover:bg-ink/[0.04]"
+            }`}
           >
             <GoogleIcon />
             {t("google")}
