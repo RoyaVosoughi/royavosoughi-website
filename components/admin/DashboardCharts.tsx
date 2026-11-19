@@ -4,23 +4,35 @@ import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis
 
 const COLORS = ["#1e1e1e", "#0047ab", "#6b6b6b", "#e3a72f", "#7fa6e8", "#b8b0a6"];
 
-export function ChannelBreakdownChart({ sessionsByChannel }: { sessionsByChannel: Record<string, number> }) {
+/** "glass" is for the spatial Overview — white type and sky-blue bars on dark frosted glass. */
+export type ChartTone = "light" | "glass";
+
+const SKY_COLORS = ["#e6f6ff", "#8fd3ff", "#3fa2f0", "#c4e9ff", "#5ab8f5", "#b9cfe2"];
+
+function palette(tone: ChartTone) {
+  return tone === "glass"
+    ? { bars: SKY_COLORS, ink: "#ffffffcc", grid: "#ffffff26", cursor: "#ffffff14" }
+    : { bars: COLORS, ink: "#1e1e1e", grid: "#1e1e1e1f", cursor: "#ebdfd1" };
+}
+
+export function ChannelBreakdownChart({ sessionsByChannel, tone = "light" }: { sessionsByChannel: Record<string, number>; tone?: ChartTone }) {
+  const p = palette(tone);
   const data = Object.entries(sessionsByChannel).map(([channel, count]) => ({ channel, count }));
 
   return (
     <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 8, right: 8, bottom: 8, left: -16 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e1e1e1f" vertical={false} />
-          <XAxis dataKey="channel" tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={{ stroke: "#1e1e1e1f" }} />
-          <YAxis tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={false} allowDecimals={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke={p.grid} vertical={false} />
+          <XAxis dataKey="channel" tick={{ fontSize: 12, fill: p.ink }} tickLine={false} axisLine={{ stroke: p.grid }} />
+          <YAxis tick={{ fontSize: 12, fill: p.ink }} tickLine={false} axisLine={false} allowDecimals={false} />
           <Tooltip
             contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }}
-            cursor={{ fill: "#ebdfd1" }}
+            cursor={{ fill: p.cursor }}
           />
           <Bar dataKey="count" radius={[8, 8, 0, 0]}>
             {data.map((entry, i) => (
-              <Cell key={entry.channel} fill={COLORS[i % COLORS.length]} />
+              <Cell key={entry.channel} fill={p.bars[i % p.bars.length]} />
             ))}
           </Bar>
         </BarChart>
@@ -29,9 +41,10 @@ export function ChannelBreakdownChart({ sessionsByChannel }: { sessionsByChannel
   );
 }
 
-export function CostByModelChart({ byModel }: { byModel: Array<{ model: string; costUsd: number }> }) {
+export function CostByModelChart({ byModel, tone = "light" }: { byModel: Array<{ model: string; costUsd: number }>; tone?: ChartTone }) {
+  const p = palette(tone);
   if (byModel.length === 0) {
-    return <p className="text-sm text-soft/60">No model usage recorded yet this month.</p>;
+    return <p className={tone === "glass" ? "text-sm text-white/70" : "text-sm text-soft/60"}>No model usage recorded yet this month.</p>;
   }
 
   const data = [...byModel].sort((a, b) => b.costUsd - a.costUsd).slice(0, 8);
@@ -40,17 +53,17 @@ export function CostByModelChart({ byModel }: { byModel: Array<{ model: string; 
     <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 8, right: 24, bottom: 8, left: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e1e1e1f" horizontal={false} />
-          <XAxis type="number" tick={{ fontSize: 12, fill: "#1e1e1e" }} tickLine={false} axisLine={{ stroke: "#1e1e1e1f" }} tickFormatter={(v) => `$${v.toFixed(2)}`} />
-          <YAxis type="category" dataKey="model" width={160} tick={{ fontSize: 11, fill: "#1e1e1e" }} tickLine={false} axisLine={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke={p.grid} horizontal={false} />
+          <XAxis type="number" tick={{ fontSize: 12, fill: p.ink }} tickLine={false} axisLine={{ stroke: p.grid }} tickFormatter={(v) => `$${v.toFixed(2)}`} />
+          <YAxis type="category" dataKey="model" width={160} tick={{ fontSize: 11, fill: p.ink }} tickLine={false} axisLine={false} />
           <Tooltip
             formatter={(value) => [`$${Number(value).toFixed(4)}`, "Est. cost"]}
             contentStyle={{ borderRadius: 12, border: "1px solid #1e1e1e22", background: "#ffffff", color: "#1e1e1e", fontSize: 13 }}
-            cursor={{ fill: "#ebdfd1" }}
+            cursor={{ fill: p.cursor }}
           />
           <Bar dataKey="costUsd" radius={[0, 8, 8, 0]}>
             {data.map((entry, i) => (
-              <Cell key={entry.model} fill={COLORS[i % COLORS.length]} />
+              <Cell key={entry.model} fill={p.bars[i % p.bars.length]} />
             ))}
           </Bar>
         </BarChart>

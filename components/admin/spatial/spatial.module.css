@@ -1,0 +1,1871 @@
+/*
+ * Spatial (visionOS-style) admin Overview — frosted glass floating over a sky.
+ * Fluid scale: 1rem = 10px on a 1440×810 artboard, so everything here is in rem.
+ * The html font-size only changes while this page is mounted (html:has(.stage)).
+ */
+
+html:has(.stage) {
+  font-size: min(calc(100vw / 144), calc(100vh / 81));
+}
+
+.stage {
+  --grad: linear-gradient(135deg, #eef9ff 0%, #9fdcff 45%, #3d9ff0 100%);
+  --s2: #8fd3ff;
+  --s3: #3d9ff0;
+  --ink-deep: #0b2c4f;
+  --glass-bg: rgba(14, 38, 70, 0.5);
+  --card-bg: rgba(255, 255, 255, 0.075);
+  --card-line: rgba(255, 255, 255, 0.14);
+  --muted: rgba(255, 255, 255, 0.74);
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  position: relative;
+  min-height: 100vh;
+  color: #fff;
+  font-family: var(--font-inter), var(--font-vazirmatn), system-ui, sans-serif;
+  background: #3f8fe0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+:global(.locale-fa) .stage {
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+}
+
+.stage h1,
+.stage h2,
+.stage h3 {
+  color: inherit;
+  font-family: inherit;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(1.35);
+  -webkit-backdrop-filter: blur(28px) saturate(1.35);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 3rem 8rem -3rem rgba(8, 24, 48, 0.55);
+}
+
+/* ------------------------------------------------------------------ sky */
+
+.room {
+  position: fixed;
+  inset: -3%;
+  z-index: 0;
+  overflow: hidden;
+  will-change: transform;
+  animation: roomIn 1.6s var(--out) both;
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #1c68c4 0%, #3a8ce0 28%, #72b9ef 58%, #b9e0f9 82%, #e9f6fe 100%);
+}
+
+.sun {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(14% 22% at 16% 18%, rgba(255, 252, 238, 0.85), transparent 70%),
+    radial-gradient(42% 52% at 18% 24%, rgba(255, 240, 205, 0.38), transparent 72%);
+  mix-blend-mode: soft-light;
+  transition: opacity 1s var(--ease);
+}
+
+.cloud {
+  position: absolute;
+  width: 70rem;
+  height: 22rem;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0)) 0% 60% / 42% 64% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0)) 28% 20% / 46% 92% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)) 62% 40% / 48% 80% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0)) 100% 64% / 36% 58% no-repeat;
+  filter: blur(4px);
+  animation: drift 150s ease-in-out infinite alternate;
+}
+
+.cloudA {
+  top: 6%;
+  left: 52%;
+  opacity: 0.75;
+}
+.cloudB {
+  top: 70%;
+  left: -6%;
+  transform: scale(1.5);
+  opacity: 0.9;
+  animation-duration: 190s;
+  animation-delay: -60s;
+}
+.cloudC {
+  top: 38%;
+  left: 74%;
+  transform: scale(0.8);
+  opacity: 0.55;
+  animation-duration: 170s;
+  animation-delay: -30s;
+}
+.cloudD {
+  top: 84%;
+  left: 58%;
+  transform: scale(1.8);
+  opacity: 0.85;
+  animation-duration: 210s;
+  animation-delay: -100s;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(6, 22, 48, 0.45) 100%);
+}
+
+.dim {
+  position: absolute;
+  inset: 0;
+  background: #071a33;
+  transition: opacity 1s var(--ease);
+}
+
+@keyframes drift {
+  from {
+    translate: -14rem 0;
+  }
+  to {
+    translate: 14rem 0;
+  }
+}
+
+@keyframes roomIn {
+  from {
+    filter: blur(24px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+
+/* --------------------------------------------------------------- layout */
+
+.screen {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  perspective: 1600px;
+}
+
+.artboard {
+  position: relative;
+  width: 144rem;
+  height: 81rem;
+  margin: 0 auto;
+}
+
+.tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------------ tabs */
+
+.tabs {
+  position: absolute;
+  top: 3.2rem;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 6rem;
+  padding: 0.6rem;
+  border-radius: 99rem;
+  z-index: 5;
+  animation: dropIn 1s var(--out) 0.5s both;
+}
+
+.tab,
+.tabPlus {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  height: 4.8rem;
+  padding: 0 2rem;
+  border: 0;
+  border-radius: 99rem;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 1.45rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.4s var(--ease);
+}
+
+.tab svg,
+.tabPlus svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tabActive,
+.tabActive:hover {
+  background: transparent;
+  color: #0d2340;
+}
+
+.tabIndicator {
+  position: absolute;
+  top: 0.6rem;
+  height: 4.8rem;
+  border-radius: 99rem;
+  background: #fff;
+  box-shadow: 0 0.6rem 1.6rem -0.6rem rgba(8, 24, 48, 0.45);
+  transition:
+    left 0.7s var(--spring),
+    width 0.7s var(--spring);
+}
+
+.tabPlus {
+  width: 4.8rem;
+  padding: 0;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.5s var(--spring),
+    background 0.3s;
+}
+
+.tabPlus:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ------------------------------------------------------------------ rail */
+
+.rail {
+  position: absolute;
+  inset-inline-start: 11.4rem;
+  top: 11.2rem;
+  width: 6.4rem;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 99rem;
+  z-index: 6;
+  animation: railIn 1s var(--out) 0.7s both;
+}
+
+.railBtn {
+  --i: 0;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.4s var(--spring),
+    background 0.3s;
+  animation: pop 0.6s var(--spring) both;
+  animation-delay: calc(0.9s + var(--i) * 0.06s);
+}
+
+.railBtn svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.railBtn:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.railBtn:disabled {
+  opacity: 0.5;
+}
+
+.railActive,
+.railActive:hover {
+  background: #fff;
+  color: #0d2340;
+}
+
+.railLocale {
+  font-size: 1.15rem;
+  font-weight: 700;
+  animation-delay: 1.4s;
+}
+
+.railSep {
+  width: 2.4rem;
+  height: 1px;
+  margin: 0.4rem 0;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.tip {
+  position: absolute;
+  inset-inline-start: calc(100% + 1.4rem);
+  top: 50%;
+  translate: -0.8rem -50%;
+  padding: 0.7rem 1.4rem;
+  border-radius: 99rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s var(--out),
+    translate 0.4s var(--out);
+}
+
+:global([dir="rtl"]) .tip {
+  translate: 0.8rem -50%;
+}
+
+.railBtn:hover .tip,
+.railBtn:focus-visible .tip {
+  opacity: 1;
+  translate: 0 -50%;
+}
+
+/* --------------------------------------------------------------- window */
+
+.window {
+  position: absolute;
+  inset-inline-start: 20.4rem;
+  top: 11.2rem;
+  width: 111.8rem;
+  height: 63.4rem;
+  border-radius: 4.2rem;
+  animation: windowIn 1.4s var(--out) 0.2s both;
+}
+
+.card {
+  --i: 0;
+  position: absolute;
+  border-radius: 2.8rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-line);
+  overflow: hidden;
+  animation: cardIn 1s var(--out) both;
+  animation-delay: calc(0.9s + var(--i) * 0.08s);
+}
+
+.dip {
+  /* keep cardIn listed so the intro isn't replayed when the dip ends */
+  animation:
+    cardIn 1s var(--out) both,
+    dip 0.6s var(--ease);
+  animation-delay: calc(0.9s + var(--i) * 0.08s), 0s;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.cardSub {
+  margin: 0.4rem 0 0;
+  font-size: 1.35rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.roll {
+  display: inline-block;
+  animation: roll 0.6s var(--out) both;
+}
+
+.dialTitle .roll {
+  animation-delay: 0.05s;
+}
+
+/* ------------------------------------------------------------ live tile */
+
+.cam {
+  inset-inline-start: 2.2rem;
+  top: 1.8rem;
+  width: 53.6rem;
+  height: 27rem;
+  z-index: 3;
+  cursor: zoom-in;
+  transition:
+    width 0.8s var(--ease),
+    height 0.8s var(--ease),
+    border-radius 0.8s var(--ease);
+}
+
+.camExpanded {
+  width: calc(111.8rem - 4.4rem - 2px);
+  height: calc(63.4rem - 3.6rem - 2px);
+  z-index: 8;
+  cursor: zoom-out;
+}
+
+.cam:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.camFeed {
+  position: absolute;
+  inset: 0;
+  animation: kenBurns 24s ease-in-out infinite alternate;
+}
+
+.camSky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 80% at 80% 0%, rgba(159, 220, 255, 0.35), transparent 70%),
+    linear-gradient(160deg, #123866 0%, #0e2b50 60%, #0a2242 100%);
+  filter: contrast(1.08);
+}
+
+.camMessages {
+  position: absolute;
+  inset: 5.6rem 2.4rem 7.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  overflow: hidden;
+}
+
+.camExpanded .camMessages {
+  inset: 6.4rem 4rem 9rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.msgUser,
+.msgBot {
+  flex: none;
+  margin: 0;
+  max-width: 78%;
+  padding: 0.8rem 1.3rem;
+  border-radius: 1.6rem;
+  font-size: 1.3rem;
+  line-height: 1.45;
+}
+
+.msgText {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.camExpanded .msgUser,
+.camExpanded .msgBot {
+  font-size: 1.45rem;
+}
+
+.camExpanded .msgText {
+  -webkit-line-clamp: 6;
+}
+
+.msgUser {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.92);
+  color: #0d2340;
+  border-end-end-radius: 0.4rem;
+}
+
+.msgBot {
+  align-self: flex-start;
+  background: rgba(159, 220, 255, 0.18);
+  border: 1px solid rgba(159, 220, 255, 0.3);
+  border-end-start-radius: 0.4rem;
+}
+
+.msgRole {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.2rem;
+}
+
+.camEmpty {
+  margin: auto;
+  font-size: 1.4rem;
+  color: var(--muted);
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.camShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 18, 38, 0.55) 0%, transparent 26%, transparent 66%, rgba(5, 18, 38, 0.7) 100%);
+  pointer-events: none;
+}
+
+.liveChip {
+  position: absolute;
+  top: 1.6rem;
+  inset-inline-start: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 99rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.liveDot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--s2);
+  box-shadow: 0 0 0 0 rgba(143, 211, 255, 0.7);
+  animation: pulse 1.8s ease-out infinite;
+}
+
+.liveDotIdle {
+  background: rgba(255, 255, 255, 0.5);
+  animation: none;
+}
+
+.rec {
+  position: absolute;
+  top: 2.1rem;
+  inset-inline-end: 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.camCaption {
+  position: absolute;
+  inset-inline-start: 2rem;
+  bottom: 1.8rem;
+}
+
+.camTitle {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.camSub {
+  margin: 0.2rem 0 0;
+  font-size: 1.3rem;
+  color: var(--muted);
+}
+
+.camOpen {
+  position: absolute;
+  inset-inline-end: 2rem;
+  bottom: 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.8rem;
+  border-radius: 99rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  animation: cardIn 0.5s var(--out) 0.4s both;
+}
+
+.camOpen svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #06152c;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+
+.curtainCover {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.45s var(--ease);
+}
+
+.curtainReveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.5s var(--ease);
+}
+
+/* ------------------------------------------------------------------ dial */
+
+.dialCard {
+  inset-inline-start: 57.8rem;
+  top: 1.8rem;
+  width: 51.8rem;
+  height: 40.2rem;
+  padding: 2.4rem 2.6rem;
+}
+
+.dialHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dialTitle {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 1.15;
+  overflow: hidden;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 99rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.statusDot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 1rem currentColor;
+}
+
+.dialPrecise {
+  color: #c9e6ff;
+}
+.dialBalanced {
+  color: #9fdcff;
+}
+.dialCreative {
+  color: #ffd58a;
+}
+
+.gear {
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition:
+    transform 0.6s var(--spring),
+    background 0.3s;
+}
+
+.gear svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.gear:hover {
+  transform: rotate(120deg);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dialWrap {
+  position: absolute;
+  inset-inline-end: 3.2rem;
+  top: 7.8rem;
+  width: 26rem;
+  height: 26rem;
+}
+
+.dial {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+  overflow: visible;
+}
+
+.dialDragging {
+  cursor: grabbing;
+}
+
+.dial:focus-visible {
+  outline: none;
+}
+
+.dial:focus-visible .knob {
+  stroke: var(--s3);
+  stroke-width: 4;
+}
+
+.dialTrack,
+.dialArc,
+.dialGlow {
+  fill: none;
+  stroke-width: 22;
+  stroke-linecap: round;
+}
+
+.dialTrack {
+  stroke: rgba(10, 26, 50, 0.5);
+}
+
+.dialArc {
+  stroke: url(#dialGrad);
+}
+
+.dialGlow {
+  stroke: url(#dialGrad);
+  opacity: 0.6;
+}
+
+.tick,
+.tickOn {
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke 0.3s;
+}
+
+.tick {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.tickOn {
+  stroke: #fff;
+}
+
+.knob {
+  fill: #fff;
+  filter: drop-shadow(0 2px 6px rgba(5, 18, 38, 0.5));
+}
+
+.dialCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 6.4rem;
+  height: 6.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: #0c2242;
+  color: #fff;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 0.6rem rgba(143, 211, 255, 0.14),
+    0 0 2.4rem rgba(143, 211, 255, 0.35);
+  transition: transform 0.4s var(--spring);
+}
+
+.dialCenter svg {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.dialCenter:hover {
+  transform: rotate(-40deg) scale(1.05);
+}
+
+.dialReadout {
+  position: absolute;
+  inset-inline-start: 2.6rem;
+  bottom: 2.6rem;
+  max-width: 18rem;
+}
+
+.dialValue {
+  margin: 0;
+  font-size: 4.6rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------- scene */
+
+.scene {
+  inset-inline-start: 2.2rem;
+  top: 30.6rem;
+  width: 26.2rem;
+  height: 7rem;
+  border-radius: 99rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0 1rem;
+}
+
+.sceneSun {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: var(--grad);
+  color: var(--ink-deep);
+}
+
+.sceneSun svg {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.sceneSpin svg {
+  animation: spin 2.4s var(--ease);
+}
+
+.sceneText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sceneTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sceneText .cardSub {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.scenePlay {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    transform 0.4s var(--spring),
+    background 0.3s;
+}
+
+.scenePlay svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.scenePlay:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.ripple {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  margin: -1rem 0 0 -1rem;
+  border-radius: 50%;
+  background: rgba(159, 220, 255, 0.55);
+  pointer-events: none;
+  animation: ripple 0.9s var(--out) forwards;
+}
+
+/* -------------------------------------------------------- small cards */
+
+.small {
+  inset-inline-start: 2.2rem;
+  top: 39.4rem;
+  width: 26.2rem;
+  height: 22.2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.smallTop {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.roundIcon {
+  display: grid;
+  place-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transition: transform 0.4s var(--spring);
+}
+
+.roundIcon svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.roundIconPulse {
+  box-shadow: 0 0 0 0 rgba(143, 211, 255, 0.55);
+  animation: pulse 2.2s ease-out infinite;
+}
+
+.roundIconLight {
+  background: #fff;
+  color: #0d2340;
+}
+
+.roundIconLight:hover {
+  transform: scale(1.08) rotate(-45deg);
+}
+
+:global([dir="rtl"]) .roundIconLight svg,
+:global([dir="rtl"]) .lightsLink svg,
+:global([dir="rtl"]) .camOpen svg {
+  transform: scaleX(-1);
+}
+
+.smallStatus {
+  margin-inline-start: auto;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.bar {
+  margin-top: 1.2rem;
+  height: 0.6rem;
+  border-radius: 99rem;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--grad);
+  transition: width 1s var(--out);
+}
+
+/* lights → leads gradient card */
+
+.lights {
+  --glow: 0.7;
+  inset-inline-start: 30.2rem;
+  top: 30.6rem;
+  width: 25.6rem;
+  height: 22.4rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--grad);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-deep);
+}
+
+.lights .cardSub {
+  color: rgba(11, 44, 79, 0.78);
+}
+
+.bulb {
+  display: grid;
+  place-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink-deep);
+  box-shadow: 0 0 calc(var(--glow) * 3.6rem) calc(var(--glow) * 0.6rem) rgba(255, 244, 214, calc(var(--glow) * 0.9));
+  transition: box-shadow 1s var(--ease);
+}
+
+.bulb svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.lightsCount {
+  margin-inline-start: auto;
+  font-size: 3.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lightsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink-deep);
+  text-decoration: none;
+}
+
+.lightsLink svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  transition: translate 0.3s var(--out);
+}
+
+.lightsLink:hover svg {
+  translate: 0.4rem 0;
+}
+
+/* --------------------------------------------------------------- slider */
+
+.slider {
+  inset-inline-start: 30.2rem;
+  top: 54.8rem;
+  width: 25.6rem;
+  height: 7rem;
+  border-radius: 99rem;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.slider:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.sliderFill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  border-radius: 99rem;
+  background: var(--grad);
+}
+
+.sliderSun {
+  position: absolute;
+  inset-inline-start: 2rem;
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--ink-deep);
+  transition: rotate 0.6s var(--out);
+}
+
+.sliderSun svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.sliderDragging .sliderSun {
+  animation: spin 3s linear infinite;
+}
+
+.sliderLabel {
+  position: absolute;
+  inset-inline-start: 5.4rem;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink-deep);
+  white-space: nowrap;
+}
+
+.sliderValue {
+  position: absolute;
+  inset-inline-end: 2rem;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------- activity card */
+
+.music {
+  inset-inline-start: 57.8rem;
+  top: 43.6rem;
+  width: 51.8rem;
+  height: 18.2rem;
+  padding: 1.6rem;
+  display: flex;
+  gap: 2rem;
+  transition: opacity 0.3s;
+}
+
+.loading {
+  opacity: 0.75;
+}
+
+.art {
+  flex: none;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 2rem;
+  background: var(--grad);
+  color: var(--ink-deep);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.6rem;
+}
+
+.artNumber {
+  font-size: 4.6rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.artLabel {
+  margin-top: 0.4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.musicBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.musicTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nowChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.4rem 1.2rem 0.4rem 0.4rem;
+  border-radius: 99rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.noteBadge {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--grad);
+}
+
+.eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  height: 1.2rem;
+}
+
+.eq i {
+  width: 0.3rem;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--ink-deep);
+  transform-origin: bottom;
+  animation: eq 0.9s ease-in-out infinite alternate;
+}
+
+.eq i:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.eq i:nth-child(3) {
+  animation-delay: -0.6s;
+}
+
+.eqPaused i {
+  animation-play-state: paused;
+}
+
+.range {
+  position: relative;
+  display: flex;
+  padding: 0.3rem;
+  border-radius: 99rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.range button {
+  position: relative;
+  z-index: 1;
+  width: 4.6rem;
+  height: 2.8rem;
+  border: 0;
+  border-radius: 99rem;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.range .rangeActive {
+  color: #0d2340;
+}
+
+.rangeIndicator {
+  --idx: 0;
+  position: absolute;
+  top: 0.3rem;
+  inset-inline-start: 0.3rem;
+  width: 4.6rem;
+  height: 2.8rem;
+  border-radius: 99rem;
+  background: #fff;
+  translate: calc(var(--idx) * 4.6rem) 0;
+  transition: translate 0.6s var(--spring);
+}
+
+:global([dir="rtl"]) .rangeIndicator {
+  translate: calc(var(--idx) * -4.6rem) 0;
+}
+
+.musicTitle {
+  margin: 1.2rem 0 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.stats {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.stat {
+  min-width: 0;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.statLabel {
+  margin: 0.2rem 0 0;
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+/* ------------------------------------------------------------- details */
+
+.details {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0 8rem;
+}
+
+.detailsWindow {
+  width: 111.8rem;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 4.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  font-size: 1.4rem;
+}
+
+.detailCard {
+  position: relative;
+  padding: 2.4rem;
+  animation: none;
+}
+
+.detailWide {
+  grid-column: 1 / -1;
+}
+
+.detailHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.detailTitle {
+  margin: 0 0 0.8rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.detailLink {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--s2);
+  text-decoration: none;
+}
+
+.detailLink:hover {
+  text-decoration: underline;
+}
+
+.badge {
+  padding: 0.2rem 1rem;
+  border-radius: 99rem;
+  background: rgba(255, 213, 138, 0.22);
+  color: #ffd58a;
+  font-size: 1.3rem;
+}
+
+.overdueList {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.overdueList li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 1rem 1.4rem;
+  border-radius: 1.6rem;
+  background: rgba(255, 213, 138, 0.1);
+  border: 1px solid rgba(255, 213, 138, 0.3);
+  font-size: 1.4rem;
+}
+
+.overdueList a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.overdueList a span {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.due {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffd58a;
+}
+
+.topics {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.topics span {
+  padding: 0.6rem 1.4rem;
+  border-radius: 99rem;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.topics em {
+  font-style: normal;
+  color: var(--muted);
+}
+
+.kb {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+}
+
+.kb .detailTitle,
+.kb .cardSub {
+  margin: 0;
+}
+
+/* --------------------------------------------------------------- toast */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 3.2rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: calc(100vw - 32px);
+  padding: 0.8rem 2rem 0.8rem 0.8rem;
+  border-radius: 99rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  translate: -50% 14rem;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    translate 0.7s var(--out),
+    opacity 0.4s var(--out);
+}
+
+.toastOn {
+  translate: -50% 0;
+  opacity: 1;
+}
+
+.toastCheck {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--grad);
+  color: var(--ink-deep);
+}
+
+.toastCheck svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* ---------------------------------------------------------- keyframes */
+
+@keyframes windowIn {
+  from {
+    opacity: 0;
+    transform: translateZ(-260px) translateY(6rem) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes railIn {
+  from {
+    opacity: 0;
+    transform: translateX(-4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(2.4rem);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes dip {
+  0%,
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+  40% {
+    translate: 0 0.6rem;
+    scale: 0.985;
+  }
+}
+
+@keyframes roll {
+  from {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(143, 211, 255, 0.7);
+  }
+  80%,
+  100% {
+    box-shadow: 0 0 0 1rem rgba(143, 211, 255, 0);
+  }
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(18);
+    opacity: 0;
+  }
+}
+
+@keyframes eq {
+  from {
+    transform: scaleY(0.3);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* ---------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  html:has(.stage) {
+    font-size: 10px;
+  }
+
+  /* logical insets compile to :lang()-qualified selectors, so reset with physical props at matching specificity */
+  .window > .card,
+  .tilt > .rail,
+  .tilt > .window {
+    left: auto;
+    right: auto;
+  }
+
+  .room {
+    animation: none;
+  }
+
+  .screen {
+    height: auto;
+    perspective: none;
+  }
+
+  .artboard {
+    width: auto;
+    height: auto;
+    padding: 16px 16px 0;
+  }
+
+  .tilt {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .tabs {
+    position: relative;
+    top: auto;
+    left: auto;
+    translate: none;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    align-self: center;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    padding: 0 1.6rem;
+  }
+
+  .tabPlus {
+    flex: none;
+  }
+
+  /* the rail turns into a scrolling row so the other sections stay reachable */
+  .rail {
+    position: relative;
+    inset-inline-start: auto;
+    top: auto;
+    width: auto;
+    max-width: 100%;
+    flex-direction: row;
+    align-self: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .railSep {
+    width: 1px;
+    height: 2.4rem;
+    margin: 0 0.4rem;
+  }
+
+  .railBtn {
+    flex: none;
+  }
+
+  .tip {
+    display: none;
+  }
+
+  .window {
+    position: relative;
+    inset-inline-start: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    padding: 1.2rem;
+    border-radius: 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.2rem;
+    animation: cardIn 1s var(--out) both;
+  }
+
+  .card {
+    position: relative;
+    inset-inline-start: auto;
+    inset-inline-end: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    min-width: 0;
+  }
+
+  .cam,
+  .camExpanded {
+    grid-column: 1 / -1;
+    width: auto;
+    height: auto;
+    height: 24rem;
+  }
+
+  .camExpanded {
+    height: 44rem;
+  }
+
+  .camMessages {
+    inset: 5.2rem 1.6rem 7rem;
+  }
+
+  /* phone tile only has room for the newest message */
+  .cam:not(.camExpanded) .camMessages > :not(:last-child) {
+    display: none;
+  }
+
+  .dialCard {
+    grid-column: 1 / -1;
+    min-height: 40rem;
+  }
+
+  .dialWrap {
+    position: relative;
+    inset: auto;
+    margin: 1rem auto 0;
+    width: min(26rem, 70vw);
+    height: min(26rem, 70vw);
+  }
+
+  .dialReadout {
+    position: static;
+    max-width: none;
+    margin-top: 1.4rem;
+    text-align: center;
+  }
+
+  .scene,
+  .slider {
+    height: 7rem;
+  }
+
+  .small,
+  .lights {
+    min-height: 20rem;
+  }
+
+  .music {
+    grid-column: 1 / -1;
+    flex-direction: column;
+  }
+
+  .art {
+    width: 100%;
+    height: 12rem;
+  }
+
+  .stats {
+    margin-top: 1.4rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 1.4rem;
+  }
+
+  .details {
+    padding: 1.2rem 16px 10rem;
+  }
+
+  .detailsWindow {
+    width: auto;
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+    border-radius: 3rem;
+  }
+
+  /* Small cards order: camera, dial, scene, slider, handoffs + leads, activity */
+  .cam {
+    order: 1;
+  }
+  .dialCard {
+    order: 2;
+  }
+  .scene {
+    order: 3;
+  }
+  .slider {
+    order: 4;
+  }
+  .small {
+    order: 5;
+  }
+  .lights {
+    order: 6;
+  }
+  .music {
+    order: 7;
+  }
+}
+
+@media (max-width: 480px) {
+  .scene,
+  .slider {
+    grid-column: 1 / -1;
+  }
+
+  .small,
+  .lights {
+    padding: 1.6rem;
+  }
+
+  .lightsCount {
+    font-size: 2.8rem;
+  }
+
+  .musicTop {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage *,
+  .stage *::before,
+  .stage *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
